@@ -1,0 +1,23 @@
+from cryptography.fernet import Fernet
+import openpyxl
+from io import BytesIO
+
+# Assuming the key is stored in a variable called 'key'
+key = "hfUogC40RsWhbqdeD5Ib6QBE4XQTYEUZAYhaBeOy_bw="
+cipher_suite = Fernet(key)
+
+# Open the encrypted file in binary mode
+with open('Budget.xlsx', 'rb') as encrypted_file:
+    encrypted_data = encrypted_file.read()
+
+# Decrypt the data
+decrypted_data = cipher_suite.decrypt(encrypted_data)
+
+# Write the decrypted data to a BytesIO object
+decrypted_bytesio = BytesIO(decrypted_data)
+
+# Load the decrypted data into a Workbook object
+workbook = openpyxl.load_workbook(filename=decrypted_bytesio)
+
+# Save the Workbook object to a new file
+workbook.save('decrypted_Budget.xlsx')

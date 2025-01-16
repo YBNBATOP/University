@@ -1,0 +1,49 @@
+--- RENAMING VM'S ---
+
+Rename-Computer -Restart –NewName "GUI-SERAFIM"
+Rename-Computer -Restart –NewName "WIN11-SERAFIM"
+Rename-Computer -Restart –NewName "CORE-SERAFIM"
+
+--- SETTING UP IP/DNS ---
+
+
+New-NetIPAddress -IPAddress 192.168.206.100 -PrefixLength 24 -InterfaceAlias "Ethernet0" -DefaultGateway 192.168.206.2
+Set-DnsClientServerAddress -InterfaceAlias "Ethernet0" -ServerAddresses "192.168.206.100"
+
+New-NetIPAddress -IPAddress 192.168.206.101 -PrefixLength 24 -InterfaceAlias "Ethernet0" -DefaultGateway 192.168.206.2
+Set-DnsClientServerAddress -InterfaceAlias "Ethernet0" -ServerAddresses "192.168.206.100"
+
+New-NetIPAddress -IPAddress 192.168.206.102 -PrefixLength 24 -InterfaceAlias "Ethernet0" -DefaultGateway 192.168.206.2
+Set-DnsClientServerAddress -InterfaceAlias "Ethernet0" -ServerAddresses "192.168.206.100"
+
+--- ADDING MACHINES TO DOMAIN ---
+
+Add-Computer -DomainName corp-serafim.serverlabs.be
+Add-Computer -DomainName corp-serafim.serverlabs.be
+Add-Computer -DomainName corp-serafim.serverlabs.be
+
+(Important to run elevated, and put the credentials of a domain user, preferably administrator)
+
+--- INSTALLING RSAT TOOLS ---
+
+Add-WindowsCapability -Online -Name Rsat.GroupPolicy.Management.Tools~~~~0.0.1.0
+Add-WindowsCapability -Online -Name Rsat.DHCP.Tools~~~~0.0.1.0
+Add-WindowsCapability -Online -Name Rsat.ActiveDirectory.DS-LDS.Tools~~~~0.0.1.0
+Add-WindowsCapability -Online -Name Rsat.FileServices.Tools~~~~0.0.1.0
+Add-WindowsCapability -Online -Name Rsat.ServerManager.Tools~~~~0.0.1.0
+
+--- FIREWALL SETTINGS ---
+
+Set-NetFirewallRule -Name CoreNet-Diag-ICMP6-EchoRequest-In -Enabled true
+Set-NetFirewallRule -Name CoreNet-Diag-ICMP4-EchoRequest-In -Enabled true
+Set-NetFirewallRule -Name CoreNet-Diag-ICMP6-EchoRequest-Out -Enabled true
+Set-NetFirewallRule -Name CoreNet-Diag-ICMP4-EchoRequest-Out -Enabled true
+
+Get-NetFirewallRule | Where-Object {$_.DisplayName -like '*File and Printer Sharing*'} 
+
+Set-NetFirewallRule -DisplayName *Printer* -Enabled true
+Set-NetFirewallRule -DisplayName *Service* -Enabled true
+Set-NetFirewallRule -DisplayName *Log* -Enabled true
+Set-NetFirewallRule -DisplayName *Volume* -Enabled true
+Set-NetFirewallRule -DisplayName *Tasks* -Enabled true
+

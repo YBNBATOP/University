@@ -1,0 +1,38 @@
+param(
+[int] $topnr = 5, 
+[Parameter(Mandatory)] [string] $inputfile,
+[string]$outfile = (Get-Date -Format 'yyyy-MM-dd-HH-mm-ss') + '.txt')
+
+
+# Define variables to sort
+$file = Get-Content $inputfile
+$ips = @()
+$regex = '\b(?:(?:2(?:[0-4][0-9]|5[0-5])|[0-1]?[0-9]?[0-9])\.){3}(?:(?:2([0-4][0-9]|5[0-5])|[0-1]?[0-9]?[0-9]))\b'
+
+# Process
+foreach($line in $file) {
+    if($line -match $regex) {
+        $ips += $Matches[0]
+    }
+}
+
+# Get amount
+$sorted_unique_ips = $ips | Sort-Object | Get-Unique
+Write-Host "Number of unique IP's... $($sorted_unique_ips.Count)" -ForegroundColor Green
+
+# Process into objects
+$group = $ips | Group-Object | Sort-Object Count -Descending | Select-Object -Property Count, @{Name = "IP"; Expression = {$_.Name}} -First $topnr | Sort-Object Count, IP
+#Here we know that the object has at least a property called count, and then we can elaborate and create new parameters. hence, we get the Count as one column, then we create a kind of new column, called IP, and then we give it the value inside the index we have.
+
+# Get highest IP
+$highest_frequency_ip = $group[4].IP
+$country = Invoke-WebRequest -Uri "ifconfig.co/country?ip=$($highest_frequency_ip)"
+Write-Host "Country origin from highest IP: $($country)" -ForegroundColor Red
+
+# Show information
+Write-Host "Country per IP (top $topnr):" -ForegroundColor Blue
+$group
+
+# Write to file
+$output = $group
+$output | Out-File “$outfile”
