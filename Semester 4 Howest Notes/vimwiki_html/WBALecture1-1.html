@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="Stylesheet" type="text/css" href="style.css">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="rss.xml">
+<title>WBALecture1-1</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<div id="Introduction"><h1 id="Introduction" class="header"><a href="#Introduction">Introduction</a></h1></div>
+
+<p>
+Some basic information about what is what and what is supposed by it.
+This all is for us to know where we can use our offensive security skills!
+This are also 3 main areas where we can be paid for doing pentesting!
+</p>
+
+
+<p>
+<span id="Introduction-Pentesting"></span><strong id="Pentesting">Pentesting</strong>:
+</p>
+<ul>
+<li>
+Timeboxed
+	You have limited time to actually get a hand of every aspect of what you want to test! Client will always have to pay for your full time, hence you really should focus on what is needed.
+
+<li>
+Checklist based
+	You have to manage to test everything that was talked about with your client. Overall, it depends on what your boss and client wants from you!
+
+<li>
+Full coverage/Crown
+	Again, you need sometimes to cover the full application and not only separate parts of it. Here the crown is more of a metaphor meaning that you will be talking with your client and knowing what is really an asset that needs to be secured (crown!), or in other words - jewelry!
+
+<li>
+Report fillers
+	Sometimes you can not find anything really vulnerable so you have to add in some filling "words" or some small bugs you manage to find and want to be noticed. Also here is might be specified some bugs that can not be exploited at the time of test, but can be exploited afterwards and etc.
+
+<li>
+Layered: assume-breach
+	Sometimes you can not breach a certain level/layer of security, because of the multiple layer application and different roles you have and limited time, so you step over it and test the next layer that is situated after it. That is called "assume that I already breached in"
+
+</ul>
+<p>
+<span id="Introduction-Bugbounties"></span><strong id="Bugbounties">Bugbounties</strong>:
+</p>
+<ul>
+<li>
+No bug, no pay
+	If you find no bugs, you do not get paid. Easy!
+
+<li>
+Safe harbour
+	The company promises to have no questions to you for "ethical hacking" and they will not complain to the police for your actions!
+
+<li>
+Go deep
+	Sometimes the bugs will not lay on the surface, so you need to make more investigation upon the target! Also in this case you do not really have all the application to your use, but just a narrow path you can really investigate, hence you can put more focus into it!
+
+<li>
+Sometimes unfair
+	It may happen that to the time that you already find the bug, and then report it, the company might tell you that the bug is already known and then you get fucked!
+
+<li>
+Hardened targets
+	Sometimes you will encounter companies that are really concerned about their security! Hence the "easy" bugs will most probably have been handled already, and you will have to spend additional time into some more sophisticated bugs, but still, you can manage to find interesting things all around!
+
+<li>
+POC || GTFO
+	Sometimes you need to show a Proof of Concept that the bug exists, and you need to actually show that! Or, sometimes you might be asked to Get the Fuck Out because there is no real evidence that a bug exists. Also here it is meant that you do not submit "theoretical bugs", and you need to prove your shit!
+
+</ul>
+<p>
+<span id="Introduction-Ethical Hacking"></span><strong id="Ethical Hacking">Ethical Hacking</strong>:
+</p>
+<ul>
+<li>
+Altruistic
+	It means you are doing research in security related areas in companies that do not have a bugbounty system, hence it is totally on you to go and do some magic with the service/company. You get only knowledge, and sometimes something else, but mostly is for research.
+
+<li>
+Target audience not security aware
+	Most of the people you would submit the bug to might have never thought of the bug you will show or will find, hence they are not really security aware. You have to account for how to fix that and etc.
+
+<li>
+Know what you are doing
+	Do not experiment on something you are not allowed to really touch, because you are liable for the damages you cause! It is usually related to something more serious like RCE and etc.
+
+<li>
+Be careful
+	In all the case you are not secure from what happens, and you better no experiment on shit, unless you are liable for the damages you cause!
+
+<li>
+Legally on the edge
+	Sometimes, like in Belgium, there exists some kind of legislation that can protect you from really bad actions that have happenned and etc, but still make sure that you do not cause serious damage!
+
+</ul>
+<div id="Introduction-CCB (Centre for Cybersecurity Belgium"><h2 id="CCB (Centre for Cybersecurity Belgium" class="header"><a href="#Introduction-CCB (Centre for Cybersecurity Belgium">CCB (Centre for Cybersecurity Belgium</a></h2></div>
+
+<p>
+This is a Cybersecurity authority for Belgium!
+</p>
+
+<p>
+This is the highest authority in Belgium, that creates policies and guidlines for us, cybersecurity specialists, to follow!
+</p>
+
+<p>
+Sometimes it might be useful to go and check that resource because you can find out information upon how to work on something you want to investigate. This can vary from the very basic stuff to most top and hard things.
+</p>
+
+<p>
+Though, there are different target audiences, and everything depends on what you are doing. Like for example, one of the departments that exists in that resource is the CERT.be which is Cyber Emergency Response Team, and many others.
+</p>
+
+<p>
+This resource can also sponsor important things that need to be secured. Like you could come to a job and then you could find a bug and ask the CCB for funds to fix that issue.
+</p>
+
+<div id="Introduction-CCB (Centre for Cybersecurity Belgium-CERT.be (Cyber Emergency Response Team)"><h3 id="CERT.be (Cyber Emergency Response Team)" class="header"><a href="#Introduction-CCB (Centre for Cybersecurity Belgium-CERT.be (Cyber Emergency Response Team)">CERT.be (Cyber Emergency Response Team)</a></h3></div>
+
+<p>
+It is the operational service of the CCB. It is much alike a fire department!
+</p>
+
+<p>
+Every company has a CERT, and they sometimes collaborate to solve issues that are cybersecurity threats.
+</p>
+
+<p>
+The core of a CERT is Incident Response Plan, and they try to find what is the issue and get rid of the threat! But, they are only responsible to get rid of the threat and not rebuild it...
+</p>
+
+<p>
+The core tasks are Reactive, Proactive, and Management of CS quality (like showing some interesting alerts on the Twitter and relevant for the country where the CERT works)
+</p>
+
+<p>
+<span id="Introduction-CCB (Centre for Cybersecurity Belgium-CERT.be (Cyber Emergency Response Team)-Reactive"></span><strong id="Reactive">Reactive</strong>:
+</p>
+<ul>
+<li>
+reports and warnings
+
+<li>
+incident management
+
+<li>
+vulnerability management
+
+<li>
+artefact analysis
+
+</ul>
+<p>
+<span id="Introduction-CCB (Centre for Cybersecurity Belgium-CERT.be (Cyber Emergency Response Team)-Proactive"></span><strong id="Proactive">Proactive</strong>:
+</p>
+<ul>
+<li>
+Announcements
+
+<li>
+Technological surveillance (= keep track of tech development and see whether there can be issues for the country you are a part of)
+
+<li>
+Detection
+
+<li>
+Observation and analysis of security problems
+
+<li>
+Safety audits &amp; penetration tests
+
+<li>
+Publishing information about cyber security
+
+</ul>
+<p>
+<span id="Introduction-CCB (Centre for Cybersecurity Belgium-CERT.be (Cyber Emergency Response Team)-Management of CS quality"></span><strong id="Management of CS quality">Management of CS quality</strong>:
+</p>
+<ul>
+<li>
+Awareness
+
+<li>
+Trainings
+
+</ul>
+<div id="Introduction-CVDP (Coordinated Vulnerability Disclosure Policy)"><h2 id="CVDP (Coordinated Vulnerability Disclosure Policy)" class="header"><a href="#Introduction-CVDP (Coordinated Vulnerability Disclosure Policy)">CVDP (Coordinated Vulnerability Disclosure Policy)</a></h2></div>
+
+<p>
+Belgium for now (like end of 2023) is the only country that has some protection for reporting vulnerabilities. It is a huge step towards decriminalizing the ethical hacking!
+</p>
+
+<p>
+Though, <span id="Introduction-CVDP (Coordinated Vulnerability Disclosure Policy)-this is not a license to hack whatever"></span><strong id="this is not a license to hack whatever">this is not a license to hack whatever</strong>!
+</p>
+
+<p>
+There are rules, and you need to comply with them! This is not a game.
+</p>
+
+<p>
+There are some really important rules to know, though they are changing constantly!
+</p>
+
+<ul>
+<li>
+1 - You must limit yourself strictly to the facts necessary to report a vulnerability. Thus, you must not act beyond what is necessary and proportionate to verify the existence of a vulnerability (means you find the bug, submit it and create a small POC. Do not for example kill all the database and then say - here is the bug. No, that is really bad, do not do it. Like, do not get into full breaking bad!)
+
+<li>
+2 - You must act without fraudulent intent or design to harm (for example, you know tha a shop has a vulnerability to buy items for free, hence to test it with almost no harm, you would order it to the address of the shop, and it would be a very small and cheap item, hence to cause minimal or no harm to the service!)
+
+<li>
+3 - As soon as possible after the discovery of the potential vulnerability (and at hte latest at the time of reporting to the national CSIRT), you must inform the organization responsible for the sytem, process or control of the vulnerability. (The faster you notify the system owner that there is the vulnerability, the better for you and the owner! Apart from that, you would aswell like to notify the CERT that you already started a process of ethical hacking!)
+
+<li>
+4 - You must as soon as possible report the discovered vulnerability to the CCB (in the absende of a CVDP), in writting and according to the procedure described. (Go and give information to the higher orders first that there are problems, and then you can do some more information assessment, and etc.)
+
+<li>
+5 - You must not publicly disclose information about the discovered vulenarbility without the agreement of the national CSIRT (CCB in this case). (This is like, first ask the owner, and then the CCB at the same time, and if you get no answer from the owner, then you can get a grant from the CCB that will allow you to post the information online, or not, so make sure you do not disclose information as soon as possible on your own!)
+
+<li>
+6 - Do not hack law enforcement, justice, or intelligence services (self speaking I believe!)
+
+</ul>
+<div id="Introduction-EU Network and Information Security (NIS2)"><h2 id="EU Network and Information Security (NIS2)" class="header"><a href="#Introduction-EU Network and Information Security (NIS2)">EU Network and Information Security (NIS2)</a></h2></div>
+
+<p>
+"The NIS2 Directive is the EU-wide legislation on cybersecurity. It provides legal measures to boost the overall level of cybersecurity in the EU."
+</p>
+
+<p>
+Overall, the goal is to make the cybersecurity better and get rid of getting attacked from anyone. Overall the NIS2 law consist of some vital sectors that will be improved:
+</p>
+<ul>
+<li>
+Energy
+
+<li>
+Transport
+
+<li>
+Water
+
+<li>
+Banking
+
+<li>
+Financial market infrastructure
+
+<li>
+Healthcare
+
+<li>
+Digital infrastructure
+
+</ul>
+<p>
+Overall the above areas are vital to a society and the primary goal is to ensure their security first. Every of this sector will get their own sector authority! So it would be like a hierarchy of rulers:
+</p>
+<ul>
+<li>
+CCB
+
+<li>
+Sectoral authorities
+
+<li>
+Workers in those sectors
+
+</ul>
+<p>
+Some more information regarding how it would get tackled:
+</p>
+<ul>
+<li>
+Businesses identified by the Member States as operators of essential services in the above sectors will have to take appropriate security measures and notify relevant national authorities of serious incidents. (means that the companies will need to have a way to get notified about vulnerabilities and/or even send it afterwards)
+
+<li>
+Key digital service providers, such as search engines, cloud computing and online marketplace, will have to comply with the security and notification requirements under the Directive.
+
+</ul>
+<p>
+What is also meant by all that?
+</p>
+<ul>
+<li>
+Jobs for ourselves!
+
+<li>
+Risk analysis and information systems security policies
+
+<li>
+Incident handling (prevention, detection, and response)
+
+<li>
+Business continuity and crisis management
+
+<li>
+Supply chain security
+
+<li>
+Security in network and informatin systems
+
+<li>
+Policies and procedures for cybersecurity risk management measures
+
+<li>
+The use of cryptography and encryption
+
+</ul>
+<div id="What is Advanced Web Pentesting?"><h1 id="What is Advanced Web Pentesting?" class="header"><a href="#What is Advanced Web Pentesting?">What is Advanced Web Pentesting?</a></h1></div>
+
+<p>
+Advanced Pentesting in a small world this is about having multiple methodologies and tools that will make your work easier. For example, if you get a really large application to test, you would like to have a methodology which you can follow and hence get the maximum impact out of what you get in terms of time.
+</p>
+
+<p>
+It is about:
+</p>
+<ul>
+<li>
+Defeat defenses
+
+<li>
+More bug types
+
+<li>
+Harder to find bugs
+
+<li>
+Efficient working
+
+</ul>
+<p>
+You can also learn where to find the bugs, and obviously in not that obvious places.
+</p>
+
+<p>
+In order to test complex applications, you need:
+</p>
+<ul>
+<li>
+Structure
+
+<li>
+Knowledge
+
+<li>
+Perseverence
+
+</ul>
+<p>
+<span id="What is Advanced Web Pentesting?-Structure"></span><strong id="Structure">Structure</strong>
+To test complex web application, you need structure to:
+</p>
+<ul>
+<li>
+Make effieient use of the time available
+
+<li>
+Not get stuck
+
+<li>
+Avoid tunnelvision
+
+<li>
+Remember what you already did
+
+<li>
+Predict where you're going to spend to most time on.
+
+</ul>
+<p>
+<span id="What is Advanced Web Pentesting?-Knowledge"></span><strong id="Knowledge">Knowledge</strong>
+Testing WEb Applications is a never-ending learning path. You will have to continuosly learn new ways to study something new.
+</p>
+<ul>
+<li>
+New bugs/techniques come out all the time 
+
+<li>
+You need to keep up
+
+<li>
+Can't spot bugs you did not know existed!
+
+</ul>
+<p>
+<span id="What is Advanced Web Pentesting?-Perseverance"></span><strong id="Perseverance">Perseverance</strong>
+As a Web Application pentester, you'll need to:
+</p>
+<ul>
+<li>
+Have a healthy dose of stubborness
+
+<li>
+Confidence in your skills (sometimes you might have an impostor syndrome and feel like what the fuck am I doing here because I am not worthy)
+
+<li>
+Not give up easily
+
+<li>
+The next bug is right around the corner
+
+<li>
+What if? is the most important question (try to get out of the box, and sometimes do dumb shit)
+
+</ul>
+<div id="What is Advanced Web Pentesting?-Methodology"><h2 id="Methodology" class="header"><a href="#What is Advanced Web Pentesting?-Methodology">Methodology</a></h2></div>
+
+<p>
+Lets bring some structure to your testing process!
+</p>
+
+<p>
+Our methodology is based on the concurrent circle of:
+</p>
+
+<p>
+<span id="What is Advanced Web Pentesting?-Methodology-Recon -&gt; Mapping -&gt; Discovery -&gt; Exploit"></span><strong id="Recon -&gt; Mapping -&gt; Discovery -&gt; Exploit">Recon -&gt; Mapping -&gt; Discovery -&gt; Exploit</strong>
+</p>
+
+<ul>
+<li>
+Recon = Set the outside perimeter of our research
+
+<li>
+Mapping = Increase the attack surface within the perimeter (get as much as possible out of the same realm, and try to get as much impact as you can!)
+
+<li>
+Discovery = Create a shortlist of interesting functionality (make like a list of what errors exist, what functions can I test, where can I test and etc.)
+
+<li>
+Exploit = Abuse for desired effect
+
+</ul>
+<p>
+<span id="What is Advanced Web Pentesting?-Methodology-Recon"></span><strong id="Recon">Recon</strong>
+</p>
+<ul>
+<li>
+Find all the subdomains &amp; ip ranges
+
+<li>
+Find all services
+
+<li>
+Check for leaked source code on GitHub
+
+</ul>
+<p>
+<span id="What is Advanced Web Pentesting?-Methodology-Mapping"></span><strong id="Mapping">Mapping</strong>
+</p>
+<ul>
+<li>
+Crawl the website
+
+<li>
+Use all functionality of all roles
+
+<li>
+Uncover hidden attack surface
+
+</ul>
+<p>
+<span id="What is Advanced Web Pentesting?-Methodology-Discovery"></span><strong id="Discovery">Discovery</strong>
+</p>
+<ul>
+<li>
+Decide what you want to spend time on
+
+<li>
+Create a shortlist of interesting points
+
+<li>
+Trigger errors
+
+<li>
+Small testing probes
+
+</ul>
+<p>
+<span id="What is Advanced Web Pentesting?-Methodology-Exploitation"></span><strong id="Exploitation">Exploitation</strong>
+</p>
+<ul>
+<li>
+Understand the application as a power user (it does not only involve that you should think out of the box, but also make sure to use the box itself as a casual user as well)
+
+<li>
+Understand the context of the vulnerability (the vulnerability exists there, because somebody made it in the context, and hence you need to understand of what is behind the function you are trying to exploit)
+
+<li>
+Craft &amp; Send your payloads
+
+</ul>
+<p>
+Methodology:
+</p>
+<ul>
+<li>
+Repeat this process as much as needed (5-10 times)
+
+<li>
+One bug leads to another
+
+<li>
+User your increased knowledge as input for next iteration
+
+</ul>
+<p>
+The more you repeat everything, the more you can get, and it is also imporant to not loose your mind whie playing with it.
+</p>
+
+</body>
+</html>

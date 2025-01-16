@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="Stylesheet" type="text/css" href="style.css">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="rss.xml">
+<title>OSCLecture3</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<div id="Notmyfault"><h1 id="Notmyfault" class="header"><a href="#Notmyfault">Notmyfault</a></h1></div>
+
+<p>
+Always remember the difference between user and kernel space.
+</p>
+
+<p>
+You, as a user never write to kernel yourself.
+</p>
+
+<p>
+Sometimes though, you can actually write something to the kernel, especially as root.
+</p>
+
+<div id="Introduction to C"><h1 id="Introduction to C" class="header"><a href="#Introduction to C">Introduction to C</a></h1></div>
+
+<p>
+C has its own compile (gcc). To compile it you could do <code>gcc hello.c -o hello</code> or <code>make hello</code>. Always remember the suckless tools.
+</p>
+
+<div id="Kernel modules"><h1 id="Kernel modules" class="header"><a href="#Kernel modules">Kernel modules</a></h1></div>
+
+<p>
+This were introduced so that the kernel is more modular and expandable. 
+</p>
+
+<div id="Algorithms"><h1 id="Algorithms" class="header"><a href="#Algorithms">Algorithms</a></h1></div>
+
+<p>
+It is a step-by-step approach to obtain an output (in a certian programming language), and it usually solves a problem.
+</p>
+
+<div id="Algorithms-Datastructure"><h2 id="Datastructure" class="header"><a href="#Algorithms-Datastructure">Datastructure</a></h2></div>
+
+<p>
+There are aswell a bunch of datastructures like Linked List, Stack, Queue, Tree, Array etc.
+</p>
+
+<div id="Algorithms-Pass by value vs Pass by reference"><h2 id="Pass by value vs Pass by reference" class="header"><a href="#Algorithms-Pass by value vs Pass by reference">Pass by value vs Pass by reference</a></h2></div>
+
+<p>
+There are differences between passing an argument to a function
+</p>
+
+<p>
+We can pass those arguments by <span id="Algorithms-Pass by value vs Pass by reference-value"></span><strong id="value">value</strong> or <span id="Algorithms-Pass by value vs Pass by reference-reference"></span><strong id="reference">reference</strong>.
+</p>
+
+<p>
+If you give by value, and then change the value, you will still get back the old value before the change.
+</p>
+
+<p>
+By reference, if you change it and return, you will get the same value! Wow it makes sense.
+</p>
+
+<p>
+By reference, you are technically giving it the reference (pointer) to a value.
+</p>
+
+<div id="Algorithms-Pointers"><h2 id="Pointers" class="header"><a href="#Algorithms-Pointers">Pointers</a></h2></div>
+
+<p>
+Every value has its own address in the memory, and hence you can get the value that is storred in that actual address and at the same time you can get the address itself. In C you could do it via <code>p* = i</code> which would give you the actual address of the variable.
+</p>
+
+<div id="Processes"><h1 id="Processes" class="header"><a href="#Processes">Processes</a></h1></div>
+
+<p>
+Every application is made up of components, as well as commands in linux for example.
+</p>
+
+<p>
+Job and Process - same thing but the first one is an older term.
+</p>
+
+<div id="Process vs Program"><h1 id="Process vs Program" class="header"><a href="#Process vs Program">Process vs Program</a></h1></div>
+
+<p>
+Program/Binary/Executable:
+</p>
+<ul>
+<li>
+passive
+
+<li>
+has no state
+
+<li>
+program code
+
+<li>
+(=is not running!)
+
+</ul>
+<p>
+Process:
+</p>
+<ul>
+<li>
+active
+
+<li>
+has a state
+
+<li>
+program code + program counter + stack + data section + heap + ...
+
+</ul>
+<div id="Process vs Program-Process states"><h2 id="Process states" class="header"><a href="#Process vs Program-Process states">Process states</a></h2></div>
+
+<p>
+Every process gets a state, like that being:
+</p>
+<ul>
+<li>
+<span id="Process vs Program-Process states-new"></span><strong id="new">new</strong>, - The process is being created
+
+<li>
+<span id="Process vs Program-Process states-ready,"></span><strong id="ready,">ready,</strong> - The process is waiting to be assigned to a processor
+
+<li>
+<span id="Process vs Program-Process states-running,"></span><strong id="running,">running,</strong> - Instructions are being executed
+
+<li>
+<span id="Process vs Program-Process states-terminated,"></span><strong id="terminated,">terminated,</strong> - The process has finished execution
+
+<li>
+<span id="Process vs Program-Process states-waiting"></span><strong id="waiting">waiting</strong> - The process is waiting for some event to occur
+
+</ul>
+<p>
+<span id="Process vs Program-Process states-New"></span><strong id="New">New</strong> process can become admitted, and then it becomes <span id="Process vs Program-Process states-Ready"></span><strong id="Ready">Ready</strong>. By scheduling and prioritizing, it get a <span id="Process vs Program-Process states-Running"></span><strong id="Running">Running</strong> state. To get from <span id="Process vs Program-Process states-Running"></span><strong id="Running">Running</strong> to <span id="Process vs Program-Process states-Ready"></span><strong id="Ready">Ready</strong>, it would have to get interupted by the CPU. When the process needs a event, it will get a state of <span id="Process vs Program-Process states-Waiting"></span><strong id="Waiting">Waiting</strong>. Then if a event is completed, it get the status ready again. From there, it should get back to <span id="Process vs Program-Process states-Running"></span><strong id="Running">Running</strong> and then <span id="Process vs Program-Process states-Terminated"></span><strong id="Terminated">Terminated</strong>.
+</p>
+
+<p>
+The process is also managed by the Process Control Block (PCB) that is actually ment to control the processes, and from time to time this part is responsible for moving the priorities, or changet the state, and etc.
+</p>
+
+<p>
+There is such a thing called <span id="Process vs Program-Process states-Context Switch"></span><strong id="Context Switch">Context Switch</strong> which is the same as Saving/Storing the state of a process (or thread). As a result, as single CPU can allow multiple processes -&gt; multitask!
+</p>
+
+<p>
+The actions of the Context Swtitch depende on a lot of actual things.
+</p>
+
+<div id="Stack vs Heap"><h1 id="Stack vs Heap" class="header"><a href="#Stack vs Heap">Stack vs Heap</a></h1></div>
+
+<p>
+Stack - manages by the compiler, or while you run the program.
+</p>
+
+<p>
+Heap - managed by the programmer.
+</p>
+
+</body>
+</html>

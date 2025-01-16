@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="Stylesheet" type="text/css" href="style.css">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="rss.xml">
+<title>FALecture3</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<div id="Windows File System"><h1 id="Windows File System" class="header"><a href="#Windows File System">Windows File System</a></h1></div>
+
+<p>
+Partiotions, are chuncks of your disk. But you need something to actually use it.
+</p>
+
+<p>
+File systems are like these record-storing procedures
+</p>
+
+<p>
+What does a file system need? Most basic storage system -&gt; just add fils back to back
+</p>
+
+<p>
+Solution: keep a "directory file" with file locations ( + optional metadata)
+</p>
+
+<p>
+Problem? What when we start updating, deleting, adding files?
+</p>
+
+<p>
+Solution: Using blocks (a.k.a cluster or 'allocation unit size'). You allocate a file so many space, and it might, or might not take it fully. This is where the slackspace is mentioned.
+</p>
+
+<p>
+Think of shelfs in a closet. You have some closet, and then shelfs there, For a coat, you will give something similar to 2 blocks (shelfs). For a t-shirt - 1 block is enough. Hence, this is the same as doing and giving space to files.
+</p>
+
+<div id="Part 2: FAT"><h1 id="Part 2: FAT" class="header"><a href="#Part 2: FAT">Part 2: FAT</a></h1></div>
+
+<p>
+FAT (File Allocation Table) is a computer file system, and it has a whole family.
+</p>
+
+<p>
+pros: relative simplicity, lightweight, ease of implementation, cross platform compatibility
+</p>
+
+<p>
+cons: no journal (no consistency), no security (permissions/encryption) -&gt; NTFS
+</p>
+
+<p>
+FAT was designed for small disks and simple directory structures.
+</p>
+
+<p>
+The idea of FAT is, that it has a boot sector for itself. The file system has some kind of MBR for itself, which links all the blocks for a certain file. Then it has a root directory, that specifies what will be the first piece of data of a file (like first position to look for info). It is all about daisy chaining the blocks of data for files.
+</p>
+
+<p>
+The maximum size for such drives with FAT, depend on the number. For example FAT16 - 2<sup><small>16 = 4GB. FAT32 - 2</small></sup>28 (yeah it uses 28 bits) = 16TB, or 32 GB for Windows. exFAT - will be if you have more.
+</p>
+
+<p>
+Hence, if you try to format a new USB Stick, them you can have sizes of FAT32, or exFAT (nowadays)
+</p>
+
+<p>
+Then, the allocation blocks will depend on what system you have. 
+</p>
+
+<p>
+Start sequence of FAT table - F8 FF FF FF
+</p>
+
+<p>
+To create a image as loop0 - sudo losetup -fPr image -show
+</p>
+
+<p>
+To mount - sudo mount /dev/loop0n1 /mnt
+</p>
+
+<p>
+To check the file system stats - sudo fsstat /dev/loop0n1 (we check the partition, and not the disk!)
+</p>
+
+<p>
+Then, you will be able to see information regarding the clusters and etc. You can even see the FAT table. 
+</p>
+
+<p>
+To read the partition (skipping the first 2 sectors with information) - sudo xxd -R never -s $((2x512)) /dev/loop0n1 (or partition)
+</p>
+
+<p>
+The stop sector of a file, is usually signed with FFFF
+</p>
+
+<p>
+To show deleted files - sudo fls -rp /dev/loop0n1
+</p>
+
+<p>
+Every offset (while viewing the xxd), of 1000, is an actual start of a new block (as 1000 in dec is 4096 in hex)
+</p>
+
+<div id="Part 3: NTFS"><h1 id="Part 3: NTFS" class="header"><a href="#Part 3: NTFS">Part 3: NTFS</a></h1></div>
+
+<p>
+Net Technology File System is a proprietary system by Micrososft 
+</p>
+
+<p>
+NTFS uses a MFT (Master File Table), to have an entry for every single file, and point to the points of blocks for that file (so like FAT, but all in one block with information). It keeps information to read from where to where.
+</p>
+
+<p>
+You can also access the $MFT File, which is responsible for taking care of routing the file in your system
+</p>
+
+<p>
+Resident: stored directly in the MFT record (attributes like file name, timestamp, count, is always a resident)
+</p>
+
+<p>
+Features: Journal. NTFS is a kournalist file system and uses the NTFS Log.
+</p>
+
+<p>
+Features: Sparse Files, Compressed Files, Encrypted File System (EFS), Altranate Data Streams (ADS) (For different files, you can have different streams. Usually, you see the main data stream. But there is also a possibility to have other data stream, like when downloading something, and then you will be able to see different information about the downloaded file. Such streams can have information whether you file is safe to open, or not. You can create your own streams, with notepad functionality.)
+</p>
+
+</body>
+</html>

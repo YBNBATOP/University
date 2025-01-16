@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="Stylesheet" type="text/css" href="style.css">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="rss.xml">
+<title>OSCLecture1</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<div id="How do computers work?"><h2 id="How do computers work?" class="header"><a href="#How do computers work?">How do computers work?</a></h2></div>
+
+<p>
+Somebody says with ones and zeros!
+</p>
+
+<p>
+A computer accepts requests of different children, and giving them what the ask, makes his own decision of what is most urgent, decided by a manager. Such processes can be done one by one.
+</p>
+
+<p>
+Behind every service, there are <span id="How do computers work?-Libraries"></span><strong id="Libraries">Libraries</strong>, <span id="How do computers work?-Frameworks"></span><strong id="Frameworks">Frameworks</strong>, and other software. Game engines as well can be used. Everything of this use a thing - a <span id="How do computers work?-programming language"></span><strong id="programming language">programming language</strong>!.
+</p>
+
+<p>
+A programming language is used to provide an interface to the end user.
+</p>
+
+<p>
+Programming languages (2 typs) talk first to the <span id="How do computers work?-OS"></span><strong id="OS">OS</strong> and then to the Hardware! So there is always a layer before accessing the hardware, so you cannot talk to it directly!
+</p>
+
+<div id="Compiler vs Interpreter:"><h2 id="Compiler vs Interpreter:" class="header"><a href="#Compiler vs Interpreter:">Compiler vs Interpreter:</a></h2></div>
+
+<div id="Compiler vs Interpreter:-Compiler"><h3 id="Compiler" class="header"><a href="#Compiler vs Interpreter:-Compiler">Compiler</a></h3></div>
+
+<ul>
+<li>
+A compiler transforms everything into machine code and then gives you an executable.
+
+<li>
+Takes some time to analyze the code but is overall faster.
+
+<li>
+Uses Linking - requries more memory.
+
+</ul>
+<div id="Compiler vs Interpreter:-Interpreter"><h3 id="Interpreter" class="header"><a href="#Compiler vs Interpreter:-Interpreter">Interpreter</a></h3></div>
+
+<ul>
+<li>
+An interpreter reads command by command.
+
+<li>
+Take less time to analyze the source code, but overall execution is slower.
+
+<li>
+Is more memory efficient.
+
+</ul>
+<div id="From simple program to containers"><h2 id="From simple program to containers" class="header"><a href="#From simple program to containers">From simple program to containers</a></h2></div>
+
+<div id="From simple program to containers-A process address space"><h3 id="A process address space" class="header"><a href="#From simple program to containers-A process address space">A process address space</a></h3></div>
+
+<ul>
+<li>
+Initialized data is a variable that already has a value.
+
+<li>
+Unitialized - does not have that.
+
+</ul>
+<p>
+A simple program has its own structure. High address -&gt; Stack + Heap -&gt; Uninitialized data -&gt; Initialized data -&gt; Text/Code segment -&gt; Low address
+</p>
+
+<p>
+Devices talk to the <span id="From simple program to containers-A process address space-Kernel virtual address space"></span><strong id="Kernel virtual address space">Kernel virtual address space</strong>!
+</p>
+
+<p>
+And then the kernel talks to the <span id="From simple program to containers-A process address space-user virtual address space"></span><strong id="user virtual address space">user virtual address space</strong> (in simple words, this is the process number that is created!
+</p>
+
+<p>
+The interupts interupt the execution of a process after a certain amount of time, and give priority to another process, and so on until everything is not finished. The interupts depend on the clock of the PC.
+</p>
+
+<p>
+There exists such a thing like protection rings, such as that you can not talk directly to the hardware, and you need to pass trhough a couple of security layers (protection)
+</p>
+
+<p>
+A CPU has 3 rings for example, and then the kernel runs in ring 0 (the most close to the hardware one!)
+</p>
+
+<p>
+So you can not skip through rings to execute levels of programms.
+</p>
+
+<p>
+The program runs in the <span id="From simple program to containers-A process address space-higher space"></span><strong id="higher space">higher space</strong>. The kernel runs in the <span id="From simple program to containers-A process address space-lower space"></span><strong id="lower space">lower space</strong>.
+</p>
+
+<p>
+The kernel is common for every program, but each program has its own <span id="From simple program to containers-A process address space-structure"></span><strong id="structure">structure</strong> or in simple words, its own delegated space. Hence every process has different "spaces", which containt information about the process for the execution. Here the switch between processes is dependant on the interupts of the CPU(clock) which is about <span id="From simple program to containers-A process address space-20ms"></span><strong id="20ms">20ms</strong>.
+</p>
+
+<div id="From simple program to containers-Full virtualization"><h3 id="Full virtualization" class="header"><a href="#From simple program to containers-Full virtualization">Full virtualization</a></h3></div>
+
+<ul>
+<li>
+For applications there apprared to be a good solution - to run them in different OS at one time, and on the same hardware! Hence they invented a virtualization engine, which is like any otehr program, which represents another protection ring and runs the applications in separate containters!
+
+<li>
+But it still talks to the layer that sits higher.
+
+<li>
+So in simple words - here it is a kernel above another kernel!
+
+<li>
+It is fully isolated!
+
+</ul>
+<div id="From simple program to containers-Paravirtualization"><h3 id="Paravirtualization" class="header"><a href="#From simple program to containers-Paravirtualization">Paravirtualization</a></h3></div>
+
+<ul>
+<li>
+So every container aswell have a virtual machine monitor, which then talks to the father OS!
+
+<li>
+Here it is a kernel that serves all the requests of another kernel!
+
+<li>
+This is still linked to the father OS!
+
+</ul>
+<p>
+This all is possible thanks to the layer -1 of the protection ring which gives you possibilitty to hypervise everything!
+</p>
+
+<div id="From simple program to containers-Containers"><h3 id="Containers" class="header"><a href="#From simple program to containers-Containers">Containers</a></h3></div>
+
+<p>
+In traditional virtualization each app runs on a separate OS.
+An app depends on other apps or libraries.
+The need to quickly deploy as "microservice"
+</p>
+
+<p>
+Containers solve this issues, as they have containerized engines with libraries and etc.
+</p>
+
+<p>
+User -&gt; Application -&gt; OS -&gt; Hardware = this is how a User talks to the "hardware"!
+</p>
+
+<div id="From simple program to containers-Role of a OS"><h3 id="Role of a OS" class="header"><a href="#From simple program to containers-Role of a OS">Role of a OS</a></h3></div>
+
+<p>
+It manages all the files and data of processes, manages physical devices, memory, processes, fold management, make sure that you can talk between services and systems.
+</p>
+
+<p>
+Summarized:
+</p>
+
+<ul>
+<li>
+What is an OS?
+
+<ul>
+<li>
+It's software
+
+<li>
+A set of programs
+
+</ul>
+<li>
+What is the function of a OS?
+
+<ul>
+<li>
+Management of system resources to improve operations of the system.
+
+<li>
+Communicates with the user to hide the complexity of the system.
+
+</ul>
+</ul>
+<div id="From simple program to containers-Goal of the OS"><h3 id="Goal of the OS" class="header"><a href="#From simple program to containers-Goal of the OS">Goal of the OS</a></h3></div>
+
+<ul>
+<li>
+Be the manager!
+
+<li>
+Some functions of the OS:
+
+<ul>
+<li>
+Booting
+
+<li>
+Memory management
+
+<li>
+Loading &amp; Execution
+
+<li>
+Data security
+
+<li>
+Disk/device management (hardware management)
+
+<li>
+Process management
+
+<li>
+Avoid same requests at the same time (locking)
+
+</ul>
+</ul>
+<div id="From simple program to containers-Some important figures and things related to them"><h3 id="Some important figures and things related to them" class="header"><a href="#From simple program to containers-Some important figures and things related to them">Some important figures and things related to them</a></h3></div>
+
+<ul>
+<li>
+Ken Thompson
+
+<ul>
+<li>
+UNIX
+
+<li>
+B Proramming language
+
+<li>
+Google - GO Language
+
+<li>
+UTF-8
+
+</ul>
+<li>
+Dennis Ritche
+
+<ul>
+<li>
+C !
+
+</ul>
+</ul>
+
+</body>
+</html>

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="Stylesheet" type="text/css" href="style.css">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="rss.xml">
+<title>OSCLecture7CQ</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<div id="Ownership"><h1 id="Ownership" class="header"><a href="#Ownership">Ownership</a></h1></div>
+
+<div id="Ownership-Which command statements could you use to determine the ownership of a file/directory in linux ?"><h2 id="Which command statements could you use to determine the ownership of a file/directory in linux ?" class="header"><a href="#Ownership-Which command statements could you use to determine the ownership of a file/directory in linux ?">Which command statements could you use to determine the ownership of a file/directory in linux ?</a></h2></div>
+
+<p>
+<code>stat</code> or <code>ls -l</code> would give more information.
+</p>
+
+<div id="Ownership-There are two levels of ownership in linux. Explain"><h2 id="There are two levels of ownership in linux. Explain" class="header"><a href="#Ownership-There are two levels of ownership in linux. Explain">There are two levels of ownership in linux. Explain</a></h2></div>
+
+<p>
+There is the level of owenership for the user, and the group. The first one is who created the file, the second one is the group (or user im not sure) that have access to that file and permissions.
+</p>
+
+<div id="Ownership-Explain CHOWN. What does it do ? Who can use it ? When ?"><h2 id="Explain CHOWN. What does it do ? Who can use it ? When ?" class="header"><a href="#Ownership-Explain CHOWN. What does it do ? Who can use it ? When ?">Explain CHOWN. What does it do ? Who can use it ? When ?</a></h2></div>
+
+<p>
+The CHOWN command can be used by the root, and when there is a need to change the owner of the file/directory for security reasons or if someone needs to edit the file.
+</p>
+
+<div id="Ownership-Explain CHGROUP. What does it do ? Who can use it ? When ?"><h2 id="Explain CHGROUP. What does it do ? Who can use it ? When ?" class="header"><a href="#Ownership-Explain CHGROUP. What does it do ? Who can use it ? When ?">Explain CHGROUP. What does it do ? Who can use it ? When ?</a></h2></div>
+
+<p>
+Same as previous one, but chagnes the group level.
+</p>
+
+<div id="Ownership-What is an orphaned file ?"><h2 id="What is an orphaned file ?" class="header"><a href="#Ownership-What is an orphaned file ?">What is an orphaned file ?</a></h2></div>
+
+<p>
+I suppose it is more like a file that already does not have a user. Like imagine you had a user, he created files, and then you delete the user. The GID will stay the same, or UID, but the name will be deprecated.
+</p>
+
+<div id="Ownership-Which command statements could you use to determine your user's identity / group memberships ?"><h2 id="Which command statements could you use to determine your user's identity / group memberships ?" class="header"><a href="#Ownership-Which command statements could you use to determine your user's identity / group memberships ?">Which command statements could you use to determine your user's identity / group memberships ?</a></h2></div>
+
+<p>
+<code>groups</code> or <code>id</code>. That information comes from the /etc/passwd folder.
+</p>
+
+<div id="Ownership-Explain NEWGRP. What does it do ? Who can use it ? When ?"><h2 id="Explain NEWGRP. What does it do ? Who can use it ? When ?" class="header"><a href="#Ownership-Explain NEWGRP. What does it do ? Who can use it ? When ?">Explain NEWGRP. What does it do ? Who can use it ? When ?</a></h2></div>
+
+<p>
+You can put on a hat with a group you are a part of! You can for some time become a part of the other group, and works the same with only root i believe.
+</p>
+
+<div id="Permissions"><h1 id="Permissions" class="header"><a href="#Permissions">Permissions</a></h1></div>
+
+<div id="Permissions-Which three permissions can a file have ?"><h2 id="Which three permissions can a file have ?" class="header"><a href="#Permissions-Which three permissions can a file have ?">Which three permissions can a file have ?</a></h2></div>
+
+<p>
+The standart rwx (readwriteexecute)
+</p>
+
+<div id="Permissions-What are the three levels in which permissions are set ?"><h2 id="What are the three levels in which permissions are set ?" class="header"><a href="#Permissions-What are the three levels in which permissions are set ?">What are the three levels in which permissions are set ?</a></h2></div>
+
+<p>
+Owner, Group, and Other
+</p>
+
+<div id="Permissions-Consider this : &quot;-rw-r--r--. 1 root root 4135 May 27 21:08 /etc/passwd&quot; . What does the first - mean in this case ? What else could you see there ?"><h2 id="Consider this : &quot;-rw-r--r--. 1 root root 4135 May 27 21:08 /etc/passwd&quot; . What does the first - mean in this case ? What else could you see there ?" class="header"><a href="#Permissions-Consider this : &quot;-rw-r--r--. 1 root root 4135 May 27 21:08 /etc/passwd&quot; . What does the first - mean in this case ? What else could you see there ?">Consider this : "-rw-r--r--. 1 root root 4135 May 27 21:08 /etc/passwd" . What does the first - mean in this case ? What else could you see there ?</a></h2></div>
+
+<p>
+We could see the permission set up for the root and ther others and the group, as well we can understand that it is a hardlink I believe, or a simple file!
+</p>
+
+<div id="Permissions-How do set permissions result in effective permissions for a given user in Linux ?"><h2 id="How do set permissions result in effective permissions for a given user in Linux ?" class="header"><a href="#Permissions-How do set permissions result in effective permissions for a given user in Linux ?">How do set permissions result in effective permissions for a given user in Linux ?</a></h2></div>
+
+<p>
+I do not understand the question.
+</p>
+
+<p>
+In Linux, file and directory permissions are set using the chmod command, and the effective permissions for a given user are determined by a combination of the user's ownership of the file or directory, the group ownership, and the permissions assigned to the user, group, and others.
+</p>
+
+<div id="Permissions-Explain CHMOD. What does it do ? Who can use it ? When ?"><h2 id="Explain CHMOD. What does it do ? Who can use it ? When ?" class="header"><a href="#Permissions-Explain CHMOD. What does it do ? Who can use it ? When ?">Explain CHMOD. What does it do ? Who can use it ? When ?</a></h2></div>
+
+<p>
+It is used to set up permissions for a file/directory, can be used by the root, and essentially when you need to change permissions very fast.
+</p>
+
+<div id="Permissions-What is the difference between using CHMOD symbolically or numerically ?"><h2 id="What is the difference between using CHMOD symbolically or numerically ?" class="header"><a href="#Permissions-What is the difference between using CHMOD symbolically or numerically ?">What is the difference between using CHMOD symbolically or numerically ?</a></h2></div>
+
+<p>
+The symbolical is easier is you need to set up <code>setuid</code> and <code>ACL</code>. Apart from that - there is none.
+</p>
+
+<div id="Permissions-Explain UMASK. What does it do ? Who can use it ? When ?"><h2 id="Explain UMASK. What does it do ? Who can use it ? When ?" class="header"><a href="#Permissions-Explain UMASK. What does it do ? Who can use it ? When ?">Explain UMASK. What does it do ? Who can use it ? When ?</a></h2></div>
+
+<p>
+It is used to actually get rid of the permissions from the default ones. Like, the default is 666 and 777 and then you can get rid of some permissions. Can be used by root I believe.
+</p>
+
+<div id="Permissions-Explain ACL. What does it do ? Who can use it ? When ?"><h2 id="Explain ACL. What does it do ? Who can use it ? When ?" class="header"><a href="#Permissions-Explain ACL. What does it do ? Who can use it ? When ?">Explain ACL. What does it do ? Who can use it ? When ?</a></h2></div>
+
+<p>
+This is used for the setup of others in the permissions, so that you can actually give access to the users for your web server for example. The command is <code>setfacl</code> and can be used without root I believe?
+</p>
+
+<div id="Permissions-Explain SETUID. What does it do ? Who can use it ? When ?"><h2 id="Explain SETUID. What does it do ? Who can use it ? When ?" class="header"><a href="#Permissions-Explain SETUID. What does it do ? Who can use it ? When ?">Explain SETUID. What does it do ? Who can use it ? When ?</a></h2></div>
+
+<p>
+Used to actually put on a mask of another user to execute something. Like a heist - you put on a mask to mock that is was not you who executed it.
+</p>
+
+<div id="Permissions-Explain SETGUID. What does it do ? Who can use it ? When ?"><h2 id="Explain SETGUID. What does it do ? Who can use it ? When ?" class="header"><a href="#Permissions-Explain SETGUID. What does it do ? Who can use it ? When ?">Explain SETGUID. What does it do ? Who can use it ? When ?</a></h2></div>
+
+<p>
+Works the same way as the previous one. But for the group.
+</p>
+
+<div id="Permissions-Explain the sticky bit. What does it do ? Who can use it ? When ?"><h2 id="Explain the sticky bit. What does it do ? Who can use it ? When ?" class="header"><a href="#Permissions-Explain the sticky bit. What does it do ? Who can use it ? When ?">Explain the sticky bit. What does it do ? Who can use it ? When ?</a></h2></div>
+
+<p>
+Works as an additional bit, but also works for the others and like previous 2 ones?
+</p>
+
+<div id="Boot"><h1 id="Boot" class="header"><a href="#Boot">Boot</a></h1></div>
+
+<div id="Boot-In which stages can you split up a system's boot process ?"><h2 id="In which stages can you split up a system's boot process ?" class="header"><a href="#Boot-In which stages can you split up a system's boot process ?">In which stages can you split up a system's boot process ?</a></h2></div>
+
+<p>
+5 Stages:
+</p>
+
+<p>
+Startup -&gt; Firmware Load -&gt; Bootloader -&gt; Kernel -&gt; SystemD
+</p>
+
+<div id="Boot-What is the difference between firmware/bios/uefi ?"><h2 id="What is the difference between firmware/bios/uefi ?" class="header"><a href="#Boot-What is the difference between firmware/bios/uefi ?">What is the difference between firmware/bios/uefi ?</a></h2></div>
+
+<p>
+BIOS and UEFI is mainly the same thing, but one is older than the other. The firmware is just another naming convention for the BIOS.
+</p>
+
+<div id="Boot-What is a bootloader ?"><h2 id="What is a bootloader ?" class="header"><a href="#Boot-What is a bootloader ?">What is a bootloader ?</a></h2></div>
+
+<p>
+A bootloader is a small program or piece of software that is responsible for loading the operating system into the computer's memory (RAM) during the initial boot-up process.
+</p>
+
+<p>
+I guess it is responsible for loading the kernel into the RAM and maybe finding the MBR for the filesystem.
+</p>
+
+<div id="Boot-Bootloaders are usally called 2-(or multi)stage bootloaders. Why ?"><h2 id="Bootloaders are usally called 2-(or multi)stage bootloaders. Why ?" class="header"><a href="#Boot-Bootloaders are usally called 2-(or multi)stage bootloaders. Why ?">Bootloaders are usally called 2-(or multi)stage bootloaders. Why ?</a></h2></div>
+
+<p>
+Because they load MBR and Kernel into the RAM.
+</p>
+
+<div id="Boot-How does grub2 &quot;boot&quot; a system ?"><h2 id="How does grub2 &quot;boot&quot; a system ?" class="header"><a href="#Boot-How does grub2 &quot;boot&quot; a system ?">How does grub2 "boot" a system ?</a></h2></div>
+
+<p>
+It is situated in the MBR the image of the system, then it loads the next stage after it is found, it is then found in the RAM, and then presents the boot menu and then even loads the kernel.
+</p>
+
+<div id="Boot-What does systemD atually &quot;do&quot; ?"><h2 id="What does systemD atually &quot;do&quot; ?" class="header"><a href="#Boot-What does systemD atually &quot;do&quot; ?">What does systemD atually "do" ?</a></h2></div>
+
+<p>
+It is responsible for running daemons and other stuff that will eventually be responsible for running the system.
+</p>
+
+<p>
+It plays a crucial role in initializing and managing the system's services, processes, and resources during the boot process and throughout the system's runtime.
+</p>
+
+<div id="Boot-Which commands/statements could you use to troubleshoot/monitor a booting system ?"><h2 id="Which commands/statements could you use to troubleshoot/monitor a booting system ?" class="header"><a href="#Boot-Which commands/statements could you use to troubleshoot/monitor a booting system ?">Which commands/statements could you use to troubleshoot/monitor a booting system ?</a></h2></div>
+
+<p>
+<code>dmesg</code> command will give you information about the systemD stuff that runs around.
+</p>
+
+<p>
+<code>systemctl</code> might be useful aswell
+</p>
+
+<p>
+<code>journalctl</code> can be aswell used to get some logging information.
+</p>
+
+</body>
+</html>

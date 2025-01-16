@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="Stylesheet" type="text/css" href="style.css">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="rss.xml">
+<title>MSLecture4</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<div id="Static analysis"><h1 id="Static analysis" class="header"><a href="#Static analysis">Static analysis</a></h1></div>
+
+<p>
+Static analysis employs tools to examine program code in search of application vulnerabilities, back doors, or other malicious code that might provide hackers access to sensitive corporate data, and we are going to look intor the APK of the code we are building
+</p>
+
+<p>
+Search for interesting data (passwords, URL's, API endpoint, API keys, etc)
+</p>
+
+<p>
+Check if the application is in debug mode and try to exploit it
+</p>
+<ul>
+<li>
+Can I start the postLogin screen without loging in?
+
+</ul>
+<p>
+Is the application saving data locally or externally?
+</p>
+<ul>
+<li>
+What is actually stored when the data is locally?
+
+<li>
+Can you bypass the online data?
+
+<li>
+Exported Activities
+
+<li>
+Content Providers
+
+<li>
+Exposed Services
+
+<li>
+Broadcast Receivers
+
+<li>
+URL Schemes
+
+</ul>
+<div id="APK"><h1 id="APK" class="header"><a href="#APK">APK</a></h1></div>
+
+<p>
+An APK is an installer file for the app itself on the Android device. There are tools that allow you to download actual APK files from the Play Store.
+</p>
+
+<p>
+We are interested in the META-INF directory, which has a lot of information:
+</p>
+<ul>
+<li>
+MANIFEST.MF: the manifest file - the certificate of application
+
+<li>
+CERT.SF: the list of resources, and digest of lines in the MANIFEST.MF
+
+<li>
+lib: the directory containing the compiled code that is platform dependant
+
+</ul>
+<p>
+The source code is being transformed into bytecode, and then Dalvik bytecode
+</p>
+
+<p>
+After building an application an APK is generated (Android Application Package)
+</p>
+
+<ul>
+<li>
+.dex -&gt; Dalvik bytecode
+
+<li>
+lib -&gt; Native libraries
+
+<li>
+assets -&gt; Read-only data
+
+</ul>
+<div id="Reverse engineering the APK"><h1 id="Reverse engineering the APK" class="header"><a href="#Reverse engineering the APK">Reverse engineering the APK</a></h1></div>
+
+<p>
+We are of course going to use applications/tools to reverse the code of and APK. You can use <code>Apktool</code>, which will be able to recompile the code that you change.
+</p>
+
+<p>
+It can decode resources to nearly original form and rebuild them after making some modifications.
+</p>
+
+<p>
+Before you try and rebuild the application, the applcation is going to be resigned.
+</p>
+
+<p>
+Before you can run a rebuild application it needs to be signed first.
+</p>
+
+<div id="Smali code"><h1 id="Smali code" class="header"><a href="#Smali code">Smali code</a></h1></div>
+
+<p>
+When you understand how a developer builds something, it makes it much easier to understand how to reverse engineer it. 
+</p>
+
+<p>
+Smali code, is decompiled Java code. Instead of the Java running the JVM like normal, in android, Java is being compiled to the Dalvik Executable (DEX) bytecode format
+</p>
+
+<p>
+DEX bytecode -&gt; SMALI -&gt; Decompiled Java
+</p>
+
+<div id="JADX"><h1 id="JADX" class="header"><a href="#JADX">JADX</a></h1></div>
+
+<p>
+You can use other tools, that can actually decompile the code in a more visual way.
+</p>
+
+<p>
+Command line and GUI  tools for producing Java source code from Android Dex and APK files. It is just overall better for viewing the data from the decompile, but Apktool is more useful.
+</p>
+
+<p>
+<span class="todo">TODO</span>
+[Lab Static Analysis]
+</p>
+
+</body>
+</html>

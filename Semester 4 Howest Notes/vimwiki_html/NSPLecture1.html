@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="Stylesheet" type="text/css" href="style.css">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="rss.xml">
+<title>NSPLecture1</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<div id="Intro"><h1 id="Intro" class="header"><a href="#Intro">Intro</a></h1></div>
+
+<p>
+Is it illegal to view someone's Facebook profile over and over again?
+</p>
+
+<p>
+What if that person explicitly asked us not to?
+</p>
+
+<div id="Footprinting"><h1 id="Footprinting" class="header"><a href="#Footprinting">Footprinting</a></h1></div>
+
+<p>
+Reconnaissance is the act of gathering information about a potential target
+</p>
+
+<p>
+Footprinting is creating an overview of that information, that may contain:
+</p>
+<ul>
+<li>
+Remote access capabilities
+
+<li>
+Network ports, open or closed, services or not
+
+<li>
+Security aspects, used systems, purposes
+
+<li>
+Phone numbers, addresses, emails, company addresses
+
+</ul>
+<p>
+Footprinting can be <span id="Footprinting-active"></span><strong id="active">active</strong>(brute forcing, hacking, physical visits and inspectations, social engiineering), and <span id="Footprinting-passive"></span><strong id="passive">passive</strong>(publicly available information on the internet, which is legal)
+</p>
+
+<p>
+Why do footprinting?
+</p>
+<ul>
+<li>
+Information about the target
+
+<li>
+Detect data leaks
+
+<li>
+List of targets for pentests
+
+<li>
+List of targets for phishing
+
+</ul>
+<p>
+It is important to create documentation for overview!
+</p>
+
+<p>
+Open source footprinting (OSINT) is the easiest way to find info using public information and, of course, websites! Company websites ofthen contain a whole load of information, and etc. It is also sometimes underappreciated, and you should sometimes come back to it, as it allows you to gather more information.
+</p>
+
+<p>
+Also important to know:
+</p>
+<ul>
+<li>
+On the internet there are a lot of tools that are mocking to be OSINT, but they are not! It is important to be careful what kind of tools you use!
+
+</ul>
+<p>
+Open source footprinting is the easiest in terms of finding out information, and of course, websites. Websites usually contain a lot of information, or maybe small bits of comments in the HTML code.
+</p>
+
+<p>
+Easy ways of information gathering contain:
+</p>
+<ul>
+<li>
+whois requests, DNS tables searches, Google queries
+
+<li>
+most of the information is easy to get and legal
+
+</ul>
+<div id="Footprinting-Techniques"><h2 id="Techniques" class="header"><a href="#Footprinting-Techniques">Techniques</a></h2></div>
+
+<div id="Footprinting-Techniques-Network enumeration"><h3 id="Network enumeration" class="header"><a href="#Footprinting-Techniques-Network enumeration">Network enumeration</a></h3></div>
+
+<p>
+Network enumeration:
+</p>
+<ul>
+<li>
+This is the processs of identifying domain names and associated networks!
+
+<li>
+It is usually done using enumeration queries (there are multiple types of those)
+
+</ul>
+<p>
+In other words, we are trying to find out owner information! Mail servers, web servers, domain name owners, web sites.
+</p>
+
+<p>
+One of the first things you would lioke to do - is DNS translation. Hence you are using <code>dig</code> or <code>nslookup</code> so that you can check out the nameservers. Something like <code>whois</code> is also useful as it can say who bought the server.
+</p>
+
+<p>
+<code>whois</code> is a very powerful tool, as it can help you find:
+</p>
+<ul>
+<li>
+owner name, email and address
+
+<li>
+nameservers
+
+<li>
+other websites on the same webserver
+
+<li>
+network block 
+
+</ul>
+  
+<div id="Footprinting-Techniques-Network enumeration-Some pointers"><h4 id="Some pointers" class="header"><a href="#Footprinting-Techniques-Network enumeration-Some pointers">Some pointers</a></h4></div>
+
+<p>
+"Repeat" is a word I will repeat multiple times, when performing pentesting and reconnaissance.
+</p>
+
+<div id="Footprinting-Techniques-Network enumeration-Vhosts"><h4 id="Vhosts" class="header"><a href="#Footprinting-Techniques-Network enumeration-Vhosts">Vhosts</a></h4></div>
+
+<p>
+On the same machine, you can have different websites. Such technology is called virtual hosts.
+</p>
+
+<p>
+There is no failsafe way to ask for hosts on the sasme IP address, but there are tools that can perform a <span id="Footprinting-Techniques-Network enumeration-Vhosts-reverse DNS lookup"></span><strong id="reverse DNS lookup">reverse DNS lookup</strong>
+</p>
+
+<div id="Footprinting-Techniques-Network enumeration-Subdomains"><h4 id="Subdomains" class="header"><a href="#Footprinting-Techniques-Network enumeration-Subdomains">Subdomains</a></h4></div>
+
+<p>
+Every website can have subdomains, and you can not simply ask for a list. But, you can look for tools that can help you to search information
+</p>
+
+<div id="Footprinting-Techniques-Network enumeration-Archiving"><h4 id="Archiving" class="header"><a href="#Footprinting-Techniques-Network enumeration-Archiving">Archiving</a></h4></div>
+
+<p>
+There are websites, that index and make snapshots of the old versions of websites, hence giving you a bit more insight upon the old code of the website.
+</p>
+
+<div id="Footprinting-Techniques-Network enumeration-Traceroute"><h4 id="Traceroute" class="header"><a href="#Footprinting-Techniques-Network enumeration-Traceroute">Traceroute</a></h4></div>
+
+<p>
+You can also find information about possible internal routing, using the traceroute commands.
+</p>
+
+<div id="Footprinting-Techniques-Network enumeration-Google"><h4 id="Google" class="header"><a href="#Footprinting-Techniques-Network enumeration-Google">Google</a></h4></div>
+
+<p>
+Google indexes pretty much everything on the internet. All you have to do, to use its power, is read the manual. The better you use the operators, the better results you can get. It is a very broad subject, and cand can be very useful.
+</p>
+
+<div id="Footprinting-Techniques-Network enumeration-Shodan"><h4 id="Shodan" class="header"><a href="#Footprinting-Techniques-Network enumeration-Shodan">Shodan</a></h4></div>
+
+<p>
+It is very cool and popular for industrial and IOT devices. It is used to understand which ports are open on the webserver.
+</p>
+
+<p>
+It might look similar to NMap, but somewhat different
+</p>
+
+<p>
+Also it might be useful to lookup remote desktop functionality there, hence getting an insight on what ports (remote desktop) are available on the server.
+</p>
+
+<div id="Footprinting-Techniques-Network enumeration-Data breaches"><h4 id="Data breaches" class="header"><a href="#Footprinting-Techniques-Network enumeration-Data breaches">Data breaches</a></h4></div>
+
+<p>
+You can sometimes go ahead and look for leaked credentials on the internet, like - have i been pwned.
+</p>
+
+<p>
+leakcheck is also similar to it.
+</p>
+
+<p>
+This is a very powerful website, as it can give you a lot of information aswell.
+</p>
+
+<div id="Footprinting-Techniques-Network enumeration-Datadumps"><h4 id="Datadumps" class="header"><a href="#Footprinting-Techniques-Network enumeration-Datadumps">Datadumps</a></h4></div>
+
+<p>
+Services like pastebin, and many others, can be very intersting, as they actually might have small bits of code being pasted without the user knowing it. Same with <code>git</code>, because you can find the credentials in older commits and etc.
+</p>
+
+<div id="Footprinting-Techniques-Network enumeration-Location, Infrastructure, Bitches"><h4 id="Location, Infrastructure, Bitches" class="header"><a href="#Footprinting-Techniques-Network enumeration-Location, Infrastructure, Bitches">Location, Infrastructure, Bitches</a></h4></div>
+
+<p>
+Images can contain a lot of information in themselves, or in the metadata. To look for this information, you can try and use something like <code>exiftool</code>
+</p>
+
+<p>
+Apart from that, to find information about people, what you can do is lookup social media for information regarding emails, phone numbers, dates of birth, blogs, photos
+</p>
+
+<div id="Footprinting-Techniques-Network enumeration-Corporate information"><h4 id="Corporate information" class="header"><a href="#Footprinting-Techniques-Network enumeration-Corporate information">Corporate information</a></h4></div>
+
+<p>
+Financial information can be interesting to see winnings, expenses, events in the company structure
+</p>
+
+<p>
+You can even find out information about the tehcnologies a company uses, out of the job postings!
+</p>
+
+<p>
+You can even check the stakes of the company on google, to understand how good they are doing.
+</p>
+
+<p>
+Or, you can find additional information from the quarter reports that some companies might post on their website.
+</p>
+
+<p>
+Hell, sometimes on the websites you can even find information about job requirements, which might include software information, hardware information, and etc.
+</p>
+
+<div id="Footprinting-Technical writting"><h2 id="Technical writting" class="header"><a href="#Footprinting-Technical writting">Technical writting</a></h2></div>
+
+<p>
+We want and need easy, but easy for us, is also easy for a hacker/researcher.
+</p>
+
+<ul>
+<li>
+One entry point
+
+<li>
+Clear and easy to understand documentation'
+
+<li>
+Simplicity
+
+<li>
+Everything that helps a hacker to understand the system
+
+<li>
+Guides, sourcecode, tutorials, write-ups, are all valueable.
+
+</ul>
+<div id="Footprinting-Countermeasures"><h2 id="Countermeasures" class="header"><a href="#Footprinting-Countermeasures">Countermeasures</a></h2></div>
+
+<p>
+After our reasearch, we need to make sure that our client will become more secure, and get rid of the problems!
+</p>
+
+<p>
+Perform your own footprinting techniques and remove any sensitive information
+</p>
+
+<p>
+Configure routers to restrict the responses to foorprinting requests
+</p>
+
+<p>
+Lock the ports with the suitable firewall configuration
+</p>
+
+<p>
+Use an IDS that can be configured to refuse suspicious requests
+</p>
+
+<p>
+“If you know the enemy and
+know yourself you need not
+fear the results of a hundred
+battles”
+</p>
+
+</body>
+</html>

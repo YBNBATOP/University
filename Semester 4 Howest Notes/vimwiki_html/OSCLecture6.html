@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="Stylesheet" type="text/css" href="style.css">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="rss.xml">
+<title>OSCLecture6</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<div id="Why file system?"><h1 id="Why file system?" class="header"><a href="#Why file system?">Why file system?</a></h1></div>
+
+<p>
+The idea of the file system in the Unix is most like a virtual demonstration of the actual files. It is mostly for the processes to know how to access the secondary storages.
+</p>
+
+<p>
+As well, it was very important to make only the Kernel able to get access to the hardware.
+</p>
+
+<p>
+A vurtual file system:
+</p>
+<ul>
+<li>
+provides the interface
+
+<li>
+between the data representation
+
+<ul>
+<li>
+by the kernel
+
+<li>
+(/dev/sda)
+
+</ul>
+<li>
+to the user process and the data presentation 
+
+<ul>
+<li>
+to the kernel in memory
+
+<li>
+(/home/user/myfile)
+
+</ul>
+</ul>
+<p>
+The implementation of a <span id="Why file system?-file system interface"></span><strong id="file system interface">file system interface</strong> like in OOP can be different, like from distro to distro, or in the older times from system to system. Think of it like Nix and Arch for example!
+</p>
+
+<div id="Secondary storage"><h1 id="Secondary storage" class="header"><a href="#Secondary storage">Secondary storage</a></h1></div>
+
+<p>
+An example for the secondary storage is an HDD. Secondary storage is pretty much a very interesting thing as it can be differently connected, that beign directly, or network, or NAS, and etc.
+</p>
+
+<p>
+The data from old disks was gathered by physically moving an arm to actually read sectors/write sectors themselves.
+</p>
+
+<div id="Partitioning a disc"><h1 id="Partitioning a disc" class="header"><a href="#Partitioning a disc">Partitioning a disc</a></h1></div>
+
+<p>
+In order to make the "bucket'o bits" available to the system, there is a need to make a partitioning for it, as then the OS will know what to do with it.
+</p>
+
+<p>
+There are multiple types of partitioning a hard disc. One of the schemes would be MBR, a very old format but still works.
+</p>
+
+<p>
+However this old schemes were very limiting, hence you could only have 27 ~ 26 partitions, and a maximum space of 2 TB.
+</p>
+
+<p>
+Hence, there was a need for a new partitioning system, and GPT appeared, which is pretty much a standart nowadays, and the index is reduntantly spread accross the disc (index is information about partitions and the disc itsefl)
+</p>
+
+<p>
+Thanks to all this, the maximum partitioning amount became 128 bits, and then the maximum space is around 9,7 zettabytes.
+</p>
+
+<p>
+Everything is a file, and hence even the disc itself is represented as a file!
+</p>
+
+<p>
+By navigating to /dev/disk/by-path you can get information about the paritions you got!
+</p>
+
+<p>
+Also there is no real need to partition if you do not want to, you could live with only one partition (as we do usually). But also, we have access to flexibility, and we can make different partitions.
+</p>
+
+<div id="The art of mounting"><h1 id="The art of mounting" class="header"><a href="#The art of mounting">The art of mounting</a></h1></div>
+
+<p>
+The partition that is mounted to the file system doesnt need to know where it is mounted on. You can mount the users' home directories at /home. But aswell mount it at any other point. and already do some other manipulations to see it.
+</p>
+
+<div id="/etc/fstab"><h1 id="/etc/fstab" class="header"><a href="#/etc/fstab">/etc/fstab</a></h1></div>
+
+<p>
+The /etc/fstab is very important as it keeps all the information about your mounts which will be kept even after a reboot!
+</p>
+
+<p>
+To mount, you would need to specify the device to mount, the location to mount the device to, and the file system type, if not automatically known!
+</p>
+
+<div id="File system system locations"><h1 id="File system system locations" class="header"><a href="#File system system locations">File system system locations</a></h1></div>
+
+<p>
+/bin:
+</p>
+<ul>
+<li>
+executable programs needed to run the system
+
+</ul>
+<p>
+/etc:
+</p>
+<ul>
+<li>
+contains all the configuration files for the system
+
+</ul>
+<p>
+/lib:
+</p>
+<ul>
+<li>
+system libraries necessary to run the system
+
+</ul>
+<p>
+/usr:
+</p>
+<ul>
+<li>
+root of the userland locations
+
+</ul>
+<p>
+/boot:
+</p>
+<ul>
+<li>
+contains the static boot-related files
+
+</ul>
+<p>
+/mnt:
+</p>
+<ul>
+<li>
+made for temporary mounts
+
+</ul>
+<p>
+/media:
+</p>
+<ul>
+<li>
+for various media storages
+
+</ul>
+<p>
+/opt:
+</p>
+<ul>
+<li>
+add-on packages and is usually used to install application info
+
+</ul>
+<p>
+/tmp:
+</p>
+<ul>
+<li>
+temporary files that are gone after reboot
+
+</ul>
+<p>
+/var:
+</p>
+<ul>
+<li>
+a place for every config file if configured correctly.
+
+</ul>
+<div id="The directories"><h1 id="The directories" class="header"><a href="#The directories">The directories</a></h1></div>
+
+<p>
+Everything is a file, hence even the "/" directory is a file!
+</p>
+
+<p>
+Everything that you see is like a linked list that then gives you access to files all over the place.
+</p>
+
+<p>
+New files or dirs are eventually also called the inodes, which is mostly like addresses listed in a linked list.
+</p>
+
+<p>
+Eveery file have an address/inode! Some files may refer to the same address/inode, and then that is called a <span id="The directories-hard link"></span><strong id="hard link">hard link</strong>! You cannot have hardlinks across partitions!
+</p>
+
+<p>
+A soft link points to another directory entry as long as there is a level between them. 
+</p>
+
+<p>
+Hardlinks - only on one partitions, Softlinks - as you wish.
+</p>
+
+<p>
+Also, you can not hardlink directories! And the space will not be emptied unless you delete all the possible hardlinks you have to the same inode.
+</p>
+
+<div id="Archiving and compression"><h1 id="Archiving and compression" class="header"><a href="#Archiving and compression">Archiving and compression</a></h1></div>
+
+<p>
+Archiving is collapsing multiple files into one. Compressing is the same, but you also make the files take less space.
+</p>
+
+<p>
+Compressing is also easier for sending over the network.
+</p>
+
+<p>
+There are different types of compression like Lossless (get the same as before), Lossy (dont mind about some data beign lost)
+</p>
+
+<div id="User accounts"><h1 id="User accounts" class="header"><a href="#User accounts">User accounts</a></h1></div>
+
+<p>
+Files in the /etc directory ocntain system configuration data.
+</p>
+
+<p>
+The /etc/passwd file defines some of the account information for user accounts.
+</p>
+
+<p>
+Each line of the /etc/passwd files relates to a user account.
+</p>
+
+<p>
+/etc/shadow contains account information related to the user's password.
+</p>
+
+<p>
+To see the information about a certain user name we can do <code>grep sysadmin /etc/passwd</code>
+</p>
+
+<p>
+To identify yourself you can do <code>id</code> command!
+</p>
+
+<div id="System accounts"><h1 id="System accounts" class="header"><a href="#System accounts">System accounts</a></h1></div>
+
+<p>
+System accounts are there for the programs/daemons to work correctly.
+</p>
+
+<div id="Group accounts"><h1 id="Group accounts" class="header"><a href="#Group accounts">Group accounts</a></h1></div>
+
+<p>
+Additional groups are situated in /etc/group ! You can assign a user to multiple groups.
+</p>
+
+<p>
+To change your group (if you are part of multiple ones) you can do <code>newgrp group_name</code> and then you will eventually change to the group you are also a part of.
+</p>
+
+<p>
+That is working like a shell where you have some permissions.
+</p>
+
+<div id="Working with root"><h1 id="Working with root" class="header"><a href="#Working with root">Working with root</a></h1></div>
+
+<p>
+Root is evil! You should always think about your security of the system and make it traceable to know who dafuck logged in as root and try to do some shenanigans with the system.
+</p>
+
+<p>
+You can change users by doing <code>su user -</code> so that you get the environment settings of the user you are logging in. You can aswell use <code>su --login</code>
+</p>
+
+<div id="The sudo command"><h1 id="The sudo command" class="header"><a href="#The sudo command">The sudo command</a></h1></div>
+
+<p>
+We can set up configuration for sudo in the /etc/sudoers file, which allows to configure very neatly what and who can do! That really enhances the system security!
+</p>
+
+<p>
+Additional useful commands are <code>w</code> and <code>who</code> command that can give information about system resources usage, and who is logged in.
+</p>
+
+</body>
+</html>

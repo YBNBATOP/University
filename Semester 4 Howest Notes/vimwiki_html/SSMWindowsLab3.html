@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="Stylesheet" type="text/css" href="style.css">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="rss.xml">
+<title>SSMWindowsLab3</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<div id="SSMWindowsLab03"><h1 id="SSMWindowsLab03" class="header"><a href="#SSMWindowsLab03">SSMWindowsLab03</a></h1></div>
+
+<p>
+To show the name of the computer, you can run:
+</p>
+
+<ul>
+<li>
+<code>hostname</code> - for legacy
+
+<li>
+<code>[System.Net.Dns]::GetHostName()</code> - for powershell (with admin privilege)
+
+</ul>
+<p>
+To get all the environment variables, you can run the <code>Get-ChildItme Env:</code>
+</p>
+
+<p>
+To get the domain name using environment variables - <code>Get-Content env:COMPUTERNAME</code>. The difference from previous cmdlets is probably that it does not touch the DNS, to then get the name.
+</p>
+
+<p>
+To change the name of the computer, you can do it with GUI, or run a cmdlet - <code>Rename-Computer -Restart –NewName "&lt;name&gt;"</code>. It will Rename, and restart to apply changes.
+</p>
+
+<p>
+Legacy command to find the IPv4 address - <code>ipconfig</code>. CMDLet to get a special port <code>Get-NetIPAddress -InterfaceAlias "Ethernet0"</code>. To get only IPv4 address - <code>Get-NetIPAddress -InterfaceAlias "Ethernet0" | Select-Object -Property IPv4Address</code> 
+</p>
+
+<p>
+To set up a static IP address - <code>New-NetIPAddress -IPAddress 192.168.206.100 -PrefixLength 24 -InterfaceIndex 6</code>, to set a default gateway you would need to specify <code>New-NetIPAddress -IPAddress 192.168.206.100 -PrefixLength 24 -InterfaceIndex 6 -DefaultGateway 192.168.206.2</code>. Sometimes you can use <code>Set-NetIPAddress</code> to actually change a configuration. Otherwise, you would need to get rid of it, and then add it again.
+</p>
+
+<p>
+To set up firewall rules, you either enable them in the GUI, or you make it manually via cmdlet's (make sure to enable rules for Inbound and Unbound):
+</p>
+
+<ul>
+<li>
+<code>Set-NetFirewallRule -Name CoreNet-Diag-ICMP6-EchoRequest-In -Enabled true</code> – ICMPv6
+
+<li>
+<code>Set-NetFirewallRule -Name CoreNet-Diag-ICMP4-EchoRequest-In -Enabled true </code> – ICMPv4
+
+<li>
+<code>Set-NetFirewallRule -Name CoreNet-Diag-ICMP6-EchoRequest-Out -Enabled true</code> – ICMPv6
+
+<li>
+<code>Set-NetFirewallRule -Name CoreNet-Diag-ICMP4-EchoRequest-Out -Enabled true </code> – ICMPv4
+
+</ul>
+<p>
+To create a new powershell prompt, go ahead nad do <code>notepad $PROFILE</code> and let it generate one in GUI. Then you can put the command in:
+</p>
+
+<ul>
+<li>
+function prompt {"<code>n\((get-date) | PS [\)Env:userdomain\\\(Env:username@\)Env:computername] </code>n\((\)PWD.ProviderPath) &gt; "}
+
+<li>
+then run the <code>Set-ExecutionPolicy Unrestricted</code> for it to work every time
+
+<li>
+sometimes it is also necesssary to generate the <code>\(PROFILE</code> file. To check the path, simply type <code>\)profile</code> in powershell, and then <code>New-Item -Path $profile -Type File -Force</code> to create the file. Then you can edit it with notepad
+
+</ul>
+<p>
+To see all installed features - <code>Get-WindowsFeature | Where Installed</code>
+</p>
+
+<p>
+To measure how many objects you get from an output - <code>Get-WindowsFeature | Measure-Object</code>
+</p>
+
+<p>
+To add a PC to the AD - <code>Add-Computer -DomainName corp-serafim.serverlabs.be</code>
+</p>
+
+<p>
+To install a Windows Feature - <code>Install-WindowsFeature -Name RSAT-AD-PowerShell </code>
+</p>
+
+<p>
+To install a Windows capability - <code>Add-WindowsCapability -Online -Name "RSAT: Server Manager"</code>
+</p>
+
+<p>
+To execute a remote command on a another computer - <code>Invoke-Command -ComputerName GUI-SERAFIM -ScriptBlock { Get-NetIPAddress | Select-Object InterfaceAlias, IPv4Address, IPv6Address }</code>
+</p>
+
+</body>
+</html>

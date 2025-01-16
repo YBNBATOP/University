@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="Stylesheet" type="text/css" href="style.css">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="rss.xml">
+<title>WBALecture1-2</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<div id="Methodology"><h1 id="Methodology" class="header"><a href="#Methodology">Methodology</a></h1></div>
+
+<div id="Methodology-ToolChain: Recon"><h2 id="ToolChain: Recon" class="header"><a href="#Methodology-ToolChain: Recon">ToolChain: Recon</a></h2></div>
+
+<p>
+Recon has the most tools, as you need to find quite a lot of information to get further intel.
+</p>
+
+<p>
+You can better get a hand of actually doing reconning by your own hands (manually, and hence get more experience and information, rather than by running something automatically.
+</p>
+
+<p>
+The more you know how something works, the more you find!
+</p>
+
+<ul>
+<li>
+Nmap (allows to find open ports in a certain network range)
+
+<li>
+Shodan (IoT search on the internet!)
+
+<li>
+Censys (Exposure management service, and basically tells how exposed something is on the Internet, like according to the certificates!)
+
+<li>
+Waybackurls (small but handy, queries wayback machine, which indexes everything on the internet, and hence can give information on how something looked in previous versions, i.e. previous versions of a website)
+
+<li>
+Google Dorks 
+
+<li>
+ASN to IP: (Autonomous System is how the backbone of the internet is configured, and genuiely have some obvious common settings, like a default gateway for the router, and every machine knows its own stuff. It is like every router would be the last one, or the father one, and would tell constantly to everyone that it can handled a certain type of requests and etc.)
+
+<ul>
+<li>
+hackertarget
+
+<li>
+pyasn
+
+</ul>
+</ul>
+<p>
+DNS:
+</p>
+<ul>
+<li>
+Amass
+
+<li>
+SecurityTrails
+
+</ul>
+<p>
+Visuals:
+</p>
+<ul>
+<li>
+Aquatone
+
+<li>
+Eyewitness
+
+<li>
+httpx
+
+</ul>
+<p>
+More information about tools:
+</p>
+
+<p>
+<span id="Methodology-ToolChain: Recon-Nmap"></span><strong id="Nmap">Nmap</strong>
+Depending on how large your scope is:
+</p>
+<ul>
+<li>
+Scan for web ports
+
+<li>
+Scan for 1000 most common ports
+
+<li>
+Scan for all ports
+
+</ul>
+<p>
+Identify services &amp; Vulnerabilities
+</p>
+
+<p>
+Useful flags to use:
+</p>
+
+<p>
+-sS - makes only the first part of a TCP handshake (SYN)
+</p>
+
+<p>
+Example of command:
+</p>
+
+<p>
+nmap -T4 --open -n -oA -p 443 --script-http-title &lt;ip here&gt; (-T means how aggressive nmap will be. --open will only talk about open ports, -n will not do reverse DNS, -oA - output all to ..., -p for port, --script - would mean it to use some kind of certain script already premade or what you can make yourself)
+</p>
+
+<p>
+<span id="Methodology-ToolChain: Recon-Amass"></span><strong id="Amass">Amass</strong>
+</p>
+
+<p>
+Some useful information about Amass is that it has got 3 main types of what it can do.
+</p>
+
+<p>
+amass enum, amass intel, amass db
+</p>
+
+<p>
+Useful flags:
+</p>
+
+<p>
+-v - will put everything in vorbose mode and hence give you more information about what is happenning
+</p>
+
+<p>
+Example of command:
+</p>
+
+<p>
+amass enum -v -d howest.be (it will give us information about the -d domain)
+</p>
+
+<p>
+amass enum -v -d howest.be -r 172.20.0.3 (that would use another DNS resolver and not a default one, thanks to the -r flag
+</p>
+
+<p>
+<span id="Methodology-ToolChain: Recon-Censys"></span><strong id="Censys">Censys</strong>
+</p>
+
+<p>
+It represents a certificate search engine
+</p>
+
+<p>
+Useful for subdomain enumeration, IP Space.
+</p>
+
+<div id="Methodology-ToolChain: Mapping"><h2 id="ToolChain: Mapping" class="header"><a href="#Methodology-ToolChain: Mapping">ToolChain: Mapping</a></h2></div>
+
+<p>
+Remember, you want to find out something that gives out errors!
+</p>
+
+<p>
+Crawlers:
+</p>
+<ul>
+<li>
+Burp
+
+<li>
+Go Spider
+
+</ul>
+<p>
+Use the application
+</p>
+
+<p>
+Extract endpoints from javascript
+</p>
+<ul>
+<li>
+BurpJSLinkfinder
+
+<li>
+Grep
+
+</ul>
+<p>
+Brute Force
+</p>
+<ul>
+<li>
+Intruder
+
+<li>
+Ffuf  (Fuzz Faster You Fool)
+
+<li>
+dirsearch
+
+</ul>
+<p>
+Smart use of wordlists and bruteforce can reveal a lot about an application
+</p>
+
+<p>
+Naming conventions FTW
+</p>
+
+<div id="Methodology-ToolChain: Discovery"><h2 id="ToolChain: Discovery" class="header"><a href="#Methodology-ToolChain: Discovery">ToolChain: Discovery</a></h2></div>
+
+<p>
+You want to try out some interesting payloads maybe here, or play around with the website, in order to get the application functionality
+</p>
+
+<ul>
+<li>
+Burp Repeater
+
+<li>
+Burp Intruder
+
+<li>
+Mostly manual process
+
+<li>
+Probing for errors
+
+</ul>
+<p>
+There are honestly not many tools for discovery, so you have to probe, test, take notes and organize, and of course - make errors
+</p>
+
+<div id="Methodology-ToolChain: Exploitation"><h2 id="ToolChain: Exploitation" class="header"><a href="#Methodology-ToolChain: Exploitation">ToolChain: Exploitation</a></h2></div>
+
+<ul>
+<li>
+Mostly manual
+
+<li>
+SQLMap
+
+<li>
+Commix
+
+<li>
+Burp Activescan, Backslash Powered Scanner
+
+</ul>
+
+</body>
+</html>

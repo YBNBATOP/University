@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="Stylesheet" type="text/css" href="style.css">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="rss.xml">
+<title>PREMALab2</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<div id="Info"><h1 id="Info" class="header"><a href="#Info">Info</a></h1></div>
+
+<p>
+Some of them (Flags) you can find yourself, but for some of them you will have to run the script (through PowerShell), and then you will be able to use the passwords you find and get the flags.
+</p>
+
+<div id="Info-1st one"><h2 id="1st one" class="header"><a href="#Info-1st one">1st one</a></h2></div>
+
+<p>
+We can understand that it contains 3 flags, based on the string that we can see with *<span id="Info-1st one-BinText"></span><strong id="BinText">BinText</strong>* utility.
+</p>
+
+<ul>
+<li>
+To find the first flag, what you can do is right-click &gt; properties &gt; details. The you should find the first flag (FLAG-53795)
+
+<li>
+To find the next flag, what you can do is try and open it with <span id="Info-1st one-BinText"></span><strong id="BinText">BinText</strong> program, and then you should be able to see the flag (FLAG-73643), under another line which looks like a password:
+
+</ul>
+<p>
+00000000154C   00000040214C      0   V3ryS3cUr3!p4ssW0rd
+</p>
+
+<p>
+000000001564   000000402164      0   FLAG-73643
+</p>
+
+<ul>
+<li>
+To get the third one, first thing that you can do, is try and run it (in PowerShell), and eventually put in the password from the previous lines that we saw (V3ryS3cUr3!p4ssW0rd). Then you will get the last flag (FLAG-22875), and also the previous one. You can also take a look at it with <span id="Info-1st one-BinaryNinja"></span><strong id="BinaryNinja">BinaryNinja</strong>, and then you can find the FLAG in plaintext inside the source code.
+
+</ul>
+<div id="Info-2nd one"><h2 id="2nd one" class="header"><a href="#Info-2nd one">2nd one</a></h2></div>
+
+<p>
+If we check the strings with <span id="Info-2nd one-BinText"></span><strong id="BinText">BinText</strong>, we can see that it actually contains 3 flags (string inside the executable itself)
+</p>
+
+<ul>
+<li>
+First flag you can find in 2 ways:
+
+<ul>
+<li>
+ Either you open it with <span id="Info-2nd one-BinText"></span><strong id="BinText">BinText</strong>, and then you see the actual string with a password (000000001501   000000402101      0   4n0th3rS3Cur3!P4ssword), and the one with the flag (000000002FEE   000000404DEE      0   FLAG-18369), and then you got the FLAG (FLAG-18369)
+
+<li>
+Or you open <span id="Info-2nd one-ResourceHacker"></span><strong id="ResourceHacker">ResourceHacker</strong>, and then you can go to the String Table, and you can find it there.
+
+</ul>
+<li>
+Second flag, you can find in the same <span id="Info-2nd one-ResourceHacker"></span><strong id="ResourceHacker">ResourceHacker</strong>, if you go to the Bitmap image, and then you can open it and see the FLAG (FLAG-84017)
+
+<li>
+To find the third flag, what you can do is try and run the application itself (through PowerShell), and then reverse the password you found in the first one. Why reverse? Because in the strings you can see such a line, which can be read in reverse (00000000154E   00000040214E      0   p-: ragic on tub esolC). Hence, if you reverse the password manually (just rewrite it), and enter it, you will be able to get the last one (FLAG-17032)
+
+</ul>
+<div id="Info-3rd one"><h2 id="3rd one" class="header"><a href="#Info-3rd one">3rd one</a></h2></div>
+
+<p>
+The progrma contains 2 flags, this we can get by checking the strings using <span id="Info-3rd one-BinText"></span><strong id="BinText">BinText</strong>
+</p>
+
+<ul>
+<li>
+To get the first flag (FLAG-25248), after checking that the strings in *<span id="Info-3rd one-BinText"></span><strong id="BinText">BinText</strong>* are somewhat empty, we can start up *<span id="Info-3rd one-PEiD"></span><strong id="PEiD">PEiD</strong>* utility, and check what it is. We can see that the program was compressesd with *<span id="Info-3rd one-upx"></span><strong id="upx">upx</strong>*. Hence, what we need to go is decompress it. To do that, unarchive upx from the tools, and then using the powershell, decompress the executable of exercise 3. After doing that, we can get back to the strings in *<span id="Info-3rd one-BinText"></span><strong id="BinText">BinText</strong>*, and then see the flag line: 
+
+</ul>
+<p>
+000000002612   000000404412      0   #Most awesome console app FLAG-25248
+</p>
+
+<ul>
+<li>
+To find the second flag, get back to the strings using *<span id="Info-3rd one-BinText"></span><strong id="BinText">BinText</strong>*, as there you will be able to find some interesting lines (in thde executable that was already unpacked!!! with upx):
+
+</ul>
+<p>
+000000001500   000000402100      0   V3ryS3cUr3!p4ssW0rd2
+</p>
+
+<p>
+00000000154C   00000040214C      0   FLAG-00000
+</p>
+
+<p>
+By looking at this lines we find a password (which was different when the program was unpacked). You can then launch the executable (the version before unpacking), and then put in the password (V3ryS3cUr3!p4ssW0rd2), and then get the flag (FLAG-39337)
+</p>
+
+<div id="Info-4th one"><h2 id="4th one" class="header"><a href="#Info-4th one">4th one</a></h2></div>
+
+<p>
+This one supposevly has only 1 flag (also can be seen from the scoreboard exercise).
+</p>
+
+<ul>
+<li>
+To find the flag, go and check the strings first, and check that you can seee nothing related to a flag there. If you open *<span id="Info-4th one-PEiD"></span><strong id="PEiD">PEiD</strong>*, then you can see that it was written in a C familiy. Hence, open the *<span id="Info-4th one-dotPeek"></span><strong id="dotPeek">dotPeek</strong>* tool from Jetbrains, and then add the executable in there. If you check the <span id="Info-4th one-TimeLock"></span><strong id="TimeLock">TimeLock</strong> namespace, and then the <span id="Info-4th one-frmMain"></span><strong id="frmMain">frmMain</strong>, you will notice that you can find strings related to a flag. It is being generated, and all we have to do is calculate it (manually or by putting it in a function from the IDE).
+
+</ul>
+<p>
+private int dagen = 365;
+</p>
+
+<p>
+private const string FLAG = "FLAG-00000";
+</p>
+
+<p>
+this.txtFlag.Text = "FLAG-00000".Substring(0, 5) + this.GenerateFlag();
+</p>
+
+<p>
+private string GenerateFlag() =&gt; (this.dagen * 24 * Convert.ToInt32(this.dagen.ToString().Substring(1, 1)) - 5219).ToString();
+</p>
+
+<p>
+So, after you calculate it, you should get the flag numbers, and just append the word FLAG to it (FLAG-47341)
+</p>
+
+</body>
+</html>

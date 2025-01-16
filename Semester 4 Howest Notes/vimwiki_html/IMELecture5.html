@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="Stylesheet" type="text/css" href="style.css">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="rss.xml">
+<title>IMELecture5</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<div id="Quick recap"><h1 id="Quick recap" class="header"><a href="#Quick recap">Quick recap</a></h1></div>
+
+<div id="Quick recap-Entity"><h2 id="Entity" class="header"><a href="#Quick recap-Entity">Entity</a></h2></div>
+
+<p>
+An entity is a thing which can be distinctly identified. A person, a company, or event is an example of an entity. (This usually goes into the <span id="Quick recap-Entity-domain"></span><strong id="domain">domain</strong> level)
+</p>
+
+<div id="Quick recap-Entity Set"><h2 id="Entity Set" class="header"><a href="#Quick recap-Entity Set">Entity Set</a></h2></div>
+
+<p>
+It is a set (or collection) of entities or instances of an entity type which share the similar properties or attributes.
+</p>
+
+<div id="Quick recap-Entity Type"><h2 id="Entity Type" class="header"><a href="#Quick recap-Entity Type">Entity Type</a></h2></div>
+
+<p>
+It is a concept for defining the entities which share the similar properties or attributes
+</p>
+
+<div id="Quick recap-Example"><h2 id="Example" class="header"><a href="#Quick recap-Example">Example</a></h2></div>
+
+<p>
+Ann and Jim are member <span id="Quick recap-Example-entities"></span><strong id="entities">entities</strong> in VGC's UoD. In OO paritance they are also called objects.
+</p>
+
+<pre java>
+package domain;
+
+public class Member { // -- ENTITY TYPE
+
+}
+</pre>
+
+
+<pre java>
+private void run() {
+
+	// -- ENTITIES
+	
+	Member c = new Member(1, "CTT");
+	Member c = new Member(2, "MDG");
+	Member c = new Member(3, "FVL");
+	
+	// -- ENTITY SET
+	
+	List&lt;Member&gt; members = new ArrayList&lt;&gt;();
+	
+</pre>
+
+<pre java>
+package domain;
+
+public class Member { // -- ENTITY TYPE
+
+	// -- ATTRIBUTES
+
+	private final int membershipNumber;
+	private final String lastName;
+	private final String firstName;
+} 
+</pre>
+
+
+<pre java>
+package domain;
+
+public class Member { // -- ENTITY TYPE
+
+	// -- ATTRIBUTES
+
+	private final int membershipNumber;
+	private final String lastName;
+	private final String firstName;
+	private final Optional&lt;String&gt; title; // -- Define a optional field (non-required). Also useful to know is the usage of *.orElse()* funciton which can show alternative text.
+
+	public Member(int membershipNumber, String lastName, String firstName) {
+		this(membershipNumber, lastName, firstName, null);
+	}
+	
+	public Member(int membershipNumber, String lastName, String firstName, String title) {
+		this.membershipNumber = membershipNumber;
+		this.lastName = Objects.requireNonNull(lastName); // -- Required attibutes (mandatory)
+		this.fistName = Objects.requireNonNull(fistName); // -- Required attibutes (mandatory)
+		this.title = Optional.ofNullable(title); // -- Optional attributes
+	}
+} 
+</pre>
+
+<pre java>
+package domain;
+
+public class Member { // -- ENTITY TYPE
+
+	// -- ATTRIBUTES
+
+	private final int membershipNumber;
+	private final String lastName;
+	private final String firstName;
+	private final Optional&lt;String&gt; title; // -- Define a optional field (non-required). Also useful to know is the usage of *.orElse()* funciton which can show alternative text.
+	private final LocalDate dateOfBirth; // -- Define a derived attirbute (that can be calculated for example)
+
+	public Member(int membershipNumber, String lastName, String firstName) {
+		this(membershipNumber, lastName, firstName, null);
+	}
+	
+	public Member(int membershipNumber, String lastName, String firstName, String title, LocalDate dateOfBirth) {
+		this.membershipNumber = membershipNumber;
+		this.lastName = Objects.requireNonNull(lastName); // -- Required attibutes (mandatory)
+		this.fistName = Objects.requireNonNull(fistName); // -- Required attibutes (mandatory)
+		this.title = Optional.ofNullable(title); // -- Optional attributes
+		this.dateOfBirth = Objects.requireNonNull(dateOfBitrh); // -- Required attribute (mandatory)
+	}
+	
+	public int getAge() {
+		return Period.between(dateOfBirth, LocalDate.now()).getYears();
+	}
+	
+} 
+</pre>
+
+<pre java>
+package domain;
+
+public class Member {
+	
+	private final int membershipNumber;
+	
+	private final Set&lt;PhoneNumber&gt; phoneNumbers = new HashSet&lt;&gt;(); // -- Instead of limiting yourself to standard classes, create your own ones.
+	
+	public void addPhoneNumber(PhoneNumber phoneNumber) {
+		phoneNumbers.add(phoneNumber);
+	}
+	
+	public Set&lt;PhoneNumber&gt; getPhoneNumbers() {
+		return Collections.unmodifiableSet(phoneNumbers);
+	}
+	
+}
+</pre>
+
+<p>
+To have a unique parameter, make sure to implement equals and hashCode for that parameter.
+</p>
+
+<div id="Quick recap-Weak Entity"><h2 id="Weak Entity" class="header"><a href="#Quick recap-Weak Entity">Weak Entity</a></h2></div>
+
+<p>
+If the existence of an entity depenmds on the existence of another entity, we say the entity is a weak entity.
+</p>
+
+<p>
+In order to translate the weak entity into a object, you would make sure that the object you created will have the fields that are necessary for the weak entity.
+</p>
+
+<div id="Quick recap-Participation and Cardinality"><h2 id="Participation and Cardinality" class="header"><a href="#Quick recap-Participation and Cardinality">Participation and Cardinality</a></h2></div>
+
+<p>
+The <span id="Quick recap-Participation and Cardinality-participation of a relationship"></span><strong id="participation of a relationship">participation of a relationship</strong> defines the <span id="Quick recap-Participation and Cardinality-minimum"></span><strong id="minimum">minimum</strong> number of related entities on a relationship (0 or 1), the <span id="Quick recap-Participation and Cardinality-cardinality of a relationship"></span><strong id="cardinality of a relationship">cardinality of a relationship</strong> defines the m*maximum* number of related entities on a relationship (1 or more).
+</p>
+
+<div id="Quick recap-Participation and Cardinality-One-to-one"><h3 id="One-to-one" class="header"><a href="#Quick recap-Participation and Cardinality-One-to-one">One-to-one</a></h3></div>
+
+<p>
+Means that the class will have a field which can be optional or null, but might as well have a value.
+</p>
+
+<div id="Quick recap-Participation and Cardinality-One-to-many"><h3 id="One-to-many" class="header"><a href="#Quick recap-Participation and Cardinality-One-to-many">One-to-many</a></h3></div>
+
+<p>
+Means that one of the classes will have certain collection of the needed class. For example, the Member class can have multiple Subscriptions, which means that the Member class will have a collection of Subscriptions inside itself.
+</p>
+
+<div id="Quick recap-Participation and Cardinality-Many-to-Many"><h3 id="Many-to-Many" class="header"><a href="#Quick recap-Participation and Cardinality-Many-to-Many">Many-to-Many</a></h3></div>
+
+<p>
+It means that each class out of the relationship will have access to a middle class, which will be responsible for gathering information about each opther classes.
+</p>
+
+<div id="Quick recap-Inheritance"><h2 id="Inheritance" class="header"><a href="#Quick recap-Inheritance">Inheritance</a></h2></div>
+
+<p>
+Means that we will have a parent class, and then we can extend other classes from it, by using the keyword <span id="Quick recap-Inheritance-extends"></span><strong id="extends">extends</strong> in Java, and hence gathering access to the father classses values and override some values aswell.
+</p>
+
+<pre java>
+public class FamilyGame extends BoardGame {
+	private final int expectedGameDuration;
+	
+	// Constructor here with access to the parent classs via *super(&lt;values&gt;)* and then your other necessary setters
+}
+</pre>
+
+</body>
+</html>

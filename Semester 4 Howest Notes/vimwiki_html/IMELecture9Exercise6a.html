@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="Stylesheet" type="text/css" href="style.css">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="rss.xml">
+<title>IMELecture9Exercise6a</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<p>
+First of all we need some basic structure. It is all written in yaml (which sucks, but hey we still need some information)
+</p>
+
+<p>
+So first of all you start with this:
+</p>
+<pre openapi>
+openapi: 3.0.3
+info:
+  title: VGC
+  description: VGC mapping
+  version: 0.0.1
+externalDocs:
+  url: http://example.com
+tags: # This is like grouping everything together
+  - name: members # Group name
+    description: Everything about members # Small description
+  - name: boardgames # Group name
+    description: Everything about boardgames # Small description
+</pre>
+
+<p>
+Then we need to start defining the endpoints:
+</p>
+
+<p>
+Here is an example of a GET endpoint
+</p>
+
+<pre openapi>
+paths:
+  /members: # Name of endpoint
+    get: # Method
+      summary: Find all members
+      description: Returns all members
+      operationId: getAllMembers
+      tags:
+        - members # In which group to put?
+      responses:
+        '200':
+          description: successful operation
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MemberSet' # Return this component
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/MemberSet'
+        '404':
+          description: No member found
+</pre>
+
+<p>
+And after that you will surely need some components that represent your objects!
+</p>
+
+<pre openapi>
+components:
+  schemas:
+    MemberSet:
+      type: array
+      items:
+        $ref: '#/components/schemas/Member'
+    Member:
+      type: object # What is it
+      required: # Required ones need to be specified
+        - memberNo
+        - subscription
+      properties:
+        memberNo: # Property name (attribute)
+          type: integer # Type of value
+          format: int32 # Formatt if necessary
+        name:
+          type: string
+        firstName:
+          type: string
+        subscription:
+          type: array # If might contain many
+          items:
+            $ref: '#/components/schemas/Subscription' # Reference to another object inside that
+        rental:
+          type: array
+          items:
+            $ref: '#/components/schemas/Rental'
+    Subscription:
+      type: object
+      required:
+        - startDate
+        - member
+      properties:
+        startDate:
+          type: string
+          format: date
+        endDate:
+          type: string
+          format: date
+        fee:
+          type: number
+          format: double
+        member:
+          $ref: '#/components/schemas/Member' # Needs only one
+</pre>
+
+<p>
+Here is how an example of inheritance will look like:
+</p>
+
+<pre openapi>
+    BoardGame:
+      type: object
+      required:
+        - boardGameId
+        - category # required for inheritance to work
+        - gamecopy
+      properties:
+        boardGameId:
+          type: integer
+          format: int32
+        name:
+          type: string
+        category:
+          type: string
+        gamePublisher:
+          type: string
+        gameCopy:
+          type: array
+          items:
+            $ref: '#/components/schemas/GameCopy'
+      discriminator:
+        propertyName: category
+    Puzzle:
+      allOf:
+        - $ref: '#/components/schemas/BoardGame' # Gets all the properties of BoardGame
+        - type: object 
+          # all the other attributes
+          properties:
+            complexityLevel:
+              type: integer
+              format: int32
+</pre>
+
+<p>
+This is how an endpoint would look like in case you really want to have a variety with inheritance:
+</p>
+
+<pre openapi>
+  /boardgames:
+    put:
+      tags:
+        - boardgames
+      summary: Update an existing board game
+      description: Update an existing board game by name
+      operationId: updateBoardGame
+      requestBody:
+        description: Update an existing boardgame
+        content:
+          application/json:
+            schema:
+              oneOf:
+                - $ref: '#/components/schemas/BoardGame'
+                - $ref: '#/components/schemas/FamilyGame'
+                - $ref: '#/components/schemas/Ridlle'
+                - $ref: '#/components/schemas/Puzzle'
+              discriminator:
+                propertyName: category
+          application/xml:
+            schema:
+              oneOf:
+                - $ref: '#/components/schemas/BoardGame'
+                - $ref: '#/components/schemas/FamilyGame'
+                - $ref: '#/components/schemas/Ridlle'
+                - $ref: '#/components/schemas/Puzzle'
+              discriminator:
+                propertyName: category
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                oneOf:
+                    - $ref: '#/components/schemas/BoardGame'
+                    - $ref: '#/components/schemas/Ridlle'
+                    - $ref: '#/components/schemas/Puzzle'
+                    - $ref: '#/components/schemas/FamilyGame'
+                discriminator:
+                  propertyName: category     
+            application/xml:
+              schema:
+                oneOf:
+                    - $ref: '#/components/schemas/BoardGame'
+                    - $ref: '#/components/schemas/Ridlle'
+                    - $ref: '#/components/schemas/Puzzle'
+                    - $ref: '#/components/schemas/FamilyGame'
+                discriminator:
+                  propertyName: category
+        '400':
+          description: Invalid name supplied
+        '404':
+          description: Boardgame not found
+        '405':
+          description: Validation exception
+</pre>
+
+</body>
+</html>

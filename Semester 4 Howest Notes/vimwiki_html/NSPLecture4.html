@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="Stylesheet" type="text/css" href="style.css">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="rss.xml">
+<title>NSPLecture4</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<div id="External testing"><h1 id="External testing" class="header"><a href="#External testing">External testing</a></h1></div>
+
+<p>
+It is testing of publicly available information, a network enumeration phase, and the behaviour of the security devices analyzed (mainly like OSINT style)
+</p>
+
+<p>
+It involves a comprehensive analysis of company's externally visible servers or devices, such as webservers, mail servers, firewalls, routers
+</p>
+
+<div id="Internal Testing"><h1 id="Internal Testing" class="header"><a href="#Internal Testing">Internal Testing</a></h1></div>
+
+<p>
+Internal testing involves testing computers and devices within the company. It is mostly like being inside a network with a VPN like we do.
+</p>
+
+<p>
+You have different types of testing, like:
+</p>
+<ul>
+<li>
+Gray-hat
+
+<li>
+Darh-hat
+
+</ul>
+<div id="Exploitation Intro"><h1 id="Exploitation Intro" class="header"><a href="#Exploitation Intro">Exploitation Intro</a></h1></div>
+
+<div id="Exploitation Intro-Black-Box Testing"><h2 id="Black-Box Testing" class="header"><a href="#Exploitation Intro-Black-Box Testing">Black-Box Testing</a></h2></div>
+
+<p>
+The first phase, is to get as much information as possible.
+</p>
+
+<p>
+It takes a lot of time to get to know new systems. Like NMAP, that takes a lot of time. So it is just interesting to gather and spend as much time looking for the systems on the network.
+</p>
+
+<div id="Exploitation Intro-Grey-Box Testing"><h2 id="Grey-Box Testing" class="header"><a href="#Exploitation Intro-Grey-Box Testing">Grey-Box Testing</a></h2></div>
+
+<p>
+You will get some information regarding the IP range of the company, and etc. So you get some insights.
+</p>
+
+<div id="Exploitation Intro-White-Box Testing"><h2 id="White-Box Testing" class="header"><a href="#Exploitation Intro-White-Box Testing">White-Box Testing</a></h2></div>
+
+<p>
+You know most information about the company, and you get the most processes/services, networks, and etc, running on the network.
+</p>
+
+<div id="Exploitation Intro-White-Box Testing-Announced Testing"><h3 id="Announced Testing" class="header"><a href="#Exploitation Intro-White-Box Testing-Announced Testing">Announced Testing</a></h3></div>
+
+<p>
+The IT department knows that you are in the system, and they are helping you to do something. It is mostly about testing the existing infrastructure.
+</p>
+
+<div id="Exploitation Intro-White-Box Testing-Unannounced Testing"><h3 id="Unannounced Testing" class="header"><a href="#Exploitation Intro-White-Box Testing-Unannounced Testing">Unannounced Testing</a></h3></div>
+
+<p>
+The vice versa, as you make sure that the IT department does not know you are in the system. It allows only the upper management to be aware of the tests.
+</p>
+
+<div id="Vulnerabilities"><h1 id="Vulnerabilities" class="header"><a href="#Vulnerabilities">Vulnerabilities</a></h1></div>
+
+<p>
+Software HAS vulnerabilities:
+</p>
+<ul>
+<li>
+Bugs
+
+<li>
+Temporary open services
+
+<li>
+Features not well protected (or easily brute forced, like login screen, and not limiting)
+
+<li>
+Bad engineering
+
+</ul>
+<p>
+These are mostly "discovered" by the manufacturer itself
+</p>
+<ul>
+<li>
+Patches &amp; updates are released
+
+</ul>
+<div id="Vulnerabilities-CVE"><h2 id="CVE" class="header"><a href="#Vulnerabilities-CVE">CVE</a></h2></div>
+
+<p>
+Vulnerabilities that are discovered by other people are not yet patched and called zero-day vulnerabilities.
+</p>
+
+<p>
+Hackers use to report the vulnerabilities to official portals. These portals are diffeerent for each vendor.
+</p>
+
+<p>
+There are 2 types of CVE manufacturer (each vulnerability gets a CVE code)
+</p>
+
+<p>
+When the company is not in the list of CVE manufacturer, then you can fill in a form to request a CVE code
+</p>
+
+<div id="Exploits"><h1 id="Exploits" class="header"><a href="#Exploits">Exploits</a></h1></div>
+
+<p>
+If code is written to expoit a known vulnerability this is called an exploit
+</p>
+
+<div id="Information before system hacking stage"><h1 id="Information before system hacking stage" class="header"><a href="#Information before system hacking stage">Information before system hacking stage</a></h1></div>
+
+<p>
+What you have at this stage:
+</p>
+<ul>
+<li>
+Footprinting (IP Ranges, Domain names, Websites)
+
+<li>
+Scanning (Target assessment, and etc)
+
+<li>
+Enumeration
+
+</ul>
+<div id="System Hacking: Our Goals"><h1 id="System Hacking: Our Goals" class="header"><a href="#System Hacking: Our Goals">System Hacking: Our Goals</a></h1></div>
+
+<p>
+We are trying to gather access to the system. We want to collect as much information as possible.
+</p>
+
+<ul>
+<li>
+Gaining access - to collect information to gain access - password eavesdropping, brute forcing
+
+<li>
+Escalating privileges - to create a privileged user account if the user level is obtained - password cracking, known exploits
+
+</ul>
+<div id="Hacking Stage: Privilege Escalation"><h1 id="Hacking Stage: Privilege Escalation" class="header"><a href="#Hacking Stage: Privilege Escalation">Hacking Stage: Privilege Escalation</a></h1></div>
+
+<p>
+An attacker cna gain acccess to the network or a system using a non-admin user account, and the next step would be to gain administrative privileges.
+</p>
+
+<p>
+There are some type of privilege escalation:
+</p>
+<ul>
+<li>
+Vertical - Requires to grant higher privileges or higher level of access than administrator
+
+</ul>
+<div id="Hacking Stage: Exploitation"><h1 id="Hacking Stage: Exploitation" class="header"><a href="#Hacking Stage: Exploitation">Hacking Stage: Exploitation</a></h1></div>
+
+<p>
+The exploitation process:
+</p>
+<ul>
+<li>
+Find the vulnerability
+
+</ul>
+<div id="Nmap"><h1 id="Nmap" class="header"><a href="#Nmap">Nmap</a></h1></div>
+
+<p>
+To check if the system is up:
+</p>
+<ul>
+<li>
+-sn - to do an arp scan for port 80
+
+</ul>
+<p>
+To check if the system has ports open:
+</p>
+<ul>
+<li>
+-p- - to scan for all ports
+
+<li>
+-p - to scan for most popular ports
+
+</ul>
+<p>
+To check for versions running:
+</p>
+<ul>
+<li>
+-sV - to scan for versions and services running on a port
+
+</ul>
+<p>
+To know most information about the system:
+</p>
+<ul>
+<li>
+-sO - to scan for information, versions, operating system
+
+</ul>
+<p>
+You can lookup expoits for a service on the <code>exploid db</code> on the internet
+</p>
+
+<p>
+Then, you can go ahead and check the <code>metasploit</code> to check for exploits, and then use them.:wq
+</p>
+
+</body>
+</html>

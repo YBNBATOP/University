@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="Stylesheet" type="text/css" href="style.css">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="rss.xml">
+<title>NSPLecture5</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<p>
+Today, we are going to talk about passwords, and information regarding it
+</p>
+
+<div id="Intro"><h1 id="Intro" class="header"><a href="#Intro">Intro</a></h1></div>
+
+<p>
+We as programmers, need to think about usability over security.
+</p>
+
+<p>
+When you want full security, then you can do barely anything on your application.
+</p>
+
+<p>
+When you want something usable = it can never be 100% secure.
+</p>
+
+<p>
+A password can be secure, based on the amount of time to crack it.
+</p>
+
+<ul>
+<li>
+10 minutes? VERY Risky
+
+<li>
+1 month? VERY Low Risk
+
+<li>
+10 years or more? Secure for LIFE
+
+</ul>
+<p>
+To make more complex passwords - we can use passphrases.
+</p>
+
+<p>
+Password Managers are a good solution to store passwords. They also generate them
+</p>
+
+<p>
+Though, there can be problems:
+</p>
+<ul>
+<li>
+Trust: Do you trust the password manager vendor?
+
+<li>
+Centralized risk: all converges into a single password. (it better be a good one)
+
+<li>
+Vulnerabiltites: password managers can also contain bugs.
+
+</ul>
+<p>
+Password policy - it is about trying to rotate the passwords once in a while.
+</p>
+
+<p>
+As a programmer - you can make a delay between how much time should pass between tries to enter the password again.
+</p>
+
+<div id="Intro-Biggest weapon: Your head"><h2 id="Biggest weapon: Your head" class="header"><a href="#Intro-Biggest weapon: Your head">Biggest weapon: Your head</a></h2></div>
+
+<p>
+You need to understand that most people - do not care about passwords
+</p>
+
+<p>
+You can test 1 password over multiple accounts
+</p>
+
+<p>
+OR
+</p>
+
+<p>
+You can test 1 dictionary over one account
+</p>
+
+<div id="Password Security"><h1 id="Password Security" class="header"><a href="#Password Security">Password Security</a></h1></div>
+
+<p>
+Password cracking techniques can be used to audit the passwords in a company
+</p>
+
+<p>
+If you can crack a password, then other also can succeed
+</p>
+
+<div id="Password Security-Cracking techniques"><h2 id="Cracking techniques" class="header"><a href="#Password Security-Cracking techniques">Cracking techniques</a></h2></div>
+
+<ul>
+<li>
+Dictionary file - a bunch of passswords from the most known one
+
+<li>
+Brute forcing attacks - trying a bunch of passwords that are generated.
+
+<li>
+Hybrid - somewhat dictionary, but modified as well
+
+<li>
+Syllable - combination of both
+
+<li>
+Rule-based - you have some information about the password.
+
+</ul>
+<div id="Password Security-Storing passwords"><h2 id="Storing passwords" class="header"><a href="#Password Security-Storing passwords">Storing passwords</a></h2></div>
+
+<p>
+The use of hashes!
+</p>
+<ul>
+<li>
+Passwords are usually stored not in plaintext, but as an encrypted string
+
+<li>
+Diffrent hashing algorithm for different application
+
+</ul>
+<div id="Password Security-Salting"><h2 id="Salting" class="header"><a href="#Password Security-Salting">Salting</a></h2></div>
+
+<p>
+Salting techniques prevents deriving passwords from the password file
+</p>
+
+<p>
+Stored representation differs
+</p>
+
+<p>
+It is like using some additional characters to hash the password.
+</p>
+
+<div id="Password Security-Password hashes, what now?"><h2 id="Password hashes, what now?" class="header"><a href="#Password Security-Password hashes, what now?">Password hashes, what now?</a></h2></div>
+
+<p>
+An example of cracling hashes: Rainbow Attacks
+</p>
+
+<div id="Password Security-Pass the hash"><h2 id="Pass the hash" class="header"><a href="#Password Security-Pass the hash">Pass the hash</a></h2></div>
+
+<p>
+Why do we need to get the plain text password?
+</p>
+
+<p>
+A password hash can hust be reused to authenticate in the same manner
+</p>
+
+<div id="Password Security-Online vs Offline password attacks"><h2 id="Online vs Offline password attacks" class="header"><a href="#Password Security-Online vs Offline password attacks">Online vs Offline password attacks</a></h2></div>
+
+<p>
+Offline: typically, after retrieving a hash or encrypted password string/file
+</p>
+
+<p>
+Online: directly attacking an endpoint:
+</p>
+<ul>
+<li>
+Web login portal like HTTP or HTTPS
+
+<li>
+Lockout (possible)
+
+<li>
+In practice, try limiting this only to wordlists
+
+<li>
+Tools for brute-forcing:
+
+<ul>
+<li>
+NMAP
+
+<li>
+MSFCONSOLE
+
+<li>
+hydra
+
+</ul>
+</ul>
+
+</body>
+</html>

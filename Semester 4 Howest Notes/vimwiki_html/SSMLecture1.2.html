@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="Stylesheet" type="text/css" href="style.css">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="rss.xml">
+<title>SSMLecture1.2</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<p>
+Important information, on March 13th you can attend a cool masterclass, dont forget to register
+</p>
+
+<div id="General information"><h1 id="General information" class="header"><a href="#General information">General information</a></h1></div>
+
+<div id="General information-Trouble shooting tips"><h2 id="Trouble shooting tips" class="header"><a href="#General information-Trouble shooting tips">Trouble shooting tips</a></h2></div>
+
+<p>
+First of all, understand in which layer the issue is (like in Computer Networks), and you need to find where it is
+</p>
+
+<div id="General information-Trouble shooting tips-Physical layer"><h3 id="Physical layer" class="header"><a href="#General information-Trouble shooting tips-Physical layer">Physical layer</a></h3></div>
+
+<p>
+The network card of Wi-Fi adapter
+</p>
+
+<p>
+For the lab's this will be the WMware virtual network editor (can be found in edit)
+</p>
+
+<p>
+Virtual networking:
+</p>
+<ul>
+<li>
+Host only - IP address definitions is up to you, it only creates it like a hub (a hub is similar to a switch, but it sends information to all)
+
+<li>
+NAT - Ip address are configured for you, using a network subnet deffined in the virtual address editor (it is more like is just asks the DHCP server for an IP address and a DNS server)
+
+<li>
+Bridged - it depends on your host network, and it is like it is a part of the 
+
+</ul>
+<div id="General information-Trouble shooting tips-Data link"><h3 id="Data link" class="header"><a href="#General information-Trouble shooting tips-Data link">Data link</a></h3></div>
+
+<p>
+arp -an
+</p>
+<ul>
+<li>
+Dont forget the n, to avoid DNS issues
+
+</ul>
+<p>
+arping
+</p>
+<ul>
+<li>
+arping -c 2 -I enp0s5 MACHERE
+
+</ul>
+<p>
+tcpdumb
+</p>
+
+<p>
+wireshark
+</p>
+
+<div id="General information-Trouble shooting tips-Network layer"><h3 id="Network layer" class="header"><a href="#General information-Trouble shooting tips-Network layer">Network layer</a></h3></div>
+
+<p>
+ping
+</p>
+
+<p>
+traceroute
+</p>
+
+<p>
+Watch out for DNS issue: try replacing name with the ip address!
+</p>
+
+<p>
+Do not forget that problems with firewall might appear
+</p>
+
+<div id="General information-Trouble shooting tips-Transport"><h3 id="Transport" class="header"><a href="#General information-Trouble shooting tips-Transport">Transport</a></h3></div>
+
+<p>
+socket layer, typically listen state
+</p>
+
+<p>
+netstat -tulp on server
+</p>
+
+<p>
+nmap
+</p>
+
+<p>
+telnet
+</p>
+<ul>
+<li>
+telnet localhost 80
+
+<li>
+telnet ip-address on same host as server
+
+<li>
+telnet ip-address on client towards remote host
+
+</ul>
+<p>
+If netstat -tulp does not show port-number as listen, that means there is nothing listening behind it!
+</p>
+
+<p>
+But what if the telnet give connection refused? Might be the firewall
+</p>
+
+<div id="General information-Trouble shooting tips-Session"><h3 id="Session" class="header"><a href="#General information-Trouble shooting tips-Session">Session</a></h3></div>
+
+<p>
+Manage the connection between ports
+</p>
+
+<div id="General information-Trouble shooting tips-Presentation"><h3 id="Presentation" class="header"><a href="#General information-Trouble shooting tips-Presentation">Presentation</a></h3></div>
+
+<div id="General information-Trouble shooting tips-Application"><h3 id="Application" class="header"><a href="#General information-Trouble shooting tips-Application">Application</a></h3></div>
+
+<p>
+dns, ssh, Enter-PSSession
+</p>
+<ul>
+<li>
+ssh -v sshd -v
+
+<li>
+dnslookup &gt; server a.b.c.d
+
+<li>
+/var/log/syslog or event log
+
+</ul>
+<div id="General information-Windows Firewall issues"><h2 id="Windows Firewall issues" class="header"><a href="#General information-Windows Firewall issues">Windows Firewall issues</a></h2></div>
+
+<p>
+There are multiple profiles:
+</p>
+<ul>
+<li>
+Domain: auth to domain controller
+
+<li>
+Private: private or home
+
+<li>
+Public: public
+
+</ul>
+<div id="General information-Examining logfiles"><h2 id="Examining logfiles" class="header"><a href="#General information-Examining logfiles">Examining logfiles</a></h2></div>
+
+<p>
+Windows:
+</p>
+<ul>
+<li>
+Get-Eventlog -LogName Security -newest 10
+
+</ul>
+<p>
+Linux:
+</p>
+<ul>
+<li>
+/var/log/*
+
+<li>
+tail -f /var/log/&lt;logfile&gt;
+
+</ul>
+<div id="Intro Linux"><h1 id="Intro Linux" class="header"><a href="#Intro Linux">Intro Linux</a></h1></div>
+
+<p>
+We will learn a lot about working with administration and of course working with Linux
+</p>
+
+<p>
+All material is also presented on Leho so you can peek at the themes prior!
+</p>
+
+<p>
+It is also important to read all assignments and the quizzes, and manage the deadlines.
+</p>
+
+<div id="Intro Linux-Linux Lab Environment"><h2 id="Linux Lab Environment" class="header"><a href="#Intro Linux-Linux Lab Environment">Linux Lab Environment</a></h2></div>
+
+<p>
+We will use journalctl instead of syslog
+</p>
+
+<div id="Intro Linux-Networking in Linux"><h2 id="Networking in Linux" class="header"><a href="#Intro Linux-Networking in Linux">Networking in Linux</a></h2></div>
+
+<p>
+ip address
+</p>
+
+<p>
+ip route
+</p>
+
+<p>
+/etc/resolv.conf
+</p>
+
+<p>
+/etc/hosts
+</p>
+
+<p>
+More options will come afterwards
+</p>
+
+</body>
+</html>

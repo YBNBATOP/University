@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="Stylesheet" type="text/css" href="style.css">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="rss.xml">
+<title>SSMWindowsLecture5</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<div id="Sharing permissions"><h1 id="Sharing permissions" class="header"><a href="#Sharing permissions">Sharing permissions</a></h1></div>
+
+<p>
+Sharing is caring, because we care about people
+</p>
+
+<div id="Member server"><h1 id="Member server" class="header"><a href="#Member server">Member server</a></h1></div>
+
+<p>
+It is a server that has access to main resources, but it does not have to be a DC, but it can grant permissions to Users and Security Griups in AD - hence, a file server.
+</p>
+
+<div id="Member server-Group Management"><h2 id="Group Management" class="header"><a href="#Member server-Group Management">Group Management</a></h2></div>
+
+<ul>
+<li>
+AD that is used for authentication and autorization
+
+<li>
+The autorization part grants users access to resoureces
+
+<li>
+As a good practice, you should use groups
+
+</ul>
+<div id="Member server-Group types"><h2 id="Group types" class="header"><a href="#Member server-Group types">Group types</a></h2></div>
+
+<p>
+Two types of groups in AD:
+</p>
+<ul>
+<li>
+Security Groups - used for granting or denying access
+
+<li>
+Distribution Groups - email
+
+</ul>
+<div id="Member server-Universal Groups (UG)"><h2 id="Universal Groups (UG)" class="header"><a href="#Member server-Universal Groups (UG)">Universal Groups (UG)</a></h2></div>
+
+<p>
+Universal secruity grouyps are most often used to assign permissions to related resources in multiple domains
+</p>
+
+
+<div id="Member server-Global Security Groups (GSG)"><h2 id="Global Security Groups (GSG)" class="header"><a href="#Member server-Global Security Groups (GSG)">Global Security Groups (GSG)</a></h2></div>
+
+<p>
+Put users in GSG to mimic an organisation
+</p>
+
+<div id="Member server-Domain Local Groups (DLG)"><h2 id="Domain Local Groups (DLG)" class="header"><a href="#Member server-Domain Local Groups (DLG)">Domain Local Groups (DLG)</a></h2></div>
+
+<p>
+It is mainly the same as GSG
+</p>
+
+<div id="Member server-OU vs SG"><h2 id="OU vs SG" class="header"><a href="#Member server-OU vs SG">OU vs SG</a></h2></div>
+
+<p>
+OU:
+</p>
+<ul>
+<li>
+A user can only be a member of 1 OU
+
+<li>
+An OU cannot hold any permissions, only policies
+
+<li>
+An OU can hold users, groups, computers
+
+<li>
+GPO can be linked to an OU
+
+</ul>
+<p>
+SG:
+</p>
+<ul>
+<li>
+A user can be a member of multiple SG
+
+<li>
+It can hold permissions, both user and access
+
+<li>
+An SG contains only users
+
+<li>
+GPO cannot be linked to a SG
+
+</ul>
+<div id="What is permissions"><h1 id="What is permissions" class="header"><a href="#What is permissions">What is permissions</a></h1></div>
+
+<p>
+Being able to access and use a resurce is the result of being a member of a Resource Group
+</p>
+
+<p>
+A Permissions is the membership of the group that grants access to said resource
+</p>
+
+<div id="AGDLP (Account Global Group Domain Local Group Permissions"><h1 id="AGDLP (Account Global Group Domain Local Group Permissions" class="header"><a href="#AGDLP (Account Global Group Domain Local Group Permissions">AGDLP (Account Global Group Domain Local Group Permissions</a></h1></div>
+
+<p>
+Account (users) -&gt; Global Group -&gt; Domain Local Group -&gt; Permissions
+</p>
+
+<p>
+It is a way of linking resources to the correct people
+</p>
+
+<div id="Share Resources: FAT vs NTFS"><h1 id="Share Resources: FAT vs NTFS" class="header"><a href="#Share Resources: FAT vs NTFS">Share Resources: FAT vs NTFS</a></h1></div>
+
+<ul>
+<li>
+Most restrictive wins
+
+<li>
+Share permissions good for:
+
+<ul>
+<li>
+Small or simple share folders
+
+<li>
+File systems do not support security (FAT32)
+
+</ul>
+<li>
+NTFS permissions good for:
+
+<ul>
+<li>
+Shares with well setup NTFS permissions
+
+</ul>
+</ul>
+<div id="Share Resources: Inheritance"><h1 id="Share Resources: Inheritance" class="header"><a href="#Share Resources: Inheritance">Share Resources: Inheritance</a></h1></div>
+
+<p>
+Permissions are inherited by default! This means you might be unable to change permissions because of enabled inheritance!
+</p>
+
+<p>
+You can disable it like so:
+</p>
+<ul>
+<li>
+Advanced
+
+<li>
+Disable inheritance
+
+<li>
+Best practice: "Convert inherited permissions into explicit permissions on this object"
+
+<li>
+OK
+
+</ul>
+<div id="Share Resources: Effective Access"><h1 id="Share Resources: Effective Access" class="header"><a href="#Share Resources: Effective Access">Share Resources: Effective Access</a></h1></div>
+
+<p>
+Need to test the access permissions for a certain folder? -&gt; Go to Advanced Security Settings
+</p>
+
+<div id="Share Resources: Network Discovery"><h1 id="Share Resources: Network Discovery" class="header"><a href="#Share Resources: Network Discovery">Share Resources: Network Discovery</a></h1></div>
+
+<p>
+Start these services and make sure they start automaticaclly in future:
+</p>
+<ul>
+<li>
+Function Discovery Resource Publication
+
+<li>
+SSDP Discovery
+
+<li>
+UPnP Device Host
+
+</ul>
+<div id="Share Resources: Tips &amp; Tricks"><h1 id="Share Resources: Tips &amp; Tricks" class="header"><a href="#Share Resources: Tips &amp; Tricks">Share Resources: Tips &amp; Tricks</a></h1></div>
+
+<ul>
+<li>
+Use $ after a Share name to make it hiddne
+
+<li>
+You can access a share by using the IP of the host machine + "/share-name"
+
+<li>
+You can access a share also by using its UNC (Universal Name COnvention)
+
+<li>
+You want one DL to point to one resource
+
+</ul>
+
+</body>
+</html>

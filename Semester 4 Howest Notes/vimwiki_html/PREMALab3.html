@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="Stylesheet" type="text/css" href="style.css">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="rss.xml">
+<title>PREMALab3</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<div id="Lab 3 PREMA"><h1 id="Lab 3 PREMA" class="header"><a href="#Lab 3 PREMA">Lab 3 PREMA</a></h1></div>
+
+<div id="1st exercise"><h1 id="1st exercise" class="header"><a href="#1st exercise">1st exercise</a></h1></div>
+
+<p>
+First thing I would try to do, is check the strings, with <code>ResourceHacker</code>, or <code>BinText</code>.
+</p>
+
+<ul>
+<li>
+To get the first flag though, what I did, is try and open it in <code>dotPeek</code>, and then check the source code. I managed to find a line that says something related to flag, and then has some text that is being converted from Base64
+
+<li>
+Interaction.SaveSetting("Howest Reverse Engineering Examples", "Framework Question", "Flag", frmMain.Base64Decode("ODIxMjE="));
+
+</ul>
+<p>
+If you decode this line, then you can get the FLAG (FLAG-82121). After this, I also can see that I need 2 more flags.
+</p>
+
+<ul>
+<li>
+To get the second flag, (FLAG-56819) we need to run the program sandboxed. We need to submit the version (which is 2), and then submit, and you get the flag in the text field.
+
+<li>
+To get the last flag, what you need to do, is use the <code>ILSpy Binaries</code>, and then you will be able to go to the resources, and get to see the FLAG (FLAG-60472). That could not be seen in the ResourceHacker, or dotPeek
+
+</ul>
+<div id="2nd exercise"><h1 id="2nd exercise" class="header"><a href="#2nd exercise">2nd exercise</a></h1></div>
+
+<p>
+If you check the strings using <code>BinText</code>, you will see that it says that there is only one flag in there.
+</p>
+
+<ul>
+<li>
+To get the first one, first take a look at the strings, and then you get the idea that it should do something like FLAG-00000. To do it, you need to open the <code>PEExplorer</code>, and then you need to uncheck the option that it is a DLL file, inside the characteristics. You can also understand that it is supposed to be run as a .exe, as you can check the hex magic bytes. Then you save the file as a .exe, and then you run it, and you get the flag.
+
+</ul>
+<div id="3rd exercise"><h1 id="3rd exercise" class="header"><a href="#3rd exercise">3rd exercise</a></h1></div>
+
+<ul>
+<li>
+To get the first flag, what you need to do, is try and check the exports of functions via <code>PEview</code> or <code>PEExplorer</code>. It is a DLL, hence you need to check it up. Then, you go to the cmd, and try and run it as a dll.
+
+<li>
+rundll32.exe .\L3c-Shipme.dll, sayHello
+
+</ul>
+<p>
+Then you going to get the first flag (FLAG-13012). After, it will also tell you that you are preparing the shipment of 'FLAG'.
+</p>
+
+<ul>
+<li>
+rundll32.exe .\L3c-Shipme.dll, loadShipment 
+
+</ul>
+<p>
+Then it will say that you need to try harder and etc.
+</p>
+
+<ul>
+<li>
+rundll32.exe .\L3c-Shipme.dll, sendShipment FLAG 
+
+</ul>
+<p>
+Then you will get the last flag (FLAG-44953). If you try to make it without the "FLAG", then it would say that it cannot find the shipment.
+</p>
+
+<div id="4th exercise"><h1 id="4th exercise" class="header"><a href="#4th exercise">4th exercise</a></h1></div>
+
+<p>
+This one contains 3 flags, this can be seen from the <code>BinText</code>.
+</p>
+
+<ul>
+<li>
+To find the first flag, you need to rename the program to either to Game.exe, or Dropper.exe. Then, you need to start it sandboxed, and also start <code>Process Monitor</code> and <code>Process Explorer</code>. Then, you need to capture the events of PID (found in process explorer). Then, what you can do, is start capturing the filtered events of your process ('regsetvalue', 'createfile', 'writefile' are good filters). Then, you will be able to get an event of Register write. What you can do then, is open it to red the properties, and then in the 'Event' tab, you will be able to find the path. If you scroll the path to the end, you will get the flag (FLAG-87530)
+
+<li>
+???? To find the next flag, what we can do is take a look at the executable with <code>BinText</code>, you should be able to find a a line that mentions something related to 'Flag'. So if you try to rename the Game.exe to Flag.exe - you will get the flag (FLAG-50257) on execution.
+
+<li>
+???? To find the next flag, all you need to do, is find a path where the program tries to access the <code>Service.exe</code>. That can be seen from the first flag, where you looked at the event where the executable writes something to the register (RegSetValue). You found a flag there, but now you need to look a bit lower, once you opened the properties of that event. You will see a path <code>"C:\Users\ybnbatop\Service.exe"</code>. This is path, you can access from OUTSIDE of the sandbox, and then access the Sandbox files, and specifically user files, AppData. The path is supposed to be this <code>C:\Sandbox\ybnbatop\DefaultBox\user\current\AppData\Local\Temp</code>. You need to check it OUTSIDE of the sandbox, and then you will be able to see and open a file called <code>ServiceFlag.dat</code>. You can open it with notepad (right-click), and then you will be able to see the flag (FLAG-60950)
+
+</ul>
+
+</body>
+</html>

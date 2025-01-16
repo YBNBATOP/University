@@ -1,0 +1,58 @@
+ASLR\GUIvsCUIvsCLI
+
+CHAIN = NO ASLR, CUI
+THE_OASIS = YES ASLR, CUI
+PREMA_EXAM = YES ASLR, CUI
+
+
+CHAIN
+
+Check the strings and see that it does some ecrypting, has a file temp.txt, also probably write to a file in C:\EXAM-9856\file.txt
+
+It has to create some files for sure.
+
+Performs encrypting via an xor operation (xor eax, 124), the key is = 124. To find - go to strings, then check the "Encrypting message"
+
+To find the initial content of the file, find the same function. I put the breakpoint in debugger upon when it does "test al, al"
+
+THE_OASIS
+
+Checksum -> CHECK
+
+To find the architecture -> IMAGE_NT_HEADERS -> IMAGE_FILE_HEADER -> IMAGE_FILE_32bit
+
+COntains 3 questsion and probably 3 flags.
+
+How much it waits before showing the first question? Go to _main, and look at the functions. First it calls the banner function, then it starts to add values to the variable dwMilliseconds. Probably ddoes 1+3000+400+150+30-10-90+85 == 3565 (i guess lol) - but the debugger says DEE inside the EAX = 3566. That is because i am FUCKING blind and missed the mov 1. SO it is supposed to be 3566!!!
+
+What is the memory location? idfk i put the breakpoint after it pushed the value to the stack. probably EFFB98. Why? because in there it contains the value. NOPE. Seems wrong, because it is easier to check, as you can go inside the IDA strings and just find the string and the address next to it.
+
+First question answer - Anorak the All Knowing. Key - OASIS_KEY-35871
+
+Second question - the answer is 3. Key - OASIS_KEY-83729. To find - go to IDA, found the second question positive response (YOU FOUND THE FLAG BLABLA) and go there. Then find the cmp.
+
+Third question - 2045? It compares the value of the address in my stack, to the needed value in the eax. The values of EAX in the register is 7FD. THe address of EBP = 136FE1C, then -4 = 136FE18 and there i can see my input. And i was fucking right. OASIS_KEY-57976
+
+PREMA_EXAM
+
+Checksum -> CHeck
+
+Lets check the strings. Contains 4 flags, probably writes something to "exam.txt". Also something like SOFTWARE\Microsoft\Exam. Mentions file like C:\PREMA.dll. Also has something like ExamDLL. Can also see some nslookup there, probably need FakeNet. Says we might need to run with administrator privileges. Does something with registry.
+
+Run FakeNet
+
+Then open Procmon and Procexp.
+
+Run the executable normally.
+
+CHeck for regsetvalue and writefile
+
+It wrote to Microsoft\Exam\EXAM EXAM{270860}
+
+Also wrote to a file called exam.txt EXAM{097025} it wrote it to %appdata%\Roaming
+
+Now i run it with admin privileges.
+
+Then we can check the DLL, but i think it might be a hidden .exe file as well. But you can run it with rundll32.exe .\PREMA.dll, ExamFlag and find the flag EXAM{191624}
+
+The last one i dont know.

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="Stylesheet" type="text/css" href="style.css">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="rss.xml">
+<title>OSCLecture8</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<div id="Firmware"><h1 id="Firmware" class="header"><a href="#Firmware">Firmware</a></h1></div>
+
+<p>
+It is actually possible to get a hands on the firmware you want to be loaded into the system. It is ususally called the payload, and it can be anything, unless it is factory based and locked. That payload will hand control over to your OS! It can be anything, even a stripped down Linux Kernel.
+</p>
+
+<p>
+You can even create your own firmware, because Coreboot exists! You can create firmware, but it also is dependant for the system you are currently working on.
+</p>
+
+<p>
+That is why toolchains exist, and then you can eventually compile the firmware for other systems aswell!
+</p>
+
+<p>
+Toolchain is just a set of programming tools that will execute a bunch of complex software development tasks and will compile your firmware or any other piece of software.
+</p>
+
+<p>
+To fake having a ability to load our own firmware! Here is where the QEMU comes in play, being a Type 2 Hypervisor (runs on the same OS but not very low level, and is like an emulator)
+</p>
+
+<div id="SystemD is in control"><h1 id="SystemD is in control" class="header"><a href="#SystemD is in control">SystemD is in control</a></h1></div>
+
+<p>
+It determines what daemons are running!
+</p>
+
+<p>
+You can check them by running <code>systemctl</code> and you will see that most of them are services! You can aswell read them as they are written in plain text! 
+</p>
+
+<p>
+Those services can be added in <code>/etc/systemd/system</code> and then you can add your own scripts/services!
+</p>
+
+<p>
+After you add your own service, you need to run <code>sudo systemctl deamon-reload</code> and then you will be able to enable your service.
+</p>
+
+<p>
+If you do it locally, you should put that in the <code>~/.config/systemd/user/</code> and then run the same command but without <code>sudo</code> <code>systemctl --user daemon-reload</code> and enable it also without sudo and with <code>--user</code> flag!!
+</p>
+
+</body>
+</html>

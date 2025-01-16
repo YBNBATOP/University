@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="Stylesheet" type="text/css" href="style.css">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="rss.xml">
+<title>SSMLecture2</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<div id="Windows"><h1 id="Windows" class="header"><a href="#Windows">Windows</a></h1></div>
+
+<p>
+Peer to peer network is evil! (talking to each other, in a decentralized way)
+</p>
+
+<p>
+A domain network is better, because it is centralized!
+</p>
+
+<div id="Windows-Active Directory"><h2 id="Active Directory" class="header"><a href="#Windows-Active Directory">Active Directory</a></h2></div>
+
+<p>
+For now, we have 3 Win VM's, each with local user accounts. That is difficult to manage. Hence, we are going to set up windows Active Directory
+</p>
+
+<p>
+There are 2 options of Active Directory. Active Directory On-Premise is what we use
+</p>
+
+<p>
+For now, we are going to talk about Domain Service and Active Directory (ADDS).
+</p>
+
+<div id="Windows-Active Directory-Active directory hierarchy"><h3 id="Active directory hierarchy" class="header"><a href="#Windows-Active Directory-Active directory hierarchy">Active directory hierarchy</a></h3></div>
+
+<ol>
+<li>
+Tree: Collection of all objects that belong to the same organisations/company, having a common FQDN
+
+<li>
+Domain(s): Subdivision of a tree, e.g. contains all objects (users, computers) that belong to the same division
+
+<li>
+Organizationl Units: subdivision of a domain with objects that have similar properties
+
+<li>
+Forest: multiple trees in the same global catalog (GC)
+
+<li>
+Site: contais multiple forests (sites, are basing the forests on a special location)
+
+</ol>
+<div id="Windows-Active Directory-ADDGC (Active Directory Domain Global Catalog)"><h3 id="ADDGC (Active Directory Domain Global Catalog)" class="header"><a href="#Windows-Active Directory-ADDGC (Active Directory Domain Global Catalog)">ADDGC (Active Directory Domain Global Catalog)</a></h3></div>
+
+<p>
+The GC is the master index of objects within an Active Directory forest. The GC is a quick tool to locate objects within a forest
+</p>
+
+<p>
+Everything should have an SID (security identifier)
+</p>
+
+<p>
+SID: a unique serial for every user, group, computer, printer. If a user gets gets deleted -&gt; its SID is not reused EVER!
+</p>
+
+<p>
+Today we are going to set set up a DC and our users
+</p>
+
+</body>
+</html>

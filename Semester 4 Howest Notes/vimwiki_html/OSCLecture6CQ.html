@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="Stylesheet" type="text/css" href="style.css">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="rss.xml">
+<title>OSCLecture6CQ</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<div id="What does it actually mean when we say data is &quot;persistent&quot; ?"><h1 id="What does it actually mean when we say data is &quot;persistent&quot; ?" class="header"><a href="#What does it actually mean when we say data is &quot;persistent&quot; ?">What does it actually mean when we say data is "persistent" ?</a></h1></div>
+
+<p>
+That means that the data will remain at the same place even after a reboot, and that the actual files will nto be lost or modified.
+</p>
+
+<div id="Why does a  userland process needs to use a file system to store/read data on a storage medium (and not just direct IO access) ?"><h1 id="Why does a  userland process needs to use a file system to store/read data on a storage medium (and not just direct IO access) ?" class="header"><a href="#Why does a  userland process needs to use a file system to store/read data on a storage medium (and not just direct IO access) ?">Why does a  userland process needs to use a file system to store/read data on a storage medium (and not just direct IO access) ?</a></h1></div>
+
+<p>
+Because you cannot directly access the kernel functionalities to eventually write the information directly on yourself. Hence, the file system were invented to actually access those functions and serve your majesty.
+</p>
+
+<div id="When taking about non-ssd discs, what is the advantage of sequential i/o ?"><h1 id="When taking about non-ssd discs, what is the advantage of sequential i/o ?" class="header"><a href="#When taking about non-ssd discs, what is the advantage of sequential i/o ?">When taking about non-ssd discs, what is the advantage of sequential i/o ?</a></h1></div>
+
+<p>
+The files are going to be read more quickly?
+</p>
+
+<div id="Is this advantage the same for ssd discs ?"><h1 id="Is this advantage the same for ssd discs ?" class="header"><a href="#Is this advantage the same for ssd discs ?">Is this advantage the same for ssd discs ?</a></h1></div>
+
+<p>
+I do not know. SSD are just faster because they eventually do not have anything mechanical moving around and have a bunch of controllers that are responsible to put the data in certain chuncks of the memory.
+</p>
+
+<div id="Compare the two &quot;versions&quot; of partitioning (number of partitions, bios support, max disc size)"><h1 id="Compare the two &quot;versions&quot; of partitioning (number of partitions, bios support, max disc size)" class="header"><a href="#Compare the two &quot;versions&quot; of partitioning (number of partitions, bios support, max disc size)">Compare the two "versions" of partitioning (number of partitions, bios support, max disc size)</a></h1></div>
+
+<p>
+MBR:
+</p>
+<ul>
+<li>
+old as fuck
+
+<li>
+32 bit
+
+<li>
+maximum of 26 partitions or 27, of which 3 are actual ones, and the 1 is an extendable one meaning you can have 3+1.
+
+<li>
+max size of 2TB
+
+</ul>
+<p>
+GPT:
+</p>
+<ul>
+<li>
+newer
+
+<li>
+128 bit
+
+<li>
+many more partitions
+
+<li>
+max size of 9.7 zettabytes
+
+</ul>
+<div id="Why not throw everything into one single monster partition ?"><h1 id="Why not throw everything into one single monster partition ?" class="header"><a href="#Why not throw everything into one single monster partition ?">Why not throw everything into one single monster partition ?</a></h1></div>
+
+<p>
+Because then the management will be too hard because there might be multiple users on the system and it can be hard to get a hold of everyone's files.
+</p>
+
+<div id="What does /dev/sda3 mean ?"><h1 id="What does /dev/sda3 mean ?" class="header"><a href="#What does /dev/sda3 mean ?">What does /dev/sda3 mean ?</a></h1></div>
+
+<p>
+It means the 3rd partitions of the sda disk. Like I have my nvme and then I can have nvme0np1/2 and etc.
+</p>
+
+<div id="Why can/should you give a hex code of a partition tyoe to a parititon when you create one ?"><h1 id="Why can/should you give a hex code of a partition tyoe to a parititon when you create one ?" class="header"><a href="#Why can/should you give a hex code of a partition tyoe to a parititon when you create one ?">Why can/should you give a hex code of a partition tyoe to a parititon when you create one ?</a></h1></div>
+
+<p>
+Here I have no clue but maybe for eventual situations when the disk starts dying and then it can find instances of the information?
+</p>
+
+<div id="What form does &quot;a swap&quot; have in Linux ?"><h1 id="What form does &quot;a swap&quot; have in Linux ?" class="header"><a href="#What form does &quot;a swap&quot; have in Linux ?">What form does "a swap" have in Linux ?</a></h1></div>
+
+<p>
+It can be either a file or it can be a partiotion I do not fucking understand.
+</p>
+
+<div id="Which are the most used file system flavors in current linux ?"><h1 id="Which are the most used file system flavors in current linux ?" class="header"><a href="#Which are the most used file system flavors in current linux ?">Which are the most used file system flavors in current linux ?</a></h1></div>
+
+<p>
+Ext 4, ZFS, BTRFS, SYSFS? There is a bunch of them I do not need to know all of them
+</p>
+
+<div id="What does it mean when something is mounted on a certain directory location ?"><h1 id="What does it mean when something is mounted on a certain directory location ?" class="header"><a href="#What does it mean when something is mounted on a certain directory location ?">What does it mean when something is mounted on a certain directory location ?</a></h1></div>
+
+<p>
+I do not fucking know maybe it means that the other would need to gather access to that location so then they have the mount in their case too?
+</p>
+
+<div id="What is a pseudo file system ?"><h1 id="What is a pseudo file system ?" class="header"><a href="#What is a pseudo file system ?">What is a pseudo file system ?</a></h1></div>
+
+<p>
+Well I suppose that in our case it is more like fucking lists (linked lists) and fucking kernel functions so genuiely it is more like a visual that we have files rather than a real table and shit.
+</p>
+
+<div id="The tty command tells you which terminals you are currently using. Let's say one user gets as a reply /dev/tty1. and another user gets as a reply /dev/pts/0. what is the difference between those two users ?"><h1 id="The tty command tells you which terminals you are currently using. Let's say one user gets as a reply /dev/tty1. and another user gets as a reply /dev/pts/0. what is the difference between those two users ?" class="header"><a href="#The tty command tells you which terminals you are currently using. Let's say one user gets as a reply /dev/tty1. and another user gets as a reply /dev/pts/0. what is the difference between those two users ?">The tty command tells you which terminals you are currently using. Let's say one user gets as a reply /dev/tty1. and another user gets as a reply /dev/pts/0. what is the difference between those two users ?</a></h1></div>
+
+<p>
+This is absolutely stupid.
+</p>
+
+<p>
+In summary, the user associated with /dev/tty1 is likely using the first virtual console, while the user associated with /dev/pts/0 is likely using a terminal emulator or a remote login session. 
+</p>
+
+<div id="What is an nfs type partition ?"><h1 id="What is an nfs type partition ?" class="header"><a href="#What is an nfs type partition ?">What is an nfs type partition ?</a></h1></div>
+
+<p>
+NEED FOR SPEED FFS 
+</p>
+
+<p>
+It means that you can access files by doing a network mount and then you can eventually get access to the files from your NAS or etc.
+</p>
+
+<div id="What does /etc/fstab do ?"><h1 id="What does /etc/fstab do ?" class="header"><a href="#What does /etc/fstab do ?">What does /etc/fstab do ?</a></h1></div>
+
+<p>
+It saves the information about the system partitions and mounts and etc so that they survive and consist throughout the reboots.
+</p>
+
+<div id="Some directories are present in almost every linux distro. Name them and describe their role briefly."><h1 id="Some directories are present in almost every linux distro. Name them and describe their role briefly." class="header"><a href="#Some directories are present in almost every linux distro. Name them and describe their role briefly.">Some directories are present in almost every linux distro. Name them and describe their role briefly.</a></h1></div>
+
+<p>
+/lib - libraries to run stuff! /var - holds the logs! /usr - some user information! /etc - configurations of the sytem! and many more
+</p>
+
+<div id="What is a FCB ?"><h1 id="What is a FCB ?" class="header"><a href="#What is a FCB ?">What is a FCB ?</a></h1></div>
+
+<p>
+In the context of computer file systems, particularly in older operating systems like MS-DOS, the File Control Block (FCB) is a data structure used to represent information about a file. It contains details such as the file name, file type, file organization, and other attributes. FCBs were used in early file systems to manage files before more advanced structures like the File Allocation Table (FAT) became prevalent.
+</p>
+
+<p>
+Overall just a controller or space that gives information about what the fuck is going on.
+</p>
+
+<div id="How so is a directory also a file ?"><h1 id="How so is a directory also a file ?" class="header"><a href="#How so is a directory also a file ?">How so is a directory also a file ?</a></h1></div>
+
+<p>
+Because it is a fucking inode/address inside a linked list of a father directory!
+</p>
+
+<div id="What is an INODE ?"><h1 id="What is an INODE ?" class="header"><a href="#What is an INODE ?">What is an INODE ?</a></h1></div>
+
+<p>
+In simple words - just an kind of address that is held inside the list.
+</p>
+
+<div id="Whast is the difference between a hard and a soft link ?"><h1 id="Whast is the difference between a hard and a soft link ?" class="header"><a href="#Whast is the difference between a hard and a soft link ?">Whast is the difference between a hard and a soft link ?</a></h1></div>
+
+<p>
+Softlink - you can make them from one partition to another.
+</p>
+
+<p>
+Hardlinks - work only in one partition and you cannot empty the space unless you get rid of all the hardlinks.
+</p>
+
+<div id="What is a superblock ?"><h1 id="What is a superblock ?" class="header"><a href="#What is a superblock ?">What is a superblock ?</a></h1></div>
+
+<p>
+Like imagine having an MBR partition which you deleted once. That partition holds information about the whole file systme and how it is supposed to look like and function!
+</p>
+
+<div id="Does archive always compress ?"><h1 id="Does archive always compress ?" class="header"><a href="#Does archive always compress ?">Does archive always compress ?</a></h1></div>
+
+<p>
+Nope, it does not, because then you just put files together and not always compress them.
+</p>
+
+<div id="What is the difference between lossless and lossy compression ? give an example of both."><h1 id="What is the difference between lossless and lossy compression ? give an example of both." class="header"><a href="#What is the difference between lossless and lossy compression ? give an example of both.">What is the difference between lossless and lossy compression ? give an example of both.</a></h1></div>
+
+<p>
+Lossless will not loose any bit of infomration. Lossy - will allow that but it will be faster!
+</p>
+
+<p>
+Zip, Tar and shit. For the other one - JPEG, MP3.
+</p>
+
+<div id="Briefly describe a few archiving/compression tools commonly found in Linux."><h1 id="Briefly describe a few archiving/compression tools commonly found in Linux." class="header"><a href="#Briefly describe a few archiving/compression tools commonly found in Linux.">Briefly describe a few archiving/compression tools commonly found in Linux.</a></h1></div>
+
+<p>
+Tar, gzip, bzip, zip, 7z. Just googe them ffs.
+</p>
+
+<div id="What can you find in the /etc/passwd &amp; /etc/shadow files ?"><h1 id="What can you find in the /etc/passwd &amp; /etc/shadow files ?" class="header"><a href="#What can you find in the /etc/passwd &amp; /etc/shadow files ?">What can you find in the /etc/passwd &amp; /etc/shadow files ?</a></h1></div>
+
+<p>
+Information about the users on the system (simple users as well as the system users) and in the other one you can find the passwords of the users.
+</p>
+
+<div id="What is so special about system accounts in Linux ?"><h1 id="What is so special about system accounts in Linux ?" class="header"><a href="#What is so special about system accounts in Linux ?">What is so special about system accounts in Linux ?</a></h1></div>
+
+<p>
+They do not have passowrds and they make the component part of the system deamons and programs.
+</p>
+
+<div id="What are groups in Linux ?"><h1 id="What are groups in Linux ?" class="header"><a href="#What are groups in Linux ?">What are groups in Linux ?</a></h1></div>
+
+<p>
+It is like a bunch of users in a certain certified level of privileges that can have different funcitons on the system, and have users assigned to them.
+</p>
+
+<div id="How many groups can a user be a member of/use at once ?"><h1 id="How many groups can a user be a member of/use at once ?" class="header"><a href="#How many groups can a user be a member of/use at once ?">How many groups can a user be a member of/use at once ?</a></h1></div>
+
+<p>
+Use? one.
+</p>
+
+<p>
+Be a member of? A shitton, and he can switch between them.
+</p>
+
+<div id="What is the correct way of becoming root ?"><h1 id="What is the correct way of becoming root ?" class="header"><a href="#What is the correct way of becoming root ?">What is the correct way of becoming root ?</a></h1></div>
+
+<p>
+<code>su --login</code> that way there will be a traceback of who entered the root. <code>su -</code> I suppose should also be an option.
+</p>
+
+<div id="Describe the sudo concept"><h1 id="Describe the sudo concept" class="header"><a href="#Describe the sudo concept">Describe the sudo concept</a></h1></div>
+
+<p>
+What am I, having a PhD here? It allows a user (who is set up corretly) to execute commands as super user, but not being the root. The sudo command will ask you for the password of your command.
+</p>
+
+<div id="Who's on your system right now ?"><h1 id="Who's on your system right now ?" class="header"><a href="#Who's on your system right now ?">Who's on your system right now ?</a></h1></div>
+
+<p>
+Thankfully - only me. I found that our by doing the command <code>who</code> and then I could even check when I logged in by doing <code>w</code> and then found information about myself.
+</p>
+
+</body>
+</html>

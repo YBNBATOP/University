@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="Stylesheet" type="text/css" href="style.css">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="rss.xml">
+<title>WBALecture2-2</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<div id="SSRF (Server Side Request Forgery)"><h1 id="SSRF (Server Side Request Forgery)" class="header"><a href="#SSRF (Server Side Request Forgery)">SSRF (Server Side Request Forgery)</a></h1></div>
+
+<p>
+It is a very powerful bug with critical consequences, as it can force the application to make unintended requests!
+</p>
+
+<p>
+We can do:
+</p>
+<ul>
+<li>
+Scan/Access the internal network
+
+<li>
+Smuggle data to 3rd party server
+
+<li>
+Access restricted web pages or files
+
+<li>
+Execute code on the server
+
+</ul>
+<p>
+Some examples of vulnerable parameters:
+</p>
+<ul>
+<li>
+/getPage.php?url=/orders.php
+
+<li>
+/getPage.php?url=<a href="http://10.126.10.158/">http://10.126.10.158/</a>
+
+</ul>
+<p>
+The application is taking user input to construct a web call:
+</p>
+<ul>
+<li>
+In domain (+ HTTP Basic Auth)
+
+<li>
+Port
+
+<li>
+Path
+
+<li>
+Query
+
+<li>
+Body
+
+<li>
+Fragments
+
+</ul>
+<p>
+Common place for SSRF:
+</p>
+<ul>
+<li>
+PDF Export
+
+<li>
+Integrations (sometimes the services use 3rd party software/integrations)
+
+<li>
+Import
+
+<li>
+Headers + Methods
+
+<li>
+File Uploads
+
+<li>
+regular parameters
+
+</ul>
+<p>
+First, you would like to attack agains the server itself, hence you would try something of this:
+</p>
+<ul>
+<li>
+localhost
+
+<li>
+127.0.0.1
+
+<li>
+0.0.0.0
+
+<li>
+[::]
+
+<li>
+[0000::1]
+
+<li>
+2130706433
+
+<li>
+127.1
+
+</ul>
+<p>
+This all means the same, but some of them might be locked by wirefall or something.
+</p>
+
+<p>
+After that, you can change to attacks against the backend network:
+</p>
+<ul>
+<li>
+Need to know the network ip space
+
+<li>
+External DNS might give it away
+
+<li>
+Error messages can disclose network range
+
+<li>
+Stuch with HTTP method =&gt; test for X-http-method-override variations
+
+</ul>
+<p>
+Useful services for the SSRF:
+</p>
+<ul>
+<li>
+Nip.io
+
+<li>
+Beeceptor (can mock APIs)
+
+<li>
+Ngrok
+
+<li>
+Burp collaborator
+
+</ul>
+<p>
+All of this are just meant to mock APIs, or in some cases like some kind of addresses.
+</p>
+
+<p>
+Some useful services:
+</p>
+<ul>
+<li>
+DNS resolving to desired address
+
+<li>
+30x redirects to desired address
+
+<li>
+Open redirects
+
+</ul>
+<p>
+<span id="SSRF (Server Side Request Forgery)-TIP"></span><strong id="TIP">TIP</strong>: Sometimes you can bypass something black-listed by double URL encoding the payloadm or maybe just by changing the case of the payload. Like "admin" can aswell be "Admin". Also, sometimes you can get access to different fily types, like <a href="file://,">file://,</a> <a href="http://,">http://,</a> dict://, and many others.
+</p>
+
+</body>
+</html>

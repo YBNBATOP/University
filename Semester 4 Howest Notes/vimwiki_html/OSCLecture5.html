@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="Stylesheet" type="text/css" href="style.css">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="rss.xml">
+<title>OSCLecture5</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<div id="Threading"><h1 id="Threading" class="header"><a href="#Threading">Threading</a></h1></div>
+
+<p>
+Threading is also called a process of creating forks, and by that you are actually creating tha same copy of a virtual address space over multiple processes. The pointers stays the same, but once a process changes that value of the pointer, then a Copy on Write happens and then the page changes and the virtual address changes aswell.
+</p>
+
+<p>
+A thread is usually called a lightweight process, and you keep the same address space, but you work in a different code section. So it is like 2 workers working in the same house (construction) instead of working on different houses! So in this case the changes in the same house will be visible for both workers.
+</p>
+
+<div id="Threads vs Processes"><h1 id="Threads vs Processes" class="header"><a href="#Threads vs Processes">Threads vs Processes</a></h1></div>
+
+<p>
+Processes are scheduled by the OS, as it is its responsibility (kernel).
+</p>
+
+<p>
+Threads take responsibility in your program itself. The thread scheduling is created inside the libraries which are called for the trheading functionality.
+</p>
+
+<p>
+A <span id="Threads vs Processes-thread"></span><strong id="thread">thread</strong> is a basic unit of CPU utilization, each thread has a:
+</p>
+<ul>
+<li>
+Thread ID
+
+<li>
+Program Counter
+
+<li>
+Register set
+
+<li>
+Stack
+
+</ul>
+<p>
+It share with other threads (belonging to the same process):
+</p>
+<ul>
+<li>
+Code section
+
+<li>
+Data section
+
+<li>
+Other OS-resource such as Open-files
+
+</ul>
+<div id="Threads vs fork"><h1 id="Threads vs fork" class="header"><a href="#Threads vs fork">Threads vs fork</a></h1></div>
+
+<p>
+Fork is a system call that creates a child <span id="Threads vs fork-process"></span><strong id="process">process</strong>. Such a child can become orphaned if the father dies!
+</p>
+
+<p>
+Thread is all the same part of a single process! So it is a single process but using the multiple resources.
+</p>
+
+<div id="Child processes vs Parent processes"><h1 id="Child processes vs Parent processes" class="header"><a href="#Child processes vs Parent processes">Child processes vs Parent processes</a></h1></div>
+
+<p>
+What can happen with the child process if parent is killed? 
+It depends on the OS! Child might become an orphan, or get's to live with no issues, or gets killed too!
+</p>
+
+<p>
+Sometimes, like in Unix, the child would get a new father process!
+</p>
+
+<div id="Disadvantages"><h1 id="Disadvantages" class="header"><a href="#Disadvantages">Disadvantages</a></h1></div>
+
+<p>
+Programming! (harder to write, harderd to debug, harder to manage)
+</p>
+
+<p>
+Concurrency issues with shared resources!
+</p>
+
+<p>
+It is never set in stone that a "Java thread" is always mapped to an "OS thread"
+</p>
+
+<div id="Critical - important code"><h1 id="Critical - important code" class="header"><a href="#Critical - important code">Critical - important code</a></h1></div>
+
+<p>
+It is very importajnt to understand which part of your code is "sensitive"! And of course, take extra care of it.
+</p>
+
+<p>
+Shared resources are also a big threat.
+</p>
+
+<div id="Tools to deal with concurrency problems"><h1 id="Tools to deal with concurrency problems" class="header"><a href="#Tools to deal with concurrency problems">Tools to deal with concurrency problems</a></h1></div>
+
+<p>
+Mutex: "Mutual exclusion"
+</p>
+<ul>
+<li>
+= Object that synchronizes access to a resource
+
+<li>
+Only one thread can acquire the mutex
+
+<li>
+Locking mechanism!
+
+</ul>
+<p>
+Semaphore
+</p>
+<ul>
+<li>
+Signaling mechanism!
+
+<li>
+Bunary semaphore ~ mutex
+
+</ul>
+<p>
+Monitor
+</p>
+<ul>
+<li>
+Note: a deadlock-free solution does not necessarily eliminate the possibility of starvation.
+
+</ul>
+
+</body>
+</html>

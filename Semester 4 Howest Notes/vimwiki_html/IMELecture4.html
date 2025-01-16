@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="Stylesheet" type="text/css" href="style.css">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="rss.xml">
+<title>IMELecture4</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<div id="Key attribute"><h1 id="Key attribute" class="header"><a href="#Key attribute">Key attribute</a></h1></div>
+
+<p>
+A key attribute is an attribute in ERD whose values are constant and distinct for each individual entity in an entity set.
+</p>
+
+<p>
+Like a VIN code for a car, that represents the uniqueness of a car.
+</p>
+
+<p>
+There may be more than one attribute composing the key: the combination of those attributes are unique for each individual entity of an entity type and no attribute in the combination is obsolete. One attribute in that composition is called partial key attribute.
+</p>
+
+<p>
+So for example, a unique address might be composed of and adressID, street, number, zipCode, and countryCode.
+</p>
+
+<div id="Weak entity"><h1 id="Weak entity" class="header"><a href="#Weak entity">Weak entity</a></h1></div>
+
+<p>
+If the existence of an entity depends on the existence of another entity, we say the entity is a weak entity.
+</p>
+
+<p>
+For example invoice number and its related company uniquely identify the entities in the invoice set.
+</p>
+
+<p>
+A partial key, also known as discriminator, is the set of attributes which can uniquely identify weak entities that are related to the same owner entity.
+</p>
+
+<p>
+An entity that cannot be uniquely identified by its own attributes and relies on the relationship with one or more other (strong) entities. A weak entity needs another (strong) enity to be uniquely indetifiale.
+</p>
+
+<p>
+The identity of a weak entity is composed of its own partial key and the key of the related strong entity.
+</p>
+
+<p>
+A weak entity has always a many to one weak relationship with a strong entity. The weak entity has full participation in the relationship. The strong entity can be full or partial participation. A weak entity must be related to one or more strong entities.
+</p>
+
+<p>
+A weak entity is usually denoted as a simple entity but with a interrupting line around.
+</p>
+
+<p>
+A weak entity can have a strong relationship with a strong entity, however a strong <span id="Weak entity-relationsghip"></span><strong id="relationsghip">relationsghip</strong> (filled line) means that the related strong entity is not part of the key of the weak entity. Only weakly related entities are part of the key of the related weak entity.
+</p>
+
+</body>
+</html>

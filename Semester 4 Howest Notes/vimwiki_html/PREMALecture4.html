@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="Stylesheet" type="text/css" href="style.css">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="rss.xml">
+<title>PREMALecture4</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<p>
+We are going to be taught how to read assembly code! (fuck)
+</p>
+
+<div id="Outline"><h1 id="Outline" class="header"><a href="#Outline">Outline</a></h1></div>
+
+<ul>
+<li>
+Advanced Static Analysis
+
+<li>
+C / C++
+
+<li>
+Assembly
+
+<li>
+CPU Architecture
+
+</ul>
+<div id="CPU"><h1 id="CPU" class="header"><a href="#CPU">CPU</a></h1></div>
+
+<p>
+The CPU is based upon a lot of components. Mostly conductors
+</p>
+
+<p>
+There are sockets (more CPUs)
+</p>
+
+<p>
+There are cores (multicores)
+</p>
+
+<p>
+THere are threads (hyperthreading)
+</p>
+
+<p>
+For software, the above does not matter, as we always look at one thread.
+</p>
+
+<div id="Memory"><h1 id="Memory" class="header"><a href="#Memory">Memory</a></h1></div>
+
+<p>
+THere are multiple layers.
+</p>
+
+<p>
+The fastest one, is registry, as it is closest to the CPU. The RAM (DDR) goes through all cache levels first.
+</p>
+
+<div id="Terminology"><h1 id="Terminology" class="header"><a href="#Terminology">Terminology</a></h1></div>
+
+<ul>
+<li>
+Hardware (digital logic)
+
+<li>
+Microcode (firmware)
+
+<li>
+Machine code (it uses numbers for information)
+
+<li>
+Low-level languages (like assembly, which is similar to machine code)
+
+<li>
+High-level languages (allready compiled languages)
+
+<li>
+Interpreted languages (not compiled languages)
+
+</ul>
+<p>
+A high-level programming language is  transformed into the CPU machine code through compiler. The machine code can then be transformed into low-level language, using the disassembler
+</p>
+
+<div id="Assembly code"><h1 id="Assembly code" class="header"><a href="#Assembly code">Assembly code</a></h1></div>
+
+<p>
+There are multiple architectures, as they are different for every platform.
+</p>
+
+<p>
+You can see where the code is starting, when you have the view at PEview, and check the optional NT headers and look for "Base of Code"
+</p>
+
+</body>
+</html>

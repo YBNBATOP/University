@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="Stylesheet" type="text/css" href="style.css">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="rss.xml">
+<title>OSCLecture4CQ</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<div id="What is deadlocking?"><h1 id="What is deadlocking?" class="header"><a href="#What is deadlocking?">What is deadlocking?</a></h1></div>
+
+<p>
+Deadlocking is when a resource requested at the same time by one 2 or more processes, and there is no locking mechanism that can decide who takes the resource except from the resource itself, causing that way an circular wait for the resource to become free.
+</p>
+
+<div id="Who was Dujkstra?"><h1 id="Who was Dujkstra?" class="header"><a href="#Who was Dujkstra?">Who was Dujkstra?</a></h1></div>
+
+<p>
+ДИЙКСТРА was someone who actually invented the dining table (was shown in the video), and said that there is a need of a waiter who decides on the locks of the resources.
+</p>
+
+<div id="What are the 4 deadlock conditions?"><h1 id="What are the 4 deadlock conditions?" class="header"><a href="#What are the 4 deadlock conditions?">What are the 4 deadlock conditions?</a></h1></div>
+
+<p>
+Mutual exclusion - one process - one resource
+</p>
+
+<p>
+Hold and wait - a process controls the resource while the others wait for it
+</p>
+
+<p>
+No preemption - no one controls the locks on the resources
+</p>
+
+<p>
+Circular wait - everybody waits for a resource in a circle
+</p>
+
+<div id="What is the difference between deadlock avoidance &amp; deadlock prevention?"><h1 id="What is the difference between deadlock avoidance &amp; deadlock prevention?" class="header"><a href="#What is the difference between deadlock avoidance &amp; deadlock prevention?">What is the difference between deadlock avoidance &amp; deadlock prevention?</a></h1></div>
+
+<p>
+By getting rid of at least one of the deadlock conditions, we can actually prevent the deadlock from happening. In order to avoid a deadlock (from repeating rather) we should let the system see it, tackle it, and then see how to solve the issue.
+</p>
+
+<div id="What are safe sequences and why are they interesting?"><h1 id="What are safe sequences and why are they interesting?" class="header"><a href="#What are safe sequences and why are they interesting?">What are safe sequences and why are they interesting?</a></h1></div>
+
+<p>
+Most probably they mean sequences of allocation and requests, that as a result will not lead to a deadlock of a system.
+</p>
+
+<div id="What is the concept of virtual memory?"><h1 id="What is the concept of virtual memory?" class="header"><a href="#What is the concept of virtual memory?">What is the concept of virtual memory?</a></h1></div>
+
+<p>
+Virtual memory is a memory management technique used by modern computer operating systems to provide the illusion of a larger and contiguous block of primary memory (RAM) than is physically available on the system. It allows programs to execute as if they have access to a larger amount of memory than is actually installed on the computer.
+</p>
+
+<p>
+In simpler workds, it should probably mean that the system mimics availability of larger amount of RAM than really is, hence gives the ability to actually launch and execute what is needed.
+</p>
+
+<div id="What is the difference between the difference layer caches (1,2,3)?"><h1 id="What is the difference between the difference layer caches (1,2,3)?" class="header"><a href="#What is the difference between the difference layer caches (1,2,3)?">What is the difference between the difference layer caches (1,2,3)?</a></h1></div>
+
+<p>
+Each of the layers have their own usage in the CPU, but overall their main principle is to cache bits of data that come from RAM, in order to give it as food to the CPU to process.
+</p>
+
+<div id="What is the difference between an executable and a process?"><h1 id="What is the difference between an executable and a process?" class="header"><a href="#What is the difference between an executable and a process?">What is the difference between an executable and a process?</a></h1></div>
+
+<p>
+An executable lives on the storage (such as HDD/SSD), whereas processes live the RAM, and overall are the component part that is being processed itself.
+</p>
+
+<div id="What is &quot;swapping&quot;?"><h1 id="What is &quot;swapping&quot;?" class="header"><a href="#What is &quot;swapping&quot;?">What is "swapping"?</a></h1></div>
+
+<p>
+I DO NOT FUCKING KNOW WHY I NEED THIS
+</p>
+
+<p>
+Overall it is probably a term that is supposed to mean a swap of pages for the virtual memory. Maybe it is more like putting in another memory location to be processed rather than the other one being worked on.
+</p>
+
+<p>
+Swap out internal memory and put it on external memory
+</p>
+
+<div id="What is partitioning, paging, segmentation in the context of memory layout strategy's. Are they consecutive memory allocation or non-consecutive?"><h1 id="What is partitioning, paging, segmentation in the context of memory layout strategy's. Are they consecutive memory allocation or non-consecutive?" class="header"><a href="#What is partitioning, paging, segmentation in the context of memory layout strategy's. Are they consecutive memory allocation or non-consecutive?">What is partitioning, paging, segmentation in the context of memory layout strategy's. Are they consecutive memory allocation or non-consecutive?</a></h1></div>
+
+<p>
+Consecutive Allocation: Fixed-size partitioning may result in consecutive allocation, while variable-size partitioning, paging, and segmentation often lead to non-consecutive allocation.
+</p>
+
+<p>
+Non-consecutive Allocation: Variable-size partitioning, paging, and segmentation often involve non-contiguous allocation, helping to reduce fragmentation and make more efficient use of memory.
+</p>
+
+<div id="What is trashing?"><h1 id="What is trashing?" class="header"><a href="#What is trashing?">What is trashing?</a></h1></div>
+
+<p>
+Trashing, in the context of computer systems, refers to a situation where the operating system is spending a significant amount of time swapping data between the main memory (RAM) and the secondary storage (usually a hard drive or SSD). This swapping occurs when the system is under heavy load and is unable to keep up with the demand for physical memory by actively running processes.
+</p>
+
+<div id="What is the difference between a page and a frame?"><h1 id="What is the difference between a page and a frame?" class="header"><a href="#What is the difference between a page and a frame?">What is the difference between a page and a frame?</a></h1></div>
+
+<p>
+Page: Refers to a unit of virtual memory in the address space of a process.
+</p>
+
+<p>
+Frame: Refers to a unit of physical memory in the RAM of the computer.
+</p>
+
+<div id="What is the copy-on-write principle?"><h1 id="What is the copy-on-write principle?" class="header"><a href="#What is the copy-on-write principle?">What is the copy-on-write principle?</a></h1></div>
+
+<p>
+Probably it means that once some process changes the state of something, it is being copied or maybe even overwritten inside the memory
+</p>
+
+<p>
+The copy-on-write (COW) principle is a strategy employed in computer programming and operating systems to optimize the use of resources when duplicating data. The basic idea behind copy-on-write is to delay the actual copying of data until it is necessary, reducing the initial overhead associated with copying large amounts of data.
+</p>
+
+</body>
+</html>

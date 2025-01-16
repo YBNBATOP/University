@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="Stylesheet" type="text/css" href="style.css">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="rss.xml">
+<title>MSTopic1Unit2</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<ul>
+<li>
+Introduction
+
+</ul>
+<p>
+## What will we study
+</p>
+
+<ul>
+<li>
+How to create an Android App with Android Studio
+
+<li>
+How to run apps with Preview tool Android Studio
+
+<li>
+How to update text with Kotlin
+
+<li>
+How to update a User Interface (UI) with Jetpack Compose
+
+<li>
+How to see a preview of your app with Preview in Jetpack Compose
+
+</ul>
+<p>
+To create a new project, all you have to do, is enter Android Studio, then create new Project, and choose the <span id="-Empty Activity"></span><strong id="Empty Activity">Empty Activity</strong>, as it will create a Compose App
+</p>
+
+<p>
+After that, give it a name, and then go ahead and create it.
+</p>
+
+<p>
+You will have something predefined (made) for you, and it is put in packages
+</p>
+
+<p>
+You can also take a another look at the Project Files, by selecting <span id="-Project Source Files"></span><strong id="Project Source Files">Project Source Files</strong> at the top of project files
+</p>
+
+<p>
+In Kotlin, the main function, starting one, is the <span id="-main()"></span><strong id="main()">main()</strong>. In Android, it is <span id="-onCreate()"></span><strong id="onCreate()">onCreate()</strong>
+In our case it looks something like this:
+</p>
+<pre kotlin>
+
+class MainActivity : ComponentActivity() {
+   override fun onCreate(savedInstanceState: Bundle?) {
+       super.onCreate(savedInstanceState)
+       setContent {
+           GreetingCardTheme {
+               // A surface container using the 'background' color from the theme
+               Surface(
+                   modifier = Modifier.fillMaxSize(),
+                   color = MaterialTheme.colors.background
+               ) {
+                   Greeting("Android")
+               }
+           }
+       }
+   }
+}
+</pre>
+
+
+<p>
+Inside, you can see the <span id="-setContent()"></span><strong id="setContent()">setContent()</strong> function, that sets the layout through composable functions. All functions with <span id="-@Composable"></span><strong id="@Composable">@Composable</strong> can be called from <span id="-setContent()"></span><strong id="setContent()">setContent()</strong>, or other Composable functions. This functions are used to generate the UI
+</p>
+
+<p>
+Here is an example of such a function:
+</p>
+<pre kotlin>
+@Composable
+fun Greeting(name: String, modifier: Modifier = Modifier) {
+    Text(text = "Hello $name!")
+}
+</pre>
+
+<p>
+To create a function, you:
+</p>
+<ul>
+<li>
+Add the <code>@Composable</code> annotation
+
+<li>
+Capitalized function name
+
+<li>
+and return nothing
+
+</ul>
+<p>
+You can also define special functions, that will work for your preview in the Split view, not to run  the whole app everytime:
+</p>
+<pre kotlin>
+@Preview(showBackground = true)
+@Composable
+fun GreetingPreview() {
+    GreetingCardTheme {
+        Greeting("Meghan")
+   }
+}
+</pre>
+
+<p>
+Such functions use their own variables, but also have additional parameter - <span id="-showBackgorund"></span><strong id="showBackgorund">showBackgorund</strong>, which can be false or true.
+</p>
+
+<p>
+By wrapping it with <code>@Preview</code>, you can have a function then that defines a preview.
+</p>
+
+<p>
+To change the background color, you need to add <span id="-Surface"></span><strong id="Surface">Surface</strong>, and then change values that you want. To do that, just select the line, then do something like in IDEA, and surround with widget, and then with Container
+</p>
+
+<p>
+This is how it looks:
+</p>
+<pre kotlin>
+@Composable
+fun Greeting(name: String, modifier: Modifier = Modifier) {
+    Box {
+        Text(
+            text = "Hi, my name is $name!",
+            modifier = modifier
+        )
+    }
+}
+</pre>
+
+<p>
+You delete the Box, and then use <span id="-Surface(color = Color.Cyan)"></span><strong id="Surface(color = Color.Cyan)">Surface(color = Color.Cyan)</strong>
+</p>
+
+<p>
+You can then modify the padding, by modifying the modifier. And then the function will look like this:
+</p>
+<pre kotlin>
+@Composable
+fun Greeting(name: String, modifier: Modifier = Modifier) {
+    Surface(color = Color.Cyan) {
+        Text(
+            text = "Hi, my name is $name!",
+            modifier = modifier.padding(24.dp)
+        )
+    }
+}
+</pre>
+
+</body>
+</html>

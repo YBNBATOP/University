@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="Stylesheet" type="text/css" href="style.css">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="rss.xml">
+<title>OSCLecture4</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<div id="Deadlocks"><h1 id="Deadlocks" class="header"><a href="#Deadlocks">Deadlocks</a></h1></div>
+
+<p>
+There is usually such a problem, that when a processor uses the same resources at the same time, there might come up a problem that the file gets corrupted. Think of it as a github/gitlab repo, and then you and your buddy are working on the same branch, hence you get a merge conflict afterwards!
+</p>
+
+<p>
+Hence, we do not want 2 programs to mutually exclude each other at the same time, trying to access the same resource.
+</p>
+
+<p>
+That is the best moment to add in the ecuation a kind of "waiter" or priority decider, who then will give priorities as a kind of traffic light!
+</p>
+
+<p>
+The locking system is a good representation of such a problem. Ones the resource is taken, a lock is put, and vice versa upon free of the resource.
+</p>
+
+<p>
+At the same time, that system should be atomic, meaning that if one program is taking the resource, then the monitor needs to know when and whom to put a lock to!
+</p>
+
+<div id="Deadlocks-Some more explanantion"><h2 id="Some more explanantion" class="header"><a href="#Deadlocks-Some more explanantion">Some more explanantion</a></h2></div>
+
+<p>
+There is always a P, and an R, respectfully called as Process and Resource. There can be a <span id="Deadlocks-Some more explanantion-request"></span><strong id="request">request</strong>, going from the process to the resource. Vice-versa, there can be a <span id="Deadlocks-Some more explanantion-allocation"></span><strong id="allocation">allocation</strong>, going from the resource to the process.
+</p>
+
+<div id="Deadlocks-Deadlock conditions"><h2 id="Deadlock conditions" class="header"><a href="#Deadlocks-Deadlock conditions">Deadlock conditions</a></h2></div>
+
+<p>
+To have a deadlock, there are multiple conditions, which are to be present:
+</p>
+
+<ul>
+<li>
+Mutual exclusion: one process - one resource.
+
+<li>
+Hold and wait: one process gets one resource, and waits for additional one.
+
+<li>
+No preemption: nobody controls the lock on resource, except the process itself.
+
+<li>
+Circular wait: a process holds a resource, and then waits for another resource which is used by someone else, and like that for all the processes.
+
+</ul>
+<div id="Deadlocks-Solving a deadlock"><h2 id="Solving a deadlock" class="header"><a href="#Deadlocks-Solving a deadlock">Solving a deadlock</a></h2></div>
+
+<p>
+Methods for handling a deadlock
+</p>
+
+<ul>
+<li>
+Ignore the problem and pretend that deadlocks will not occur
+
+<li>
+Allow the system to enter a deadlocked state (a)
+
+<ul>
+<li>
+Detect it
+
+<li>
+Recover it
+
+<li>
+Typically, with algorithms
+
+</ul>
+<li>
+Take measure to prevent or avoid deadlocks, ensuring that the system will never enter a deadlocked state. (b)
+
+</ul>
+<p>
+Deadlock prevention (b) vs deadlock avoidance (a)
+</p>
+
+<div id="Memory management"><h1 id="Memory management" class="header"><a href="#Memory management">Memory management</a></h1></div>
+
+<p>
+Main memory and registers built in the processor it self are the only storage that can be accessed by your CPU.
+</p>
+
+<p>
+Registers are build into CPU -&gt; fast and accessible withoin one cycle of the CPU clock. That is also sometimes related to as cache.
+</p>
+
+<p>
+A program/binary/executable - does not run on CPU, it lives on the HDD/SSD
+</p>
+
+<p>
+A process - runs on the RAM!
+</p>
+
+<div id="Memory management-Nonconsecutive"><h2 id="Nonconsecutive" class="header"><a href="#Memory management-Nonconsecutive">Nonconsecutive</a></h2></div>
+
+<p>
+Nonconsecutive memory allocaton:
+</p>
+
+<ul>
+<li>
+Paging
+
+<li>
+Segmentation
+
+<li>
+Combination of segmentation and paging
+
+</ul>
+<div id="Memory management-Nonconsecutive-Paging"><h3 id="Paging" class="header"><a href="#Memory management-Nonconsecutive-Paging">Paging</a></h3></div>
+
+<p>
+You have a virtual address which consist of an offset and page number. The page number is a lookup for page lookup for the physical memory. Offset takes the physical memory lookup and then uses it to look up the value of the code that needs to be executed.
+</p>
+
+</body>
+</html>

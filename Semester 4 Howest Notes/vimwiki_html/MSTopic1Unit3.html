@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="Stylesheet" type="text/css" href="style.css">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="rss.xml">
+<title>MSTopic1Unit3</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<ul>
+<li>
+General knowledge
+
+</ul>
+<p>
+<code>@Composable</code> annotation tells the compiler that the function is meant to convert data into UI
+</p>
+
+<p>
+When creating functions, make sure to also accept a modifier in the parameters!
+</p>
+
+<p>
+Just like this:
+</p>
+<pre kotlin>
+@Composable
+fun GreetingText(message: String, modifier: Modifier = Modifier) {
+}
+</pre>
+
+<p>
+Then, you should call <span id="-Text()"></span><strong id="Text()">Text()</strong> to make some text appear in the UI.
+</p>
+
+<p>
+The you can test it first in the preview function
+</p>
+
+<p>
+Then, you can get back to the function, and change something related to the Text, like font size.
+</p>
+
+<pre kotlin>
+@Composable
+fun GreetingText(message: String, modifier: Modifier = Modifier) {
+    Text(
+        text = message,
+        fontSize = 100.sp
+    )
+}
+</pre>
+
+<p>
+<span id="-sp"></span><strong id="sp">sp</strong> is a measurement unit, scalable pixels.
+</p>
+
+<p>
+In Compose there are different parameters that go to different parts. Like text related information will go to Text(). Background color would go to the <span id="-Surface()"></span><strong id="Surface()">Surface()</strong>
+</p>
+
+
+<p>
+You can add additional items into one function, and then have like, multiple text boxes!
+</p>
+
+<pre kotlin>
+@Composable
+fun GreetingText(message: String, from: String, modifier: Modifier = Modifier) {
+    Text(
+        text = message,
+        fontSize = 100.sp,
+        lineHeight = 116.sp
+    )
+    Text(
+        text = from,
+        fontSize = 36.sp
+    )
+}
+</pre>
+
+<p>
+You can structure the boxes in some ways, the standart ones are <span id="-Box(), Column(), Row()"></span><strong id="Box(), Column(), Row()">Box(), Column(), Row()</strong>. You can manage the way you have your UI hierarchy and who is a children of who.
+</p>
+
+<p>
+This is an example of how to wrap the function contents:
+</p>
+<pre kotlin>
+@Composable
+fun GreetingText(message: String, from: String, modifier: Modifier = Modifier) {
+    Row {
+        Text(
+            text = message,
+            fontSize = 100.sp,
+            lineHeight = 116.sp,
+        )
+        Text(
+            text = from,
+            fontSize = 36.sp
+        )
+    }
+}
+
+</pre>
+
+<p>
+Also it is important to pass the modifier to the funcion (Column()), as then you want to pass it to the children:
+</p>
+<pre kotlin>
+@Composable
+fun GreetingText(message: String, from: String, modifier: Modifier = Modifier) {
+    Column(modifier = modifier) {
+        Text(
+            text = message,
+            fontSize = 100.sp,
+            lineHeight = 116.sp
+        )
+        Text(
+            text = from,
+            fontSize = 36.sp
+        )
+    }
+}
+</pre>
+
+<p>
+Your function can also be scalled:
+</p>
+<pre kotlin>
+@Composable
+fun GreetingText(message: String, from: String, modifier: Modifier = Modifier) {
+    Column(
+        verticalArrangement = Arrangement.Center,
+        modifier = modifier.padding(8.dp)
+    ) {
+        Text(
+            text = message,
+            fontSize = 100.sp,
+            lineHeight = 116.sp,
+            textAlign = TextAlign.Center
+        )
+        Text(
+            text = from,
+            fontSize = 36.sp
+        )
+    }
+}
+</pre>
+
+<p>
+<span id="-dp"></span><strong id="dp">dp</strong> seems to be used as rem in web dev, and it is Density-independent Pixels
+</p>
+
+<p>
+<span id="-Important note"></span><strong id="Important note">Important note</strong>: You have column, and then inside it you have the arrangement, and the modifier parameters. To understand it better, jsut think of it as a div container (parent), and then you have your children elements inside (Text()) which are children inside the big container. It is important to understand that it is essentially boxes you are working with. 
+</p>
+
+<p>
+It is also a good practice to give the modifier from the parent where the funciton was called.
+</p>
+
+<p>
+This is how your code will look like:
+</p>
+<pre kotlin>
+package com.example.happybirhtday
+
+import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import com.example.happybirhtday.ui.theme.HappyBirhtdayTheme
+
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContent {
+            HappyBirhtdayTheme {
+                // A surface container using the 'background' color from the theme
+                Surface(
+                    modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colorScheme.background
+                ) {
+                    GreetingText(
+                        message = "Happy Birthday Sam!",
+                        from = "from Emma",
+                        modifier = Modifier.padding(8.dp)
+                    )
+                }
+            }
+        }
+    }
+}
+
+@Composable
+fun GreetingText(message: String, from: String, modifier: Modifier = Modifier) {
+    Column(
+        verticalArrangement = Arrangement.Center,
+        modifier = modifier // parameters passed from setContent
+    ) {
+        Text(
+            text = message,
+            fontSize = 100.sp,
+            lineHeight = 116.sp,
+            textAlign = TextAlign.Center
+        )
+        Text(
+            text = from,
+            fontSize = 36.sp,
+            modifier = Modifier
+                .padding(16.dp)
+                .align(alignment = Alignment.End)
+        )
+    }
+}
+
+
+@Preview(showBackground = true, name = "BirthdayCardPreview")
+@Composable
+fun BirthdayCardPreview() {
+    HappyBirhtdayTheme {
+        GreetingText(message = "Happy Birthday Sam!", from = "from Emma")
+    }
+}
+</pre>
+
+<p>
+To add an image to the Project, first thing you have to do, is get an image. Then, in the top left corner, look for <span id="-View &gt; Tool Windows &gt; Resource Manager"></span><strong id="View &gt; Tool Windows &gt; Resource Manager">View &gt; Tool Windows &gt; Resource Manager</strong>. Then you will be able to see another tab, and then you can add images as resources, which will be put in the <span id="-res"></span><strong id="res">res</strong> folder.
+</p>
+
+<p>
+Also, while importing, you need to make sure you actually create and import the image correctly.
+</p>
+
+<p>
+Next, we need to add the image component. It works the same way you did for everything else.
+</p>
+
+<p>
+Also, do not forget to pass modifier:
+"Every composable function should accept an optional Modifier parameter. Modifiers tell a UI element how to lay out, display, or behave within its parent layout. Add another parameter at the GreetingImage() composable."
+</p>
+
+<p>
+Now we will need to access some resources. It is also important to maintain the resources, separated, and grouped. You can access the resources, using the built-in R class.
+</p>
+<pre kotlin>
+R.drawable.graphic
+//
+val image = painterResource(R.drawable.androidparty)
+</pre>
+
+<p>
+The painterResource() function loads a drawable image resource,and takes resource ID (R.drawable.androidparty in this case) as an argument.
+</p>
+
+<pre kotlin>
+@Composable
+fun GreetingImage(message: String, from: String, modifier: Modifier = Modifier) {
+    val image = painterResource(R.drawable.androidparty)
+    Image (
+        painter = image,
+        contentDescription = null
+    )
+}
+</pre>
+
+<p>
+"However, the image in this app is only included for decorative purposes. The addition of a content description for the image would make it harder to use with TalkBack in this particular case. Instead of setting the content description that's announced to the user, you can set the image's contentDescription argument to null so that TalkBack skips the Image composable."
+</p>
+
+<p>
+"Box layout is one of the standard layout elements in Compose. Use Box layout to stack elements on top of one another. Box layout also lets you configure the specific alignment of the elements that it contains."
+</p>
+
+<p>
+You can wrap your parts with other containers, same as we did previously.
+</p>
+
+<pre kotlin>
+@Composable
+fun GreetingImage(message: String, from: String, modifier: Modifier = Modifier) {
+    val image = painterResource(R.drawable.androidparty)
+    Box (modifier) {
+        Image(
+            painter = image,
+            contentDescription = null
+        )
+        GreetingText(message = message,
+            from = from,
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(8.dp)
+        )
+    }
+}
+</pre>
+
+<p>
+You also need to scale your image sometimes:
+</p>
+<ul>
+<li>
+There are quite a few ContentScale types available. You use the ContentScale.Crop parameter scaling, which scales the image uniformly to maintain the aspect ratio so that the width and height of the image are equal to, or larger than, the corresponding dimension of the screen.
+<pre kotlin>
+@Composable
+fun GreetingImage(message: String, from: String, modifier: Modifier = Modifier) {
+    val image = painterResource(R.drawable.androidparty)
+    Box (modifier) {
+        Image(
+            painter = image,
+            contentDescription = null,
+            contentScale = ContentScale.Crop
+        )
+        GreetingText(message = message,
+            from = from,
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(8.dp)
+        )
+    }
+}
+</pre>
+
+</ul>
+<p>
+You can also add an alpha characteristic to the image:
+</p>
+<pre kotlin>
+@Composable
+fun GreetingImage(message: String, from: String, modifier: Modifier = Modifier) {
+    val image = painterResource(R.drawable.androidparty)
+    Box (modifier) {
+        Image(
+            painter = image, // Image component specific characteristics
+            contentDescription = null, // Image component specific characteristics
+            contentScale = ContentScale.Crop, // Image component specific characteristics
+            alpha = 0.5F // Image component specific characteristics
+        )
+        GreetingText(message = message,
+            from = from,
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(8.dp)
+        )
+    }
+}
+</pre>
+
+<p>
+"Modifiers are used to decorate or add behavior to Jetpack Compose UI elements. For example, you can add backgrounds, padding or behavior to rows, text, or buttons. To set them, a composable or a layout needs to accept a modifier as a parameter."
+</p>
+
+<pre kotlin>
+// Example
+Text(
+    text = "Hello, World!",
+    // Solid element background color
+    modifier = Modifier.background(color = Color.Green)
+)
+</pre>
+
+<p>
+"To set children's position within a Row, set the horizontalArrangement and verticalAlignment arguments. For a Column, set the verticalArrangement and horizontalAlignment arguments.
+</p>
+
+<p>
+The arrangement property is used to arrange the child elements when the size of the layout is larger than the sum of its children."
+</p>
+
+<p>
+"When you write apps, it's important to remember that they may be translated into another language at some point. As you learned in an earlier codelab, a String data type is a sequence of characters, such as "Happy Birthday Sam!"."
+</p>
+
+<pre kotlin>
+GreetingImage(
+    message = getString(R.string.happy_birthday_text),
+    from = "From Emma",
+    modifier = Modifier.padding(8.dp)
+)
+</pre>
+
+<pre kotlin>
+@Preview(showBackground = true)
+@Composable
+fun BirthdayCardPreview() {
+    HappyBirthdayTheme {
+        GreetingImage(
+            message = stringResource(R.string.happy_birthday_text),
+            from = stringResource(R.string.signature_text)
+        )
+    }
+}
+</pre>
+
+<pre kotlin>
+package com.example.happybirhtday
+
+import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import com.example.happybirhtday.ui.theme.HappyBirhtdayTheme
+
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContent {
+            HappyBirhtdayTheme {
+                // A surface container using the 'background' color from the theme
+                Surface(
+                    modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colorScheme.background
+                ) {
+                    GreetingImage(
+                        message = getString(R.string.happy_birthday_text),
+                        from = getString(R.string.signature_text),
+                        modifier = Modifier
+                            .padding(8.dp)
+                    )
+                }
+            }
+        }
+    }
+}
+
+@Composable
+fun GreetingText(message: String, from: String, modifier: Modifier = Modifier) {
+    Column(
+        verticalArrangement = Arrangement.Center,
+        modifier = modifier
+    ) {
+        Text(
+            text = message,
+            fontSize = 100.sp,
+            lineHeight = 116.sp,
+            textAlign = TextAlign.Center // Centering text inside the Text component!
+        )
+        Text(
+            text = from,
+            fontSize = 36.sp,
+            textAlign = TextAlign.Left, // Aligning inside the box of the Text component!
+            modifier = Modifier
+                .padding(16.dp)
+                .align(alignment = Alignment.CenterHorizontally) // Aligning the text in the Column parent container!
+        )
+    }
+}
+
+@Composable
+fun GreetingImage(message: String, from: String, modifier: Modifier = Modifier) {
+    val image = painterResource(R.drawable.androidparty)
+    Box (modifier) {
+        Image(
+            painter = image, // Image component specific characteristics
+            contentDescription = null, // Image component specific characteristics
+            contentScale = ContentScale.Crop, // Image component specific characteristics
+            alpha = 0.5F // Image component specific characteristics
+        )
+        GreetingText(message = message,
+            from = from,
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(8.dp)
+        )
+    }
+}
+
+
+@Preview(showBackground = true, name = "BirthdayCardPreview")
+@Composable
+fun BirthdayCardPreview() {
+    HappyBirhtdayTheme {
+        //GreetingText(message = "Happy Birthday Sam!", from = "from Emma")
+        GreetingImage(
+            message = stringResource(R.string.happy_birthday_text),
+            from = stringResource(R.string.signature_text)
+        )
+    }
+}
+</pre>
+
+<p>
+Another example of an application (small article from tutorial:
+</p>
+<pre kotlin>
+package com.example.jetpackarticle
+
+import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import com.example.jetpackarticle.ui.theme.JetpackArticleTheme
+
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContent {
+            JetpackArticleTheme {
+                // A surface container using the 'background' color from the theme
+                Surface(
+                    modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colorScheme.background
+                ) {
+                    JetpackArticle(articleName = getString(R.string.article_name), firstParagraph = getString(R.string.first_par_text), secondParagraph = getString(R.string.second_par_text))
+                }
+            }
+        }
+    }
+}
+
+@Composable
+fun JetpackArticle(articleName: String, firstParagraph: String, secondParagraph: String, modifier: Modifier = Modifier) {
+    Column(modifier) {
+        Image(
+            painter = painterResource(R.drawable.bg_compose_background),
+            contentDescription = null,
+            contentScale = ContentScale.FillWidth
+        )
+        Text(
+            text = articleName,
+            fontSize = 24.sp,
+            modifier = Modifier
+                .padding(16.dp)
+        )
+        Text(
+            text = firstParagraph,
+            textAlign = TextAlign.Justify,
+            modifier = Modifier
+                .padding(
+                    start = 16.dp,
+                    end = 16.dp
+                    )
+        )
+        Text(
+            text = secondParagraph,
+            textAlign = TextAlign.Justify,
+            modifier = Modifier
+                .padding(16.dp)
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun JetpackArticlePreview() {
+    JetpackArticleTheme {
+        JetpackArticle(
+            articleName = stringResource(R.string.article_name),
+            firstParagraph = stringResource(R.string.first_par_text),
+            secondParagraph = stringResource(R.string.second_par_text)
+        )
+    }
+}
+</pre>
+
+<p>
+Another example of code:
+</p>
+<pre kotlin>
+package com.example.taskmanagerscreen
+
+import android.os.Bundle
+import android.os.Message
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import com.example.taskmanagerscreen.ui.theme.TaskManagerScreenTheme
+
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContent {
+            TaskManagerScreenTheme {
+                // A surface container using the 'background' color from the theme
+                Surface(
+                    modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colorScheme.background
+                ) {
+                    TaskCompleted(
+                        message = getString(R.string.task_completed_message),
+                        congratulation = getString(R.string.congratulations_message),
+                        modifier = Modifier.fillMaxSize()
+                    )
+                }
+            }
+        }
+    }
+}
+
+@Composable
+fun TaskCompleted(message: String, congratulation: String, modifier: Modifier = Modifier) {
+     Column (
+         verticalArrangement = Arrangement.Center,
+         horizontalAlignment = Alignment.CenterHorizontally,
+         modifier = modifier
+     ) {
+         Image(
+             painter = painterResource(R.drawable.ic_task_completed),
+             contentDescription = null,
+         )
+         Text(
+             text = message,
+             fontWeight = FontWeight.Bold,
+             modifier = Modifier
+                 .padding(
+                     top = 24.dp,
+                     bottom = 8.dp
+                     )
+         )
+         Text(
+             text = congratulation,
+             fontSize = 16.sp
+
+         )
+     }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun TaskCompletedPreview() {
+    TaskManagerScreenTheme {
+        TaskCompleted(
+            message = stringResource(R.string.task_completed_message) ,
+            congratulation = stringResource(R.string.congratulations_message)
+        )
+    }
+}
+</pre>
+
+</body>
+</html>

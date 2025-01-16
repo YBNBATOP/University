@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="Stylesheet" type="text/css" href="style.css">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="rss.xml">
+<title>WBALecture4-1</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<div id="Persistence"><h1 id="Persistence" class="header"><a href="#Persistence">Persistence</a></h1></div>
+
+<p>
+Once we are out there in the wild, we need to know how to bypass defenses, and there are surely new problems to come with that!
+</p>
+
+<p>
+Problems that can be met:
+</p>
+<ul>
+<li>
+Payloads blocked =&gt; defeat the WAF
+
+<li>
+Payloads sanitized =&gt; defeat the filter
+
+<li>
+Obfuscated/opaque attack surface =&gt; better mapping
+
+<li>
+Limited time =&gt; efficient use of tools
+
+<li>
+Traffic throttled
+
+</ul>
+<p>
+The more you know, the more you find!
+</p>
+
+<p>
+The methodology says:
+</p>
+<ul>
+<li>
+Identify the defense mechanism
+
+<li>
+Enumerate the limits
+
+<li>
+Encoding
+
+<li>
+Obfuscation
+
+<li>
+Pattern splitting
+
+<li>
+Hide the payload
+
+<li>
+Globbing
+
+<li>
+Escape the escape
+
+</ul>
+<div id="Persistence-Identify the defense mechanism"><h2 id="Identify the defense mechanism" class="header"><a href="#Persistence-Identify the defense mechanism">Identify the defense mechanism</a></h2></div>
+
+<p>
+Trigger the defense mechanism!
+</p>
+
+<p>
+Look for telltale signs:
+</p>
+<ul>
+<li>
+Headers
+
+<li>
+Cookies
+
+<li>
+Error messages
+
+<li>
+DNS
+
+</ul>
+<p>
+Sometimes you can just get some errors that mean that you are restricted. Or maybe you can see that in the headers when we send our requests.
+</p>
+
+<p>
+You can aswell just check the DNS of the service you are trying to get:
+</p>
+<ul>
+<li>
+whois $(dig +short safeonweb.be | head -n 1) | egrep -i orgname
+
+</ul>
+<div id="Persistence-Enumerate the limits"><h2 id="Enumerate the limits" class="header"><a href="#Persistence-Enumerate the limits">Enumerate the limits</a></h2></div>
+
+<p>
+Are you rate limited?
+</p>
+<ul>
+<li>
+What is the max rps?
+
+<li>
+Multi-threading?
+
+</ul>
+<p>
+Keywords blocked?
+</p>
+<ul>
+<li>
+Which ones?
+
+<li>
+By themselves or in combination?
+
+</ul>
+<div id="Persistence-Encoding"><h2 id="Encoding" class="header"><a href="#Persistence-Encoding">Encoding</a></h2></div>
+
+<p>
+Encoding is a very popular way to hide our payloads, as it can hide them from the WAF, but not from the application.
+</p>
+
+<p>
+Encoding is converting a series of characters into another representation format
+</p>
+
+<p>
+Encoding != Encryption != Obfuscation != Hashing
+</p>
+
+<ul>
+<li>
+Encoding: represents in a different way, but overall is the same thing!
+
+<li>
+Encryption: only the secret key can decrypt the original!
+
+<li>
+Obfuscation: intentionally made hard to understand, so it might be a lot of algorithms going on!
+
+<li>
+Hashing: scrambling algorithm, cannot be decrypted
+
+</ul>
+<p>
+With encoding, we hope that the defense mechanism does not recognize the payload with the application, while the application does recognize it.
+</p>
+
+<p>
+There are different ways to <span id="Persistence-Encoding-encode"></span><strong id="encode">encode</strong>:
+</p>
+<ul>
+<li>
+Base64
+
+<li>
+URL
+
+<li>
+Unicode
+
+<li>
+Hex
+
+<li>
+Octal
+
+<li>
+HTML
+
+</ul>
+<p>
+You can obfuscate your payloads so much with your encoding that it may barely look like something that should work.
+</p>
+
+<p>
+But still you need to be accurate, because Hex would work only with strings! Same as unicode I believe! An example of that can be <code>&lt;script&gt;\u0061lert(1)&lt;/script&gt;</code>
+</p>
+
+<p>
+Fun fact: WAF usually block the <code>alert()</code> keyword, but they sometimes miss the <code>eval()</code> one.
+</p>
+
+<p>
+Also, there can be such a situation where you would try and write <code>javascript:alert(1)</code>, but it would get blocked. Hence, you could try and make it base64 encoded and put it as <code>data:text/html;base64,&lt;base64encodedhere&gt;</code> and that would also be a legit piece of code, because it would need an additional decoding cycle.
+</p>
+
+<p>
+URL encoding is also very much used by us, as they are used of course in the URL's. URL decoding happens automatically by http stacks. But sometimes happens twice (ssrf)! Hence, <span id="Persistence-Encoding-double URL encoding can smuggle the payload behind the WAF"></span><strong id="double URL encoding can smuggle the payload behind the WAF">double URL encoding can smuggle the payload behind the WAF</strong>
+</p>
+
+<p>
+Unicode represents characters outside and inside of the ascii range. <span id="Persistence-Encoding-Javascript"></span><strong id="Javascript">Javascript</strong> supports unicode. For example the <code>a</code> will be <code>\u0061</code>. Something like <code>&lt;script&gt;\u0061lert(1)&lt;/script&gt;</code> would actually work, as it did work in my exam!
+</p>
+
+<p>
+Hex encoding would work only with <span id="Persistence-Encoding-strings"></span><strong id="strings">strings</strong>! Hence <code>eval('alert(1)')</code> would work the same way as encoding alert(1) in hex. Octal works the same way!
+</p>
+
+<p>
+Fun fact, that for example if you have a function and parameters for it, you can pass javascript into it too. <code>console.log('hello&amp;apos;-alert()-&amp;apos;')</code> would work just fine!
+</p>
+
+<p>
+And most important, is that everything can be applied simultaneous! Also it is nice to know that function atob() exists!
+</p>
+
+<div id="Persistence-Obfuscation"><h2 id="Obfuscation" class="header"><a href="#Persistence-Obfuscation">Obfuscation</a></h2></div>
+
+<p>
+Obfuscation is the art of making something difficult to understand
+</p>
+
+<p>
+It take multiple cycles for humans and WAF's to understand
+</p>
+
+<p>
+You can:
+</p>
+<ul>
+<li>
+Multiple encodings mixed together
+
+<li>
+Using novel techniques
+
+</ul>
+<div id="Persistence-Pattern splitting"><h2 id="Pattern splitting" class="header"><a href="#Persistence-Pattern splitting">Pattern splitting</a></h2></div>
+
+<p>
+WAF's &amp; filters rely on recognizing keywords or patterns
+</p>
+
+<p>
+Splitting can make detection harder
+</p>
+
+<p>
+What happens if the filter only removes the &lt;script&gt; tag once?
+</p>
+<ul>
+<li>
+&lt;scri&lt;script&gt;pt&gt;
+
+</ul>
+<p>
+Or concatenation?
+</p>
+<ul>
+<li>
+"&lt;/scri"+"pt&gt;"
+
+</ul>
+<div id="Persistence-Hide the payload"><h2 id="Hide the payload" class="header"><a href="#Persistence-Hide the payload">Hide the payload</a></h2></div>
+
+<p>
+Sometimes, a payload can be hidden from the WAF's view
+</p>
+
+<ul>
+<li>
+window.name() object
+
+<li>
+URL fragment (location.hash or #)
+
+<li>
+out-of-band
+
+</ul>
+<div id="Persistence-Globbing"><h2 id="Globbing" class="header"><a href="#Persistence-Globbing">Globbing</a></h2></div>
+
+<p>
+The bash shell has special characters to match patterns
+</p>
+
+<ul>
+<li>
+? =&gt; Match a single character
+
+<li>
+* =&gt; Match zero or more characters
+
+<li>
+[] =&gt; define a range of characters
+
+<li>
+{,} or (|) =&gt; separate multiple conditions
+
+</ul>
+<p>
+We use globbing to break patterns a WAF might look for
+</p>
+
+<div id="Persistence-Defensive layers"><h2 id="Defensive layers" class="header"><a href="#Persistence-Defensive layers">Defensive layers</a></h2></div>
+
+<p>
+We need to account for different layers that can eventually secure us
+</p>
+
+<ul>
+<li>
+Cloud
+
+<li>
+Server
+
+<li>
+Framework
+
+<li>
+Application
+
+<li>
+OS
+
+</ul>
+<div id="Persistence-Defensive layers-Cloud layer"><h3 id="Cloud layer" class="header"><a href="#Persistence-Defensive layers-Cloud layer">Cloud layer</a></h3></div>
+
+<p>
+Rate-limiting
+</p>
+
+<p>
+Determine limit:
+</p>
+<ul>
+<li>
+Ip based
+
+<li>
+Endpoint based
+
+<li>
+header (cookie) based
+
+</ul>
+<p>
+Throttle requests
+</p>
+
+<p>
+Multi-thread
+</p>
+
+<p>
+Distribute requests over multiple targets
+</p>
+
+</body>
+</html>

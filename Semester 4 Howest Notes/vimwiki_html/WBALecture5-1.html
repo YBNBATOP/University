@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="Stylesheet" type="text/css" href="style.css">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="rss.xml">
+<title>WBALecture5-1</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<div id="JSON Web Tokens (JWT)"><h1 id="JSON Web Tokens (JWT)" class="header"><a href="#JSON Web Tokens (JWT)">JSON Web Tokens (JWT)</a></h1></div>
+
+<p>
+JWT are commonly used for authentication, session management and access control.
+</p>
+
+<p>
+Why JWT?
+</p>
+<ul>
+<li>
+No need to store state server-side
+
+<li>
+Claims are store &amp; send by the client
+
+</ul>
+<p>
+Wait a minute... is this safe?
+</p>
+
+<p>
+We have session cookies, what is the added value?
+</p>
+
+<p>
+JWT's do not store secrets, but claims! The client is allowed to view the contents, but not change it! Hence, there is a need for cryptographic signatures.
+</p>
+
+<p>
+JWT's are easy to recognize:
+</p>
+<ul>
+<li>
+3 base64 encoded parts (eyJ...) separated by a dot(.)
+
+</ul>
+<p>
+The first one - is header. It contains information about the algorithm and etc, in which the token is built.
+</p>
+
+<p>
+The second one - is the payload. It contains the data about the user.
+</p>
+
+<p>
+The third one - is a signature. It is used to verificate whether the user is a legit one or not and etc.
+</p>
+
+<p>
+JWT vulnerabilities are almost always severe
+</p>
+
+<p>
+Most of the time, developers are not JWT experts.
+</p>
+
+<p>
+Impact:
+</p>
+<ul>
+<li>
+Create valid, but malicious tokens == ATO, ACL bypass, SSRF
+
+</ul>
+<p>
+There are 2 main attack vectors on JWT:
+</p>
+<ul>
+<li>
+Attacks on the header
+
+<li>
+Attacks on the signature
+
+</ul>
+<p>
+Problems with signatures:
+</p>
+<ul>
+<li>
+No verification
+
+<ul>
+<li>
+Just a dot separating the payload from NULL (means you can just delete everything after the dot)
+
+</ul>
+<li>
+Arbitrary signatures accepted
+
+<ul>
+<li>
+Anything that looks like a signature will do 
+
+<li>
+Flawed signature verification (means you can put "none" as algorithm of encryption and hence even unicode encrypt it to obfuscate the convertion)
+
+</ul>
+<li>
+Weak keys
+
+<ul>
+<li>
+"secret", "compaanyname", "stackoverflow copy pasta"
+
+</ul>
+</ul>
+<p>
+You can aswell resign your JWT tokens via using the JWT_TOOL, which will allow you to first crack the password via 10k_most_common txt file or harder. An example of such a command would be:
+</p>
+
+<p>
+<code>python3 jwt_tool.py -C -d 10k_most_common.txt "&lt;token here&gt;"</code> (-C for crack, and -d for directory) 
+</p>
+
+<p>
+After that, you should most probably get the most general key that is used.
+</p>
+
+<p>
+Afterwards, you may go ahead and temper with the token and edit it, and reasign it using the same verification:
+</p>
+
+<p>
+<code>python3 jwt_tool.py -T -S HS256 -p "&lt;password found here" "&lt;token here&gt;"</code> (-T temper)
+</p>
+
+<p>
+And then you get your magical JWT. Important to know that you can play around with different information from the JWT toke, like that being the expiration time (that was on the exam), and hence get the access to the more advanced parameters.
+</p>
+
+<p>
+There are also problems with the header!
+</p>
+
+<p>
+JWT need a valid signature, but self signed signatures also work, because the header reserves a place for a public key in the <span id="JSON Web Tokens (JWT)-jwk"></span><strong id="jwk">jwk</strong> parameter.
+</p>
+
+<p>
+Also, there is the <span id="JSON Web Tokens (JWT)-jku"></span><strong id="jku">jku</strong> parameter, that means that the server might be considered to choose another value from whatever resource that might be specified.
+</p>
+
+<p>
+You can use that for your BurpSuite reasign, and hence get more flexibility with your system.
+</p>
+
+</body>
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="Stylesheet" type="text/css" href="style.css">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="rss.xml">
+<title>WBALecture4-2</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<div id="XML data format"><h1 id="XML data format" class="header"><a href="#XML data format">XML data format</a></h1></div>
+
+<p>
+What is XML?
+</p>
+<ul>
+<li>
+extensible markup language
+
+<li>
+structured data format
+
+<li>
+machine readable
+
+<li>
+storing and transporting data
+
+<li>
+self-descriptive
+
+</ul>
+<p>
+An xml declaration should always have a root element!
+</p>
+
+<p>
+Also, the declaration itself
+</p>
+
+<pre xml>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;bookstore&gt;
+	&lt;book category="cooking:&gt;
+		&lt;title lang="en"&gt;Everyday&lt;/title&gt;
+		&lt;author&gt;De Linde&lt;/author&gt;
+		&lt;year&gt;2005&lt;/year&gt;
+	&lt;/book&gt;
+&lt;/bookstore&gt;
+</pre>
+
+<p>
+It does look much more like HTML, but it is very strict about the structure!
+</p>
+
+<p>
+XML has 2 major potential vulnerabilities:
+</p>
+<ul>
+<li>
+XPATH injection (When XML is used as a data store)
+
+<li>
+XML External Entities (XXE) (When XML is used for data transport)
+
+</ul>
+<div id="XML data format-XPATH injection"><h2 id="XPATH injection" class="header"><a href="#XML data format-XPATH injection">XPATH injection</a></h2></div>
+
+<ul>
+<li>
+XML is a datastore
+
+<li>
+You need to be able to lookup data
+
+<li>
+You need a query language
+
+<li>
+You need ... XPATH!
+
+</ul>
+<p>
+XPATH is a query language to retrieve selected data from the datastore. It is much like SQL, but with different syntax. Search for elements, instead of parsing the whole document in memory.
+</p>
+
+<div id="XML data format-XML External Entities (XXE)"><h2 id="XML External Entities (XXE)" class="header"><a href="#XML data format-XML External Entities (XXE)">XML External Entities (XXE)</a></h2></div>
+
+<p>
+Changing elements in compile-time!
+</p>
+
+<p>
+An XXE attack is a type of attack against an application that parses XML input.
+</p>
+
+<p>
+XML entities are a way of representing an item of data within an XML document, instead of using the data itself. Various entities are built into the specification of the XML language. For example,the entities &amp;lt; and &amp;gt; represent the characters &lt; and &gt;. These are metacharacters used to denote XML tags, and so must generally be represented using their entities when they appear within data.
+</p>
+
+<p>
+What is document type definition though?
+</p>
+
+<p>
+The XML document type definition (DTD) contains declarations that can define the structure of an XML document, the types of data values it can contain, and other items. The DTD is delcared within the optional DOCTYPE element at the start of the XML document. The DTD can be fully self-contained within the document itself (know as an "internal DTD") or can be loaded from elsewhere (known as an "external DTD") or can be hybrid of the two.
+</p>
+
+<p>
+A document type definition looks like this:
+</p>
+<pre>
+&lt;!DOCTYPE foo [ &lt;!ENTITY myhome "king's landing" &gt; ]&gt;
+</pre>
+<p>
+Then you can use it as a reference and where you will use <code>&amp;myhome;</code> it will be replaced.
+</p>
+
+<p>
+What's with the external then?
+</p>
+
+<p>
+XML external entities are a type of custom entity whose definition is located outside of the DTD where they are declared. The declaration of an external entity used the SYSTEM keyword and must specify a URL from which the value of the entity should be loaded.
+</p>
+<pre>
+&lt;!DOCTYPE foo [ &lt;!ENTITY ext SYSTEM "http://example.com" &gt; ]&gt;
+</pre>
+
+<p>
+It is also important to know that you can exfiltrate information from redirect to your own server, and hence gathering the access to a special information, but that is very hard to do and should be investigated.
+</p>
+
+</body>
+</html>

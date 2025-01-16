@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="Stylesheet" type="text/css" href="style.css">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="rss.xml">
+<title>PREMALab1</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<div id="Lab 1"><h1 id="Lab 1" class="header"><a href="#Lab 1">Lab 1</a></h1></div>
+
+<div id="Lab 1-Prerequisites"><h2 id="Prerequisites" class="header"><a href="#Lab 1-Prerequisites">Prerequisites</a></h2></div>
+
+<p>
+Download the lab1.zip, also make sure you have a Windows 10 VM.
+</p>
+
+<div id="Lab 1-1st exercise"><h2 id="1st exercise" class="header"><a href="#Lab 1-1st exercise">1st exercise</a></h2></div>
+
+<p>
+We get a PNG file, but we can't open it. Hence, it means that the MagicBytes are wrong (because it already has the .png extension). Hence what we need to do is edit those bytes. On Linux you can do that with <code>hexedit</code> utility, or <code>Binary Ninjas</code>.
+</p>
+
+<p>
+Next, use <code>hexedit file</code>, and check what are the fist bytes.
+</p>
+
+<p>
+We are interested in the very first ones and their ASCII representation on the right
+</p>
+
+<p>
+<img src="../vimwiki/images/lab1-1.png" />
+</p>
+
+<p>
+We see that it is not full. We need to change those bytes to the PNG ones. That you can check on the internet.
+</p>
+
+<p>
+Then open the image and you get the flag.
+</p>
+
+<div id="Lab 1-2nd exercise"><h2 id="2nd exercise" class="header"><a href="#Lab 1-2nd exercise">2nd exercise</a></h2></div>
+
+<p>
+We get what looks like a binary. It might be an executable.
+</p>
+
+<p>
+Again, open it with a HexEditor and try to find something that is related to a known type.
+</p>
+
+<p>
+<img src="../vimwiki/images/lab1-2.png" />
+</p>
+
+<p>
+Here we can understand that the type should get changed to a <code>.exe</code> or MZ. This we can understand because it contains a line that says it can not be executed in MS DOS or something similar. After we changed the MagicBytes, change the file type to <code>.exe</code>, then open PowerShell, navigate to the directory, and the <code>./filename</code> to execute it in your shell, not like a program. And you should get your flag
+</p>
+
+<div id="Lab 1-3rd exercise"><h2 id="3rd exercise" class="header"><a href="#Lab 1-3rd exercise">3rd exercise</a></h2></div>
+
+<p>
+Again, same story, open the file in hexeditor, and you get that the bytes are again wrong, and we need to find something that is similar. We can see and <span id="Lab 1-3rd exercise-M"></span><strong id="M">M</strong> there, hence considering the slides, we think that it should be a <code>.BMP</code>, or bitmap image. Again, change the Bytes, change the extension to <code>.BMP</code>, and try to open it. You should again get your flag.  
+</p>
+
+<p>
+<img src="../vimwiki/images/lab1-3.png" />
+</p>
+
+<div id="General tips out of lesson"><h1 id="General tips out of lesson" class="header"><a href="#General tips out of lesson">General tips out of lesson</a></h1></div>
+
+<p>
+Take a look at the Hex, and try to search for clues that make it obvious what kind of file it should be. Like the 2nd exercise, you have a whole line that indicates that it should be an executable (thanks Evarist). Also, you could find there the flag just by doing a search.
+</p>
+
+</body>
+</html>

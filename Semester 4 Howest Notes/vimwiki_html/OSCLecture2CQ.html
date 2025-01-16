@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="Stylesheet" type="text/css" href="style.css">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="rss.xml">
+<title>OSCLecture2CQ</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<div id="What are containers?"><h1 id="What are containers?" class="header"><a href="#What are containers?">What are containers?</a></h1></div>
+
+<p>
+In simple words, containers represent processes, which are not running along with other processes you got on your pc, but they are rather isolated from your system, and still use the same kernel user space.
+</p>
+
+<div id="Why would anyone use containers? Aka. what is the prime goal/function of containers?"><h1 id="Why would anyone use containers? Aka. what is the prime goal/function of containers?" class="header"><a href="#Why would anyone use containers? Aka. what is the prime goal/function of containers?">Why would anyone use containers? Aka. what is the prime goal/function of containers?</a></h1></div>
+
+<p>
+Most probably they are used to that you can run stuff which is separated/isolated from each other, and comes already with its predefined libraries all together. Additionally, if a container would fail, well the whole other system would be still working properly without any problem.
+</p>
+
+<div id="What is the difference between a container and a virtual machine?"><h1 id="What is the difference between a container and a virtual machine?" class="header"><a href="#What is the difference between a container and a virtual machine?">What is the difference between a container and a virtual machine?</a></h1></div>
+
+<p>
+A container does not require a Guest OS to run the program, and a container does not use the Hypervisor layer which is required for the work of the VMs. It is cheaper, and also more practical.
+</p>
+
+<div id="Why are the terms &quot;container&quot; and &quot;docker&quot; not synonyms?"><h1 id="Why are the terms &quot;container&quot; and &quot;docker&quot; not synonyms?" class="header"><a href="#Why are the terms &quot;container&quot; and &quot;docker&quot; not synonyms?">Why are the terms "container" and "docker" not synonyms?</a></h1></div>
+
+<p>
+Container is the outcome, and docker is just like a package manager that gives you the functionality to download and run those containers! So overall, it is a tool(set), whereas the container is what you get as a result of working with the tool.
+</p>
+
+<div id="List 2 other technologies to run a &quot;container&quot; without using &quot;docker&quot;"><h1 id="List 2 other technologies to run a &quot;container&quot; without using &quot;docker&quot;" class="header"><a href="#List 2 other technologies to run a &quot;container&quot; without using &quot;docker&quot;">List 2 other technologies to run a "container" without using "docker"</a></h1></div>
+
+<ul>
+<li>
+LXC/LXD
+
+<li>
+Rocket
+
+</ul>
+<div id="Is it possible to run the very same type of Docker container both on Linux and on Windows? Why or why not? How do Windows 10 and Windows 11 work around this?"><h1 id="Is it possible to run the very same type of Docker container both on Linux and on Windows? Why or why not? How do Windows 10 and Windows 11 work around this?" class="header"><a href="#Is it possible to run the very same type of Docker container both on Linux and on Windows? Why or why not? How do Windows 10 and Windows 11 work around this?">Is it possible to run the very same type of Docker container both on Linux and on Windows? Why or why not? How do Windows 10 and Windows 11 work around this?</a></h1></div>
+
+<p>
+I suppose that both of them use different images, hence the output can be the same, but I believe the containers which are downloaded should be different.
+</p>
+
+<p>
+But Win 10 and 11 run them more or less the same way.
+</p>
+
+<div id="What is the difference between the Docker client (utilities) and the Docker server (~daemon)?"><h1 id="What is the difference between the Docker client (utilities) and the Docker server (~daemon)?" class="header"><a href="#What is the difference between the Docker client (utilities) and the Docker server (~daemon)?">What is the difference between the Docker client (utilities) and the Docker server (~daemon)?</a></h1></div>
+
+<p>
+In summary, the Docker client is the user interface through which commands are issued to Docker, while the Docker daemon is the background process responsible for managing containers. The client and daemon communicate through a REST API, allowing users to build, manage, and run containers efficiently. This separation of concerns enables a client-server model that supports both local and remote Docker operations.
+</p>
+
+<p>
+So yeah, the docker client is what we see, and then it sends requests to the server which is daemon.
+</p>
+
+<div id="What is a Dockerfile?"><h1 id="What is a Dockerfile?" class="header"><a href="#What is a Dockerfile?">What is a Dockerfile?</a></h1></div>
+
+<p>
+A Dockerfile is a script or configuration file used to build a Docker image. It contains a set of instructions that specify how to create a containerized application environment. Docker images are lightweight, portable, and self-sufficient, encapsulating all the dependencies and configurations needed to run a specific application.
+</p>
+
+<p>
+So overall, in one of those you specify everything you want/need in terms of dependencies, and then you get what you asked for.
+</p>
+
+<div id="What is a Docker image?"><h1 id="What is a Docker image?" class="header"><a href="#What is a Docker image?">What is a Docker image?</a></h1></div>
+
+<p>
+A Docker image is a lightweight, standalone, and executable package that includes all the necessary components to run a piece of software, including the code, runtime, libraries, and system tools. Docker images are the basis for containers, providing a consistent and portable environment across different infrastructure and deployment environments.
+</p>
+
+<p>
+Overall it is like a predefined package that you can install and run on your system.
+</p>
+
+<div id="What is Docker registry?"><h1 id="What is Docker registry?" class="header"><a href="#What is Docker registry?">What is Docker registry?</a></h1></div>
+
+<p>
+A Docker registry is a centralized storage and distribution system for Docker images. It serves as a repository for storing and managing Docker images, making it easier to share, distribute, and deploy containerized applications across different environments.
+</p>
+
+<p>
+Overall this is really like a place where all the images (i.e. "packages") are located somewhere on the server, and you can call them to install.
+</p>
+
+<div id="What do the following docker commands do?"><h1 id="What do the following docker commands do?" class="header"><a href="#What do the following docker commands do?">What do the following docker commands do?</a></h1></div>
+
+<ul>
+<li>
+docker ps = displays a list of running containers (-a flag would show all)
+
+<li>
+docker images = displays all available docker images on the machine
+
+<li>
+docker run -d &lt;imagename&gt; = runs a docker container in a detached mode (background)
+
+<li>
+docker exec -it &lt;containerId&gt; sh = executes a command in the running container (-it Interactive Terminal, sh is the shell)
+
+<li>
+docker-compose up = starts the services defined in a Docker Compose file
+
+<li>
+docker stop &lt;containerId&gt; = stops a running container
+
+<li>
+docker rm &lt;containerId&gt; = removes a stopped container
+
+</ul>
+
+</body>
+</html>

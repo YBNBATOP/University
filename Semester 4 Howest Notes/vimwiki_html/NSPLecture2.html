@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="Stylesheet" type="text/css" href="style.css">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="rss.xml">
+<title>NSPLecture2</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<p>
+Last time we were doing an example of what you do, before actually trying to check your victim.
+</p>
+
+<p>
+Today we are going to talk about Scanning a Network
+</p>
+
+<div id="Network scanning"><h1 id="Network scanning" class="header"><a href="#Network scanning">Network scanning</a></h1></div>
+
+<p>
+First thing you  would try to do, once you are on a new network, is probably check what subnet you are in. You can do that via <code>ip a</code> in Linux for example!
+</p>
+
+<p>
+You really want to see hosts, ports, and services in a network.
+</p>
+
+<p>
+You can:
+</p>
+<ul>
+<li>
+check for live systems
+
+<li>
+check for open ports
+
+<li>
+banner grabbing
+
+<li>
+scanning beyond IDS
+
+</ul>
+<p>
+For example, the TCP/UDP is a layer 4 protocol (Transport layer)
+</p>
+
+<p>
+Ip is a layer 3 (Network layer)
+</p>
+
+<p>
+Ports are somewhat layer 5, and they usually have a service running behind them, and listening for incoming data
+</p>
+
+<p>
+There is no such thing as "passive detection", as you are already in the network. One of the most basic things that you can get, is the DHCP request for a IP. That gives you some information about where you are
+</p>
+
+<p>
+There are a bunch of options for the DHCP, and they are all like parameters:
+</p>
+<ul>
+<li>
+ip address
+
+<li>
+subnet mask
+
+<li>
+dns ip address
+
+<li>
+router/gateway address
+
+<li>
+etc
+
+</ul>
+<div id="Network scanning-Scanning for Live systems"><h2 id="Scanning for Live systems" class="header"><a href="#Network scanning-Scanning for Live systems">Scanning for Live systems</a></h2></div>
+
+<p>
+You need to get information about who is online on the network
+</p>
+
+<p>
+The most basic thing you can do, is a "ping swing". It is just running a ping over all possible systems, but no the best one, as systems might not respond to the ping request, but you want *<span id="Network scanning-Scanning for Live systems-all"></span><strong id="all">all</strong>* systems.
+</p>
+
+<p>
+So how does a PC knows the MAC address of the destination? *<span id="Network scanning-Scanning for Live systems-ARP"></span><strong id="ARP">ARP</strong>* is the answer! That works like a broadcast, and it "asks" every PC for what is the IP address. Like "hey, what is your IP?"
+It is based on doing APR Request + ARP Reply.
+</p>
+
+<p>
+But in IPv6, that is somewhat different, and you end up using the Neighbour Discovery Protocol. It does not work with Broadcast, but multi cast. It is main idea is to resolve IPv6 into MAC addresses
+</p>
+
+<p>
+It is based on the ICMPv6.
+</p>
+
+<p>
+So if you want ot scan for live systems, you should try a <code>ARP sweep</code>. <code>arping &lt;ip&gt;</code> is the way to do it in Linux
+</p>
+
+<p>
+<code>ip neighbour show</code> is also a cool thing, that can show you the MAC addresses on the network.
+</p>
+
+<p>
+#### Ping sweep
+</p>
+
+<p>
+Ping sweep is used to determine the live hosts from a rnage of IP addresses by sending ECHO requests to multiple hosts. Each live host will return an ECHO reply.
+</p>
+
+<div id="Network scanning-Scanning for Live systems-TCP communication flags"><h3 id="TCP communication flags" class="header"><a href="#Network scanning-Scanning for Live systems-TCP communication flags">TCP communication flags</a></h3></div>
+
+<p>
+Standart TCP communications are controlled by flags in the TCP packet header:
+</p>
+<ul>
+<li>
+SYN
+
+<li>
+ACK
+
+<li>
+URG
+
+<li>
+PSH
+
+<li>
+FIN
+
+<li>
+RST
+
+</ul>
+<p>
+TCP uses a 3-way handshake:
+</p>
+<ul>
+<li>
+SYN ()
+
+<li>
+SYN + ACK
+
+<li>
+ACK
+
+</ul>
+<div id="Network scanning-Scanning for Live systems-Using Zombie machines"><h3 id="Using Zombie machines" class="header"><a href="#Network scanning-Scanning for Live systems-Using Zombie machines">Using Zombie machines</a></h3></div>
+
+<p>
+For you idle scan, you want to do a scan, and find everything. But to avoid detection, you really want to avoid being detected.
+</p>
+
+<p>
+It is like having a worker, that does the job for you, and gets the responses for you aswell.
+</p>
+
+<p>
+So how it works: you spoof the IP address of a zombie machine, then you do a SYN packet to the target machine, and then the response will be given to the zombie machine, and not yourself. This is very handy.
+</p>
+
+<p>
+### Port scanning
+</p>
+
+<p>
+One IP can host different services!
+</p>
+
+<p>
+Services are listening using TCP and UDP port number
+</p>
+
+<p>
+There are around 65k ports on the system
+</p>
+
+<div id="Network scanning-Scanning for Live systems-Banner grabbing"><h3 id="Banner grabbing" class="header"><a href="#Network scanning-Scanning for Live systems-Banner grabbing">Banner grabbing</a></h3></div>
+
+<p>
+It is, in other words, OS fingerprinting, is a method to understrand what system is runnign on the remote target system
+</p>
+
+<p>
+There are two types:
+</p>
+<ul>
+<li>
+Passive banner grabbing
+
+<ul>
+<li>
+error messages analyze
+
+<li>
+sniffing incoming traffic while surfing
+
+<li>
+page extensions
+
+</ul>
+<li>
+Active banner grabbing
+
+</ul>
+<div id="Network scanning-Scanning for Live systems-Banner grabbing-Manual banner grabbing"><h4 id="Manual banner grabbing" class="header"><a href="#Network scanning-Scanning for Live systems-Banner grabbing-Manual banner grabbing">Manual banner grabbing</a></h4></div>
+
+<p>
+Netcat and telnet are clinets that can connect to any TCP listener!
+By sending the correct data, the website is returned
+</p>
+
+<p>
+An example of that is <code>telnet &lt;host&gt; &lt;port&gt;</code> like <code>telnet howest.be 80</code>
+</p>
+
+</body>
+</html>

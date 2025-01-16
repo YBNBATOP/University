@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="Stylesheet" type="text/css" href="style.css">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="rss.xml">
+<title>PREMALecture4b</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<div id="1st sample"><h1 id="1st sample" class="header"><a href="#1st sample">1st sample</a></h1></div>
+
+<p>
+To get an idea of how many flags we have in our first sample, we can take a look at it with the <code>BinText</code>, for the strings. Or, use the built-in view for IDA, which also gives the strings view, but is less probable to give ALL the information out. Out of there, we can see a line that says we can find 2 flags.
+</p>
+
+<ul>
+<li>
+To find the first flag, again what we need to do, is go to <span id="1st sample-View &gt; Open Subviews &gt; Strings"></span><strong id="View &gt; Open Subviews &gt; Strings">View &gt; Open Subviews &gt; Strings</strong>, and go to the tab with them. From there we can see the lines that contain word <span id="1st sample-flag"></span><strong id="flag">flag</strong>, and that is what we need. From there, we can navigate to the code which is related for those. To navigate to the place where this are appearing, we can just <span id="1st sample-double-click"></span><strong id="double-click">double-click</strong> on it. After that, we might see some kind of functions, which are also related to this lines. We can navigate to their code by pressing <span id="1st sample-CTRL + X"></span><strong id="CTRL + X">CTRL + X</strong>, and then we are presented with the lines that are responsible for the FLAG check. We can toggle between 2 views, using <span id="1st sample-Space"></span><strong id="Space">Space</strong>, depends on which one feels better. There we can see around 3 variables at the top (Like var_8, var_C...), and we can check which one of them is used as a check for the final answer, and also rename it, using <span id="1st sample-N"></span><strong id="N">N</strong> (just select the text neeeded, or click on the variable and then N). This makes it easier for us to understand what is what. After, we need to read some code of calculation for the first one, as it is around 5 loops of manipulation to create the FLAG.
+
+</ul>
+<p>
+Important to know some basic assembly that we see there:
+</p>
+<ul>
+<li>
+<span id="1st sample-ebp"></span><strong id="ebp">ebp</strong> and <span id="1st sample-esp"></span><strong id="esp">esp</strong> are like stack and heap
+
+<li>
+<span id="1st sample-add esp,4"></span><strong id="add esp,4">add esp,4</strong> - this is the clean up of stack, the value after esp can vary.
+
+<li>
+<span id="1st sample-mov [ebp+var_8],0"></span><strong id="mov [ebp+var_8],0">mov [ebp+var_8],0</strong> - the values in [] mean that we are looking for a value of an address. In this case, it is a value from the stack, set up with an offset. The value after the comma, is the value we put instead of the value that is already inside.
+
+<li>
+<span id="1st sample-imul ecx, 10"></span><strong id="imul ecx, 10">imul ecx, 10</strong> - this would multiply the value inside <span id="1st sample-ecx"></span><strong id="ecx">ecx</strong>, by 10 (simple math)
+
+<li>
+<span id="1st sample-add edx,3"></span><strong id="add edx,3">add edx,3</strong> - this would simply add a number to the existing one. Like if the value is 10, and we add 3, then it will become a 13
+
+<li>
+<span id="1st sample-eax"></span><strong id="eax">eax</strong> can be considered like a first memory address.
+
+<li>
+To add a comment line, we can press <span id="1st sample-CTRL+:"></span><strong id="CTRL+:">CTRL+:</strong>
+
+<li>
+<span id="1st sample-sub"></span><strong id="sub">sub</strong> - is the opposite of <span id="1st sample-add"></span><strong id="add">add</strong>
+
+</ul>
+<p>
+Hence, if we do a bit of calculation, then we can get a number equal to 73892. And we try to input that, and it is the right answer (FLAG-73892)
+</p>
+
+<ul>
+<li>
+To find the second flag, we take a look at the same place, and then we check the same mathematical stuff as we did with the first one, and then we get the number 69083, which is the correct answer, if we try to put it inside the value. (FLAG-69083)
+
+</ul>
+
+</body>
+</html>

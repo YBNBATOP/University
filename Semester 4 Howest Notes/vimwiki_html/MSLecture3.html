@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="Stylesheet" type="text/css" href="style.css">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="rss.xml">
+<title>MSLecture3</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<p>
+Mobile Security
+</p>
+
+<p>
+Week 3: Android - ADB - ROOT
+</p>
+
+<p>
+We are going to talk about Android and how it works. This is about connecting to the device and doing something with debugger, and rooting.
+</p>
+
+<div id="Mobile Security?"><h1 id="Mobile Security?" class="header"><a href="#Mobile Security?">Mobile Security?</a></h1></div>
+
+<p>
+The mobile application pentest conecentrates on following items:
+</p>
+<ul>
+<li>
+Client-side safety
+
+<li>
+Filesystem
+
+<li>
+Hardware
+
+<li>
+Network security
+
+</ul>
+<p>
+Many mobile app bugs - are web bugs in disguise
+</p>
+
+<p>
+Mobile security is not "difficult", because it is similar to the web browser bugs, as it also works with same things
+</p>
+
+<div id="Key Areas in Mobile App Security"><h1 id="Key Areas in Mobile App Security" class="header"><a href="#Key Areas in Mobile App Security">Key Areas in Mobile App Security</a></h1></div>
+
+<ul>
+<li>
+Local Data Storage
+
+<li>
+Interaction with the Mobile Platform
+
+<li>
+Code quality and exploit mitigation
+
+</ul>
+<p>
+seen in other modules
+</p>
+
+<ul>
+<li>
+Communication with trusted enpoints
+
+<li>
+Authentication and authorization
+
+</ul>
+<div id="Mobile environment"><h1 id="Mobile environment" class="header"><a href="#Mobile environment">Mobile environment</a></h1></div>
+
+<p>
+We got Apple and Android
+</p>
+
+<p>
+iOS
+Android
+Windows 10(11)
+Windows 10 Mobile (maintenance only)
+Blackberry OS (maintenance only)
+Tizen OS (Samsung)
+Chrome OS (for devices)
+watchOS (Palm/HP)
+</p>
+
+<div id="Mobile environment-Types of Applications"><h2 id="Types of Applications" class="header"><a href="#Mobile environment-Types of Applications">Types of Applications</a></h2></div>
+
+<p>
+PWA (Progressive Web Apps), Native Apps, Hybride Apps
+</p>
+
+<div id="Mobile environment-Types of Applications-Native Application"><h3 id="Native Application" class="header"><a href="#Mobile environment-Types of Applications-Native Application">Native Application</a></h3></div>
+
+<p>
+Native apps are specific wirtten for an OS. Ususally do not interact with internet or web views
+</p>
+
+<ul>
+<li>
+Faster than others
+
+<li>
+All device functionality possible
+
+<li>
+Native look and feel OS
+
+</ul>
+<p>
+Examples:
+</p>
+<ul>
+<li>
+Clock
+
+<li>
+Calculator
+
+<li>
+File manager 
+
+</ul>
+<div id="Mobile environment-Types of Applications-Hybride applications"><h3 id="Hybride applications" class="header"><a href="#Mobile environment-Types of Applications-Hybride applications">Hybride applications</a></h3></div>
+
+<p>
+Hybride apps are a combination of native views and web views (PWA).
+</p>
+
+<p>
+They can be installed like a native app, but they also use PWAs, but can be used offline
+</p>
+
+<div id="Mobile environment-Types of Applications-Hybride applications-WebView"><h4 id="WebView" class="header justcenter"><a href="#Mobile environment-Types of Applications-Hybride applications-WebView">WebView</a></h4></div>
+
+<p>
+This is a component, which allows you to have more control over the UI and advanced configuration options that will allow to embed web pages in a specially-designed environment for the app.
+</p>
+
+<p>
+It also allows you to display web content as part of your activity layout, but lack some of the features of fully-developed browsers.
+</p>
+
+<div id="Mobile environment-Types of Applications-Hybride applications-Hybride frameworks"><h4 id="Hybride frameworks" class="header justcenter"><a href="#Mobile environment-Types of Applications-Hybride applications-Hybride frameworks">Hybride frameworks</a></h4></div>
+
+<p>
+React Native
+Flutter
+etc.
+</p>
+
+<div id="Mobile environment-Types of Applications-PWA"><h3 id="PWA" class="header"><a href="#Mobile environment-Types of Applications-PWA">PWA</a></h3></div>
+
+<p>
+Progressive web apps
+</p>
+
+<ul>
+<li>
+A website that looks, feels and behaves like a mobile app
+
+</ul>
+<p>
+Can take advantage of native features of HTML5
+</p>
+<ul>
+<li>
+No need to develop for different platforms
+
+<li>
+Can leverage on your existing HTML, CSS and JavaScript.
+
+<li>
+Not available through app stores
+
+<li>
+No access to all native features
+
+</ul>
+<div id="Mobile environment-Start Mobile Pentesting"><h2 id="Start Mobile Pentesting" class="header"><a href="#Mobile environment-Start Mobile Pentesting">Start Mobile Pentesting</a></h2></div>
+
+<p>
+Step1 : Intelligence gathering is the most significant step in a penetration test
+</p>
+
+<p>
+Architecture understanding
+Mapping the application
+</p>
+
+<p>
+Step2 : assessment of the intelligence with the correct tools
+</p>
+
+<p>
+File ssytem analysis
+Package analysis
+Decompiling
+</p>
+
+<div id="Mobile environment-Start Mobile Pentesting-Vulnerability Analysis"><h3 id="Vulnerability Analysis" class="header"><a href="#Mobile environment-Start Mobile Pentesting-Vulnerability Analysis">Vulnerability Analysis</a></h3></div>
+
+<div id="Mobile environment-Start Mobile Pentesting-Vulnerability Analysis-Static analysis"><h5 id="Static analysis" class="header"><a href="#Mobile environment-Start Mobile Pentesting-Vulnerability Analysis-Static analysis">Static analysis</a></h5></div>
+
+<p>
+The applicaiton is not running, and all we got - is the executable. You analyze the code
+</p>
+
+<div id="Mobile environment-Start Mobile Pentesting-Vulnerability Analysis-Dynamic analysis"><h4 id="Dynamic analysis" class="header"><a href="#Mobile environment-Start Mobile Pentesting-Vulnerability Analysis-Dynamic analysis">Dynamic analysis</a></h4></div>
+
+<p>
+The main objectie of dynamic analysis is finding security vulnerabilities or weak spots in a program while it is runnning
+</p>
+
+<p>
+Dynamic analysis is conducted both at the mobile platform layer and against the back-end services and APIs, where the mobile app’s request and response patterns can be analyzed.
+</p>
+
+<p>
+We are also going to use Frida, to manipulate the program.
+</p>
+
+<div id="Mobile environment-Start Mobile Pentesting-Vulnerability Analysis-Standard Web Bugs"><h4 id="Standard Web Bugs" class="header"><a href="#Mobile environment-Start Mobile Pentesting-Vulnerability Analysis-Standard Web Bugs">Standard Web Bugs</a></h4></div>
+
+<p>
+SQL Injection
+Direct Object Reference
+Improper authentication/authorization
+Insecure uploads
+</p>
+
+<div id="Android"><h1 id="Android" class="header"><a href="#Android">Android</a></h1></div>
+
+<p>
+Android is based on Linux, so it has a Linux kernel. It is a software stack with several layers.
+</p>
+
+<p>
+It is also built up upon different drivers
+</p>
+
+<p>
+The Hardware Abstraction Layer (HAL) defines a standard interface for interacting with built-in  hardware components
+</p>
+
+<p>
+Andoid Runtime for Apps
+</p>
+
+<p>
+API Framework for othe activities
+</p>
+
+<p>
+All the code is getting compiled to Dalvik (.dex) using a compiler, and then running
+</p>
+
+<div id="Android-APK Files"><h2 id="APK Files" class="header"><a href="#Android-APK Files">APK Files</a></h2></div>
+
+<p>
+Most important part out of here - is the manifest, with the information inside of itself.
+</p>
+
+<div id="Android-Data storage"><h2 id="Data storage" class="header"><a href="#Android-Data storage">Data storage</a></h2></div>
+
+<p>
+Both Android and iOS provide secure creedntial storage for saved logins
+</p>
+
+<p>
+If an app does not use this API, its likely the app is using something else.
+</p>
+
+<p>
+Android just needs to know where all the data is getting stored, and hence it would go and take a look at what is happening.
+</p>
+
+<div id="ADB"><h1 id="ADB" class="header"><a href="#ADB">ADB</a></h1></div>
+
+<p>
+Android Debug Bridge (ADB), allows our laptop to talk to mobile devices (you can even connect your phone to the PC).
+</p>
+
+<p>
+ADB provides a lot of functionality.
+</p>
+
+<p>
+You can open shells, even as root
+</p>
+
+<p>
+<code>adb root</code>
+</p>
+
+<p>
+<code>adb shell</code>
+</p>
+
+<p>
+Or get information about the battery
+</p>
+
+<p>
+<code>adb shell dumpsys battery</code>
+</p>
+
+<p>
+Or push files to the device
+</p>
+
+<p>
+<code>adb push file &lt;file&gt; &lt;place&gt;</code>
+</p>
+
+<p>
+Or get a screenshot 
+</p>
+
+<p>
+<code>adb shell screencap &lt;place&gt;</code>
+</p>
+
+<ul>
+<li>
+Android bootloader
+
+</ul>
+<p>
+A bootloader is a vendor-proprietary image responsible for bringing up the kernel on a device.
+</p>
+
+<p>
+You can flash custom things to your device.
+</p>
+
+<div id="Root the device"><h1 id="Root the device" class="header"><a href="#Root the device">Root the device</a></h1></div>
+
+<p>
+There are frameworks that allow you to give root permissions to your system, which makes something only related to the root system.
+</p>
+
+<p>
+Rooting gets you to the bottom of your os. You get root privileges on the device
+</p>
+
+<p>
+This means:
+</p>
+<ul>
+<li>
+Access to the entire OS
+
+<li>
+Remove and replace the entire OS of the device
+
+</ul>
+<p>
+There are 2 ways to root the device:
+</p>
+<ul>
+<li>
+Systemless
+
+<li>
+System root
+
+</ul>
+<p>
+Systemless:
+</p>
+<ul>
+<li>
+Only the boot partition is modified
+
+<li>
+OS is &gt;= Android marshmellow
+
+<li>
+Cleaner
+
+<li>
+Bypass Google SafetyNet
+
+</ul>
+<p>
+System root:
+</p>
+<ul>
+<li>
+System partition is modified
+
+<li>
+Manufacturer can notice
+
+<li>
+Old way
+
+</ul>
+<p>
+To Do:
+</p>
+
+<p>
+[Apk] Labs
+[Apk] Rootchecker
+</p>
+
+<p>
+[Lab] Introduction
+[Lab] Rooting
+</p>
+
+</body>
+</html>

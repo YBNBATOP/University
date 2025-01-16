@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="Stylesheet" type="text/css" href="style.css">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="rss.xml">
+<title>IMELecture1</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<div id="Introduction"><h1 id="Introduction" class="header"><a href="#Introduction">Introduction</a></h1></div>
+
+<p>
+There are a lot of types of modelling, but we are doing ERD (Entity Relationship Diagram)
+</p>
+
+<p>
+It gives a good overview of relations between entities, it is commonly known, mostly used.
+</p>
+
+<p>
+There are different types of dialects, but we are using the Chen's notation.
+</p>
+
+<p>
+It is important for the Business Applications, having well-designed data makes business applications, more useful, more extendable, more understandable.
+</p>
+
+<p>
+Information modelling is about modelling the universe of the system you're working on.
+</p>
+
+<p>
+Information modelling is about modelling the UoD (universe of discourse)
+</p>
+
+<p>
+The UoD is are the boundaries of your system you're working on. The universe of discourse is not part of the information model itself, but it defines its boundaries. Something might relate to your system, and something might not.
+</p>
+
+<p>
+An entity type describes the concept of a group of similar entity instances and these instances have attributes.
+</p>
+
+<div id="Introduction-Entities"><h2 id="Entities" class="header"><a href="#Introduction-Entities">Entities</a></h2></div>
+
+<p>
+An entity is a "thing" which can be distinctly identified. A specific person, company, or event is an example of an entity.
+</p>
+
+<p>
+An <span id="Introduction-Entities-entity"></span><strong id="entity">entity</strong> is always represented as a noun is a spoken language.
+</p>
+
+<div id="Introduction-Entity set"><h2 id="Entity set" class="header"><a href="#Introduction-Entity set">Entity set</a></h2></div>
+
+<p>
+It is a <span id="Introduction-Entity set-set (or collection) of entities"></span><strong id="set (or collection) of entities">set (or collection) of entities</strong> or <span id="Introduction-Entity set-instances of an entity type"></span><strong id="instances of an entity type">instances of an entity type</strong> which share the similar properties or attributes. For example a Board Game can have different types, like Puzzle, Monopoly and etc.
+</p>
+
+<div id="Introduction-Entity type"><h2 id="Entity type" class="header"><a href="#Introduction-Entity type">Entity type</a></h2></div>
+
+<p>
+It is a <span id="Introduction-Entity type-concept"></span><strong id="concept">concept</strong> which is defining the entities with similar properties or attributes. Like a member, since all the members have the same attributes.
+</p>
+
+<div id="Introduction-Attribute"><h2 id="Attribute" class="header"><a href="#Introduction-Attribute">Attribute</a></h2></div>
+
+<p>
+The information about an entity or a relationship is obtained by observation or measurement, and is expressesed by a set of attribute-value.
+</p>
+
+<p>
+An attribute can be formally defined as a function which maps from an entity set or a relationship set into a value set.
+</p>
+
+<p>
+Like a member can have a firstName, hence every Member would also have that attribute.
+</p>
+
+<div id="Introduction-Attribute-Atrribute properties"><h3 id="Atrribute properties" class="header"><a href="#Introduction-Attribute-Atrribute properties">Atrribute properties</a></h3></div>
+
+<ul>
+<li>
+Each attribute has a type
+
+<li>
+Each attribute has a value
+
+<li>
+A entity can have values for all the defined attributes, or only for a subset of attributes.
+
+</ul>
+<p>
+There are also multiple types of attributes
+</p>
+
+<div id="Introduction-Attribute-Optional attributes"><h3 id="Optional attributes" class="header"><a href="#Introduction-Attribute-Optional attributes">Optional attributes</a></h3></div>
+
+<p>
+An optional attribute is an attribute that may not have a value. It means that there is no value, or you do not know the value. This is usually noted with a small "o" at the top right.
+</p>
+
+<p>
+An optional attribute is also called <span id="Introduction-Attribute-Optional attributes-nullable"></span><strong id="nullable">nullable</strong>!
+</p>
+
+<div id="Introduction-Attribute-Derived attribute"><h3 id="Derived attribute" class="header"><a href="#Introduction-Attribute-Derived attribute">Derived attribute</a></h3></div>
+
+<p>
+A derived attribute is an attribute where the values can be derived (calculated) from the values of other attributes (like the Age if you know the date of birth). It is usually noted with the [attribute].
+</p>
+
+<div id="Introduction-Attribute-Multivalued attribute"><h3 id="Multivalued attribute" class="header"><a href="#Introduction-Attribute-Multivalued attribute">Multivalued attribute</a></h3></div>
+
+<p>
+A multivalued attribute is an attribute that can hold multiple values. That is usually noted like {attribute}.
+</p>
+
+<div id="Introduction-Attribute-Multivalued attribute-Multivalued attributes vs 1NF"><h4 id="Multivalued attributes vs 1NF" class="header"><a href="#Introduction-Attribute-Multivalued attribute-Multivalued attributes vs 1NF">Multivalued attributes vs 1NF</a></h4></div>
+
+<p>
+Multivalued attribute: an attribute can hold <span id="Introduction-Attribute-Multivalued attribute-Multivalued attributes vs 1NF-multiple values"></span><strong id="multiple values">multiple values</strong>
+</p>
+
+<p>
+1st Normal Form: Each attribute should contain <span id="Introduction-Attribute-Multivalued attribute-Multivalued attributes vs 1NF-atomic values"></span><strong id="atomic values">atomic values</strong>
+</p>
+
+<p>
+If you run accross a multivalued attribute, this is a major hint that you need an extra neity type
+</p>
+
+<div id="Introduction-Attribute-Composite attributes"><h3 id="Composite attributes" class="header"><a href="#Introduction-Attribute-Composite attributes">Composite attributes</a></h3></div>
+
+<p>
+A composite attribute is an attribute where the values of that attribute can be further subdivided into meaningful sub-parts.
+</p>
+
+<p>
+A compite attribute is an attribute composed of multiple other attributes.
+</p>
+
+<p>
+Like an address might be composed of multiple factors like street number, city, postal code, and overall form the same attribute.
+</p>
+
+<p>
+This is the same case as the multivalued attributes, hence you might need to mutate some components into separate attributes, or entiities. It is usually noted down with small numbers on the right down corner of it.
+</p>
+
+<div id="Introduction-Attribute-Key attributes"><h3 id="Key attributes" class="header"><a href="#Introduction-Attribute-Key attributes">Key attributes</a></h3></div>
+
+<p>
+Key attributes are like the id that represent the unique entity. It is usually noted via a * in the right top corner. attribute*
+</p>
+
+</body>
+</html>

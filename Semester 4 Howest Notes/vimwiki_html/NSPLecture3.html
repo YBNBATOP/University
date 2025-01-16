@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="Stylesheet" type="text/css" href="style.css">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="rss.xml">
+<title>NSPLecture3</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<div id="Lecture 3"><h1 id="Lecture 3" class="header"><a href="#Lecture 3">Lecture 3</a></h1></div>
+
+<div id="Enumeration"><h1 id="Enumeration" class="header"><a href="#Enumeration">Enumeration</a></h1></div>
+
+<div id="Recap from Lab 2"><h1 id="Recap from Lab 2" class="header"><a href="#Recap from Lab 2">Recap from Lab 2</a></h1></div>
+
+<p>
+IPv4 can be talked about as "Legacy", as it is old. So nowadays we should focus more on the IPv6
+</p>
+
+<div id="Recap from Lab 2-First thing you do"><h2 id="First thing you do" class="header"><a href="#Recap from Lab 2-First thing you do">First thing you do</a></h2></div>
+
+<ul>
+<li>
+Get your IP - <code>ip a</code> and check it.
+
+<li>
+To know the DNS server - <code>cat /etc/resolv.conf</code>. You can see then the DNS nameserver. Usually, it can be a local DNS resolver, meaning on localhost. You can see also additional information about what DNS you use by doing <code>nmcli</code>.
+
+<li>
+The domain name - same as your DNS.
+
+<li>
+To get the dafault gateway - <code>ip r</code> for legacy, and <code>ip -6 r</code> for IPv6. You can also try to look for the gateway in a way like <code>host _gateway</code>
+
+<li>
+You can do <code>sudo scan6 --interface eth0 --local-scan --verbose</code> to do a local scan of IPv6 for local addresses. NMAP can also do it, but rather slow. 
+
+</ul>
+<div id="Recap from Lab 2-Enumeration Intro"><h2 id="Enumeration Intro" class="header"><a href="#Recap from Lab 2-Enumeration Intro">Enumeration Intro</a></h2></div>
+
+<p>
+This time we are going to create actual connections to addreses, to see what is there. Like imagine you have a port 80 open. You can just try and navigate to it, because 80 is for HTTP and hence you should turn on your brain and think that it is a web server
+d
+Enumeration is used for getting information:
+</p>
+<ul>
+<li>
+Indetities
+
+<li>
+Usernames
+
+<li>
+Groups
+
+<li>
+Shared folders
+
+<li>
+etc.
+
+</ul>
+<div id="Recap from Lab 2-Enumeration Intro-Services to enumerate"><h3 id="Services to enumerate" class="header"><a href="#Recap from Lab 2-Enumeration Intro-Services to enumerate">Services to enumerate</a></h3></div>
+
+<p>
+Some services will require enumeration:
+</p>
+<ul>
+<li>
+NetBIOS
+
+<li>
+SNMP
+
+<li>
+DNS
+
+<li>
+SMTP
+
+<li>
+SMB
+
+<li>
+Active Directory / LDAP
+
+<li>
+Web Servers
+
+<li>
+etc.
+
+</ul>
+<p>
+NetBIOS is a older version of DNS.
+</p>
+
+<p>
+<code>nbtscan</code> is also a cool tool that you can use to check out the 
+</p>
+
+<div id="Recap from Lab 2-Enumeration Intro-Services to enumerate-Link-Local Multicast Name Resolution (LLMNR)"><h4 id="Link-Local Multicast Name Resolution (LLMNR)" class="header"><a href="#Recap from Lab 2-Enumeration Intro-Services to enumerate-Link-Local Multicast Name Resolution (LLMNR)">Link-Local Multicast Name Resolution (LLMNR)</a></h4></div>
+
+<p>
+Based on DNS
+</p>
+
+<p>
+Both Legacy IPv4 and IPv6
+</p>
+
+<div id="Recap from Lab 2-Enumeration Intro-Services to enumerate-mDNS (Multicast DNS)"><h4 id="mDNS (Multicast DNS)" class="header"><a href="#Recap from Lab 2-Enumeration Intro-Services to enumerate-mDNS (Multicast DNS)">mDNS (Multicast DNS)</a></h4></div>
+
+<p>
+You can listen for stuff that is around you, with using <code>avahi</code> tools, and something more.
+</p>
+
+<p>
+mDNS is the issue why high level domain does not allow ".local". You can even check them on some networks, but you need to check them manually.
+</p>
+
+<div id="Recap from Lab 2-Service Discovery"><h2 id="Service Discovery" class="header"><a href="#Recap from Lab 2-Service Discovery">Service Discovery</a></h2></div>
+
+<p>
+Name services such as mDNS and LLMNR do not provide information about the type of device or its status.
+</p>
+
+<p>
+Service discovery provides additional information
+</p>
+
+<p>
+Service discovery methods are often combined with a name space.
+</p>
+
+<div id="Recap from Lab 2-Service Discovery-SNMP (Simple Network Management Protocol)"><h3 id="SNMP (Simple Network Management Protocol)" class="header"><a href="#Recap from Lab 2-Service Discovery-SNMP (Simple Network Management Protocol)">SNMP (Simple Network Management Protocol)</a></h3></div>
+
+<p>
+The SNMP is a standard defined by the IETF
+</p>
+
+<p>
+SNMP uses agents on devices and systems (routers, switches, access points)
+</p>
+
+<p>
+SNMP agents send out SNMP traps, which are event listeners.
+</p>
+
+<p>
+SNMP in practice:
+</p>
+<ul>
+<li>
+SNMP variables are called "objects".
+
+<li>
+These objects have a tree structure
+
+</ul>
+<p>
+SNMP Features:
+</p>
+<ul>
+<li>
+It is enabled by default on many devices: printers, routers, firewalls, servers, etc.
+
+</ul>
+<div id="Recap from Lab 2-Service Discovery-DNS (Domain Name System)"><h3 id="DNS (Domain Name System)" class="header"><a href="#Recap from Lab 2-Service Discovery-DNS (Domain Name System)">DNS (Domain Name System)</a></h3></div>
+
+<p>
+DNS is a hierarchical and distributed naming system for computers, services and other resource.
+</p>
+
+<div id="Recap from Lab 2-Service Discovery-DNS (Domain Name System)-DNS Zone Transfer"><h4 id="DNS Zone Transfer" class="header"><a href="#Recap from Lab 2-Service Discovery-DNS (Domain Name System)-DNS Zone Transfer">DNS Zone Transfer</a></h4></div>
+
+<p>
+This is the method of sending information from one DNS server, to another. That is very important, as you might have multiple DNS servers.
+</p>
+
+<p>
+Zone transfers wil return a full copy of the entire zone file of a domain
+</p>
+
+<p>
+Sometimes, you might have misconfigurations, but they are individual for every server, so you might need to check every one of them.
+</p>
+
+<p>
+DNS can also have txt files, with additional information. You can usually see the same thing with sites for subdomains enumeration. You can try <code>host -t TXT howest.ne</code>
+</p>
+
+<div id="Recap from Lab 2-Service Discovery-SMTP (Simple Mail Transfer Protocol)"><h3 id="SMTP (Simple Mail Transfer Protocol)" class="header"><a href="#Recap from Lab 2-Service Discovery-SMTP (Simple Mail Transfer Protocol)">SMTP (Simple Mail Transfer Protocol)</a></h3></div>
+
+<p>
+SMTP is the only surviving standard for sending email.
+</p>
+
+<p>
+You can directly interact with an SMTP server using telnet or netcat. Or use blat or mailx. Usually email servers on the internet will not allow this to be unauthenticated in order to prevent abuse.
+</p>
+
+<div id="Recap from Lab 2-Service Discovery-Server Message Block (SMB)"><h3 id="Server Message Block (SMB)" class="header"><a href="#Recap from Lab 2-Service Discovery-Server Message Block (SMB)">Server Message Block (SMB)</a></h3></div>
+
+<p>
+SMB or Server Mesage Block runs on TCP/445
+</p>
+
+<p>
+SMB is intended for exchanging file. That is why it is often called CIFS.
+</p>
+
+<div id="Recap from Lab 2-Service Discovery-Server Message Block (SMB)-SMB Enumeration"><h4 id="SMB Enumeration" class="header"><a href="#Recap from Lab 2-Service Discovery-Server Message Block (SMB)-SMB Enumeration">SMB Enumeration</a></h4></div>
+
+<p>
+SMB is a clear text protocol, even the DATA is transmitted unencrypted.
+</p>
+
+<p>
+There are a SMB enumeration scripts in nmap.
+Also you can have other tools:
+</p>
+<ul>
+<li>
+Metasploit
+
+<li>
+crackmapexec
+
+</ul>
+<div id="Recap from Lab 2-Service Discovery-RPC (Remove Procedure Calls)"><h3 id="RPC (Remove Procedure Calls)" class="header"><a href="#Recap from Lab 2-Service Discovery-RPC (Remove Procedure Calls)">RPC (Remove Procedure Calls)</a></h3></div>
+
+<p>
+RPC is a technology to facilitate "Interprocess Communication" that is being used in several protocols, systems, services and ports.
+</p>
+
+<div id="Recap from Lab 2-Service Discovery-Active Directory / LDAP"><h3 id="Active Directory / LDAP" class="header"><a href="#Recap from Lab 2-Service Discovery-Active Directory / LDAP">Active Directory / LDAP</a></h3></div>
+
+<p>
+It makes it easier to run a (mostly) Windows Environment
+</p>
+
+<p>
+It was created by Microsoft, the best support is, of course, by Windows.
+</p>
+
+<p>
+Active Directory is based on LDAP (Lightweight Directory Access Protocol)
+</p>
+
+<div id="Recap from Lab 2-Service Discovery-Web Services"><h3 id="Web Services" class="header"><a href="#Recap from Lab 2-Service Discovery-Web Services">Web Services</a></h3></div>
+
+<p>
+A web server can host multiple websites.
+</p>
+
+<div id="Recap from Lab 2-Service Discovery-Web Services-Content Management Systems"><h4 id="Content Management Systems" class="header"><a href="#Recap from Lab 2-Service Discovery-Web Services-Content Management Systems">Content Management Systems</a></h4></div>
+
+<p>
+Content Management Systems cna be very vulnerable.
+</p>
+
+<p>
+For example, most of the sites are on WordPress, and hence they get outdated, and you need to update them most of the times.
+</p>
+
+<p>
+There are a bunch of the tools that can check for vulnerabilities.
+</p>
+
+<div id="Recap from Lab 2-Service Discovery-Countermeasures"><h3 id="Countermeasures" class="header"><a href="#Recap from Lab 2-Service Discovery-Countermeasures">Countermeasures</a></h3></div>
+
+<p>
+Disable unused services! Most services are not even used by default. Disable SNMP, RDP, SMTP. Enable Firewalls.
+</p>
+
+<p>
+Segment the networks (Configure VLAN's and etc)
+</p>
+
+<p>
+Use encryption where possible:
+</p>
+<ul>
+<li>
+Replace FTP by  SFTP
+
+<li>
+SMTP -&gt; Combine with STARTTLS or use SMTPS
+
+<li>
+RDP: eanble NLA
+
+<li>
+SMB: enforce SMBv3
+
+</ul>
+<div id="Recap from Lab 2-Service Discovery-Documentation"><h3 id="Documentation" class="header"><a href="#Recap from Lab 2-Service Discovery-Documentation">Documentation</a></h3></div>
+
+<p>
+After scanning and enumeration, you should have a big list of interesting things
+</p>
+
+<p>
+Therefore creating proper and good documentation is important
+</p>
+
+<p>
+How? Your choice.
+</p>
+
+</body>
+</html>

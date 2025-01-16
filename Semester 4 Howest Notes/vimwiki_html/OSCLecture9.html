@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="Stylesheet" type="text/css" href="style.css">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="rss.xml">
+<title>OSCLecture9</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<div id="Windows Server"><h1 id="Windows Server" class="header"><a href="#Windows Server">Windows Server</a></h1></div>
+
+<p>
+Pros:
+</p>
+<ul>
+<li>
+Easier setup and configuration
+
+<li>
+Better technical support
+
+<li>
+Better inttegration with other MS software
+
+<li>
+More complete and more features
+
+</ul>
+<p>
+Cons:
+</p>
+<ul>
+<li>
+Less reliable
+
+<li>
+Most used -&gt; less secure
+
+<li>
+Higher TCO (Total Cost of Ownership)
+
+<li>
+Compare to other OS' sometimes less performant
+
+</ul>
+<div id="Windows Server-Deployment"><h2 id="Deployment" class="header"><a href="#Windows Server-Deployment">Deployment</a></h2></div>
+
+<p>
+Deploying a piece of software = putting it in production = end users get to use the app/software
+</p>
+
+<p>
+Users want 100% uptime, they want web applications, hence deployment on WSM has seen a decrease in popularity.
+</p>
+
+<div id="Windows Server-The Windows Client"><h2 id="The Windows Client" class="header"><a href="#Windows Server-The Windows Client">The Windows Client</a></h2></div>
+
+<p>
+Cmd/Powershell = also called legacy commands vs cmdlet
+</p>
+
+<p>
+Powershell outputs information as Object, and Cmd as text
+</p>
+
+<p>
+Process management = taskmanager
+</p>
+
+<p>
+User management = <code>lusrmgr.msc</code> 
+</p>
+
+<p>
+Logging/Events = <code>eventvwm.msc</code>
+</p>
+
+<p>
+Windows Version = winver
+</p>
+
+<div id="Windows Server-Windows Client vs Server OS"><h2 id="Windows Client vs Server OS" class="header"><a href="#Windows Server-Windows Client vs Server OS">Windows Client vs Server OS</a></h2></div>
+
+<ul>
+<li>
+Server OS has more support for higher-end hardware
+
+<li>
+It also more concurrenty remote connections
+
+<li>
+WS includes a lot of server software
+
+<li>
+Can be installed without a GUI
+
+<li>
+By default has got more security tweaks already done and ready
+
+<li>
+Does not support MS account log in
+
+<li>
+Is more expensive
+
+<li>
+Gives priority more to the background services and tasks
+
+</ul>
+<div id="Windows Server-WS Realease Channels"><h2 id="WS Realease Channels" class="header"><a href="#Windows Server-WS Realease Channels">WS Realease Channels</a></h2></div>
+
+<p>
+It has 2 main channels:
+</p>
+<ul>
+<li>
+LTSC - Long Term Servicing  Channel = more stability
+
+<li>
+SAC - Semi Annual Channel = something much fresher
+
+</ul>
+<p>
+WS comes in 3 editions:
+</p>
+<ul>
+<li>
+Standart Edition - limited virtualization rights
+
+<li>
+Datacenter Edition - includes uinlimited virtualization rights
+
+<li>
+Hyper-V - bare metal hypervisor, no GUI
+
+</ul>
+<div id="Windows Server-WS Hosting"><h2 id="WS Hosting" class="header"><a href="#Windows Server-WS Hosting">WS Hosting</a></h2></div>
+
+<p>
+Where to install WS: on-premise or in the cloud?
+</p>
+
+<ul>
+<li>
+On-premise: Windows is installed on local server of company
+
+<li>
+In the cloud: Windows is hosted on cloud -&gt; <span id="Windows Server-WS Hosting-IaaS"></span><strong id="IaaS">IaaS</strong> = Infrastructure as a Service or <span id="Windows Server-WS Hosting-Pass"></span><strong id="Pass">Pass</strong> = Platform as a Service
+
+</ul>
+<p>
+On-premise advantages:
+</p>
+<ul>
+<li>
+Lower TCO
+
+<li>
+Complete Control
+
+<li>
+Uptime
+
+</ul>
+<p>
+Cloud advantage:
+</p>
+<ul>
+<li>
+Anywhere and anytime access
+
+<li>
+Worry free IT
+
+<li>
+Quick deployment
+
+<li>
+Scalability
+
+</ul>
+<div id="Windows Server-Windows Licensing"><h2 id="Windows Licensing" class="header"><a href="#Windows Server-Windows Licensing">Windows Licensing</a></h2></div>
+
+<p>
+3 types:
+</p>
+<ul>
+<li>
+Retail (keys to buy)
+
+<li>
+OEM (on the hardware)
+
+<li>
+Volume (multiple usage keys
+
+</ul>
+<div id="Windows Server-WS Management"><h2 id="WS Management" class="header"><a href="#Windows Server-WS Management">WS Management</a></h2></div>
+
+<p>
+You can manage your server locally, remotely (Using RDP [Remote Desktop Protocol], or RSAT [Remote Server Administration Tools])
+</p>
+
+<p>
+Management tools:
+</p>
+<ul>
+<li>
+CLI commands
+
+<li>
+Traditional GUI based tools:
+
+<ul>
+<li>
+Server manager
+
+<li>
+MMCs (Microsoft Management Consoles)
+
+</ul>
+</ul>
+<p>
+Web based:
+</p>
+<ul>
+<li>
+WAC = Windows Admin Center
+
+</ul>
+<div id="Windows Server-Win32 API"><h2 id="Win32 API" class="header"><a href="#Windows Server-Win32 API">Win32 API</a></h2></div>
+
+<p>
+It is important to remember that this interface is used to talk with the libraries, by the application
+</p>
+
+<div id="Windows Server-WMI - Windows Management Instrumentation"><h2 id="WMI - Windows Management Instrumentation" class="header"><a href="#Windows Server-WMI - Windows Management Instrumentation">WMI - Windows Management Instrumentation</a></h2></div>
+
+<p>
+This works like a kind of interface that is responsible for fetching information about the object for the PowerSHell.
+</p>
+
+<div id="Windows Server-WinRM - windows remote management"><h2 id="WinRM - windows remote management" class="header"><a href="#Windows Server-WinRM - windows remote management">WinRM - windows remote management</a></h2></div>
+
+<div id="Windows Server-Active Directory Structure"><h2 id="Active Directory Structure" class="header"><a href="#Windows Server-Active Directory Structure">Active Directory Structure</a></h2></div>
+
+<p>
+Active DIrectory is a hierarchy of objects
+</p>
+
+<p>
+AD can be a container or a leaf
+</p>
+
+<p>
+A container is an object that can contain other objects. The domain container is the root container of the hierarchy of a domain
+</p>
+
+<p>
+A leaf is an object that cannot contain other objects
+</p>
+
+<p>
+There are 2 types of leaf objects:
+</p>
+<ul>
+<li>
+Resource: for example printers and GPOs
+
+<li>
+Security principles: user or computer account and groups. These kind of objects are assigned unique SID's (Security Identifiers)
+
+</ul>
+<p>
+Each object in the AD has a set of attributes, describing their caharacteristics
+</p>
+
+<p>
+Objects in the AD can be accessed by LDAP (Lightweight Directory Access Protocol)
+</p>
+
+<div id="Security Principles"><h1 id="Security Principles" class="header"><a href="#Security Principles">Security Principles</a></h1></div>
+
+<p>
+There are 3 keys - CIA - Confidentiality, Integrity, Availability
+</p>
+
+<p>
+Confidentiality:
+</p>
+<ul>
+<li>
+Ability to hide information form unathorized people -&gt; encryption
+
+</ul>
+<p>
+Integrity:
+</p>
+<ul>
+<li>
+Ability to ensure that dat acannot be modified by unathorized or undetected manner -&gt; digital signature
+
+</ul>
+<p>
+Availability:
+</p>
+<ul>
+<li>
+Ensure that data is available when it is needed -&gt; prevent DoS attacks, and use of high availabvle systems
+
+</ul>
+<div id="Security Principles-Certificates"><h2 id="Certificates" class="header"><a href="#Security Principles-Certificates">Certificates</a></h2></div>
+
+<p>
+There are multiple types of encryption and etc. One of the most used ones is Private and Shared key encryption. To check whether a key is actually made correctly, there is such a thing as trusted thirst party issued CA certificate
+</p>
+
+<p>
+One of such is a X.509 standart!
+</p>
+
+<p>
+Every certificate has a digital signature, created with the private key of the CA.
+</p>
+
+<p>
+SSL (Secure Socket Layer) is also another example of encryption, which we for example use for the HTTPS.
+</p>
+
+<div id="Windows: Users and Groups"><h1 id="Windows: Users and Groups" class="header"><a href="#Windows: Users and Groups">Windows: Users and Groups</a></h1></div>
+
+<p>
+There are 2 main types of users in Windows:
+</p>
+
+<p>
+Local user accounts:
+</p>
+<ul>
+<li>
+are creatd on a member server or a windows-client
+
+<li>
+can only be used to log on locally on the computer on which the accounts are created
+
+</ul>
+<p>
+Domain user accounts:
+</p>
+<ul>
+<li>
+are created on a domain
+
+<li>
+can only be used to log on the domain
+
+</ul>
+<div id="Windows: Users and Groups-User accounts storage"><h2 id="User accounts storage" class="header"><a href="#Windows: Users and Groups-User accounts storage">User accounts storage</a></h2></div>
+
+<p>
+Local User accounts information is stored in the SAM (Security Accounts Manager) database on the local computer
+</p>
+
+<p>
+Domain user account information is stored in the Active Directory database
+</p>
+
+<div id="Windows: Users and Groups-SID's"><h2 id="SID's" class="header"><a href="#Windows: Users and Groups-SID's">SID's</a></h2></div>
+
+<p>
+Every user, computer and group account has a SID (Security Identifier), used by Windows when dealing with accounts internally (example - granting or denying access and privileges).
+</p>
+
+<div id="Windows: Users and Groups-GUIDs"><h2 id="GUIDs" class="header"><a href="#Windows: Users and Groups-GUIDs">GUIDs</a></h2></div>
+
+<p>
+Each object in the Active Directory  has a unique 128 bit GUID (Globally Unique Identifier) to identify the object in the AD
+</p>
+
+<div id="Windows: Users and Groups-User Profile Types"><h2 id="User Profile Types" class="header"><a href="#Windows: Users and Groups-User Profile Types">User Profile Types</a></h2></div>
+
+<p>
+Local user profile:
+</p>
+<ul>
+<li>
+is stored on the local computer
+
+<li>
+changes are specific to the computer on which you made the changes
+
+<li>
+useful for users with personal computer
+
+</ul>
+<p>
+Roaming user profile:
+</p>
+<ul>
+<li>
+is stored on a server
+
+<li>
+is available every time you log on to any computer of the domain changes are updated onm the server
+
+<li>
+is cached locally by default (bad, should be disabled?)
+
+<li>
+useful for uysers without a personal computer
+
+</ul>
+<p>
+Mandatory user profile:
+</p>
+<ul>
+<li>
+is a special form of a roaming profile
+
+<li>
+changes are NOT updated on the server
+
+<li>
+useful for kiosks
+
+</ul>
+<div id="Windows: Users and Groups-Permission Inheritance"><h2 id="Permission Inheritance" class="header"><a href="#Windows: Users and Groups-Permission Inheritance">Permission Inheritance</a></h2></div>
+
+<p>
+When you set NTFS permissions on a folder, by defualt those permissions appply to this folder, subfolders and files of that folder -&gt; inherited permissions!
+</p>
+
+<p>
+Inherited permissions are shaded in the GUI, explicit permissions are not shaded
+</p>
+
+<p>
+You can disable the inheritance on the folder via the properties of the folder
+</p>
+
+<p>
+You can convert inherited permissions on a file or folder into explicit permissions via the properties of that file or folder.
+</p>
+
+<p>
+The hierarchy of precedence for the permissions can be summarized as follows:
+</p>
+<ul>
+<li>
+Explicit Deny
+
+<li>
+Explicit Allow
+
+<li>
+Inherited Deny
+
+<li>
+Inherited Allow
+
+</ul>
+<p>
+Explicit &gt; Inherited
+</p>
+
+<p>
+As a consequence, eplicit allow permissions take precedence over inherited deny permissions!
+</p>
+
+</body>
+</html>

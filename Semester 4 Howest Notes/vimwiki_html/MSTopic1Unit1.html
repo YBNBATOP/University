@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="Stylesheet" type="text/css" href="style.css">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="rss.xml">
+<title>MSTopic1Unit1</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<div id="Introduction to Kotlin"><h1 id="Introduction to Kotlin" class="header"><a href="#Introduction to Kotlin">Introduction to Kotlin</a></h1></div>
+
+<div id="Introduction to Kotlin-Preword"><h2 id="Preword" class="header"><a href="#Introduction to Kotlin-Preword">Preword</a></h2></div>
+
+<p>
+We will make use of Jetpack Compose ot build UI's, we will learn how to build Android apps, and also <code>Kotlin</code> as a programming language, to develop these apps. 
+</p>
+
+<div id="First program in Kotlin"><h1 id="First program in Kotlin" class="header"><a href="#First program in Kotlin">First program in Kotlin</a></h1></div>
+
+<p>
+This is how a basic Hello World looks in Kotling
+</p>
+
+<pre kotlin>
+fun main() {
+	println("Hello, World!")
+}
+</pre>
+
+<p>
+It is important to notice the strucuture:
+</p>
+<ul>
+<li>
+fun, which is the same as function
+
+<li>
+main, which is the name of the function
+
+<li>
+body of the function
+
+<li>
+maintain indenting!
+
+<li>
+do not forget to wrap with {}
+
+<li>
+inputs go inside the main()
+
+</ul>
+<p>
+Style guide:
+</p>
+<ul>
+<li>
+space after function (name() {)
+
+<li>
+indenting 
+
+<li>
+align vertically
+
+</ul>
+<p>
+It is important to have one operation per line, like here:
+</p>
+<pre kotlin>
+fun main() {
+    println("Cloudy") 
+    println("Partly Cloudy")
+    println("Windy")
+}
+</pre>
+
+<p>
+Overall, just remember that is looks similar to any JS program and maybe a bit of python
+</p>
+
+<div id="Variables in Kotlin"><h1 id="Variables in Kotlin" class="header"><a href="#Variables in Kotlin">Variables in Kotlin</a></h1></div>
+
+<p>
+Variable - container for a single piece of data (or boxes that you label, and then the contents are the same as the name itself)
+</p>
+
+<p>
+You first define the variable, and then you will be able to call it. You uniquely identify a variable by its name.
+</p>
+
+<div id="Variables in Kotlin-Data types"><h2 id="Data types" class="header"><a href="#Variables in Kotlin-Data types">Data types</a></h2></div>
+
+<ul>
+<li>
+String - Text
+
+<li>
+Int - Integer number
+
+<li>
+Double - Decimal number
+
+<li>
+Float - Decimal number, less precise than double, and has f or F at the end of the number
+
+<li>
+Boolean - true or false
+
+</ul>
+<div id="Variables in Kotlin-Variable declaration"><h2 id="Variable declaration" class="header"><a href="#Variables in Kotlin-Variable declaration">Variable declaration</a></h2></div>
+
+<p>
+This is how to define a variable in Kotlin:
+</p>
+<pre kotlin>
+fun main() {
+	val count: Int = 2
+	println(count)
+</pre>
+
+<p>
+In the case above, you specify <code>val</code>, which is like const, and then you say the name, data type, and value (looks like Java)
+</p>
+
+<p>
+You can use your variables inside the print statements:
+</p>
+<pre kotlin>
+fun main() {
+	val count: Int = 2
+	println("You have this many $count unread messages")
+}
+</pre>
+
+<p>
+This reminds of JS with its usage of variables inside, but here you can just use the $name and get the value of the variable itself
+</p>
+
+<p>
+Also, you can do some calculations wiht the variables:
+</p>
+<pre kotlin>
+fun main() {
+    val unreadCount = 5
+    val readCount = 100
+    println("You have ${unreadCount + readCount} total messages in your inbox.")
+}
+</pre>
+
+<p>
+Inside the ${} you can do operations that you need.
+</p>
+
+<p>
+<span id="Variables in Kotlin-Variable declaration-Important note"></span><strong id="Important note">Important note</strong>: You should specify the type of the variable if you do not provide the value from the beginning. Otherwise, you can just do <code>val name = 2</code> and it will automatically understand what kind of data type it is. 
+</p>
+
+<p>
+Another example:
+</p>
+<pre kotlin>
+fun main() {
+    val numberOfPhotos = 100
+    val photosDeleted = 10
+    println("$numberOfPhotos photos")
+    println("$photosDeleted photos deleted")
+    println("${numberOfPhotos - photosDeleted} photos left")
+}
+</pre>
+
+<div id="Variables in Kotlin-Update variable"><h2 id="Update variable" class="header"><a href="#Variables in Kotlin-Update variable">Update variable</a></h2></div>
+
+<p>
+If you try to do something like this:
+</p>
+<pre kotlin>
+fun main() {
+    val cartTotal = 0
+    cartTotal = 20
+    println("Total: $cartTotal")
+}
+</pre>
+
+<p>
+You will fail, as you cannot reassign anything to <code>val</code>. Hence, we are going to make use of <code>var</code>, which is something like let in JS.
+</p>
+
+<p>
+This would work, for example:
+</p>
+<pre kotlin>
+fun main() {
+    var cartTotal = 0
+    println("Total: $cartTotal")
+
+    cartTotal = 20
+    println("Total: $cartTotal")
+}
+// output is 0
+// outpus is 20
+</pre>
+
+<p>
+This will work aswell:
+</p>
+<pre kotlin>
+fun main() {
+    var count = 10
+    println("You have $count unread messages.")
+    count = count + 1
+    println("You have $count unread messages.")
+}
+</pre>
+
+<div id="Variables in Kotlin-Other data types"><h2 id="Other data types" class="header"><a href="#Variables in Kotlin-Other data types">Other data types</a></h2></div>
+
+<p>
+Do not forget that you have a bunch of other data types
+</p>
+
+<p>
+Here is an example with Double:
+</p>
+<pre kotlin>
+fun main() {
+    val trip1: Double = 3.20
+    val trip2: Double = 4.10
+    val trip3: Double = 1.72
+    val totalTripLength: Double = trip1 + trip2 + trip3
+    println("$totalTripLength miles left to destination")
+}
+
+// output: 9.02 miles left to destination
+</pre>
+
+<p>
+Do not forget that in the case above it will also work if you simply asign the values without the types!
+</p>
+
+<pre kotlin>
+fun main() {
+    val nextMeeting = "Next meeting:"
+    val date = "January 1"
+    val reminder = nextMeeting + date
+    println(reminder)
+}
+</pre>
+<p>
+Also, check this out, this is String concatenation!
+</p>
+
+<p>
+Additionally, you should know that you can escape some characters that are needed as output:
+</p>
+
+<pre kotlin>
+fun main() {
+    println("Say \"hello\"")
+}
+//output: Say "hello"
+</pre>
+
+<p>
+Here is an example of some boolean!
+</p>
+
+<pre kotlin>
+fun main() {
+    val notificationsEnabled: Boolean = false
+    println("Are notifications enabled? " + notificationsEnabled)
+}
+//output: Are notifications enabled? false
+</pre>
+
+<p>
+Some important conventions:
+</p>
+<ul>
+<li>
+val discount: Double = .20
+
+<li>
+var pet = "bird"
+
+<li>
+val sum = 1 + 2
+
+</ul>
+<p>
+Do not forget that you can also add comments!
+</p>
+
+<pre kotlin>
+/**
+ * This program displays the number of messages
+ * in the user's inbox.
+ */
+fun main() {
+    // Create a variable for the number of unread messages.
+    var count = 10
+    println("You have $count unread messages.")
+
+    // Decrease the number of messages by 1.
+    count--
+    println("You have $count unread messages.")
+}
+</pre>
+
+<div id="Variables in Kotlin-Summary"><h2 id="Summary" class="header"><a href="#Variables in Kotlin-Summary">Summary</a></h2></div>
+
+
+<ul>
+<li>
+A variable is a container for a single piece of data.
+
+<li>
+You must declare a variable first before you use it.
+
+<li>
+Use the val keyword to define a variable that is read-only where the value cannot change once it's been assigned.
+
+<li>
+Use the var keyword to define a variable that is mutable or changeable.
+
+<li>
+In Kotlin, it's preferred to use val over var when possible.
+
+<li>
+To declare a variable, start with the val or var keyword. Then specify the variable name, data type, and initial value. For example: val count: Int = 2.
+
+<li>
+With type inference, omit the data type in the variable declaration if an initial value is provided.
+
+<li>
+Some common basic Kotlin data types include: Int, String, Boolean, Float, and Double.
+
+<li>
+Use the assignment operator (=) to assign a value to a variable either during declaration of the variable or updating the variable.
+
+<li>
+You can only update a variable that has been declared as a mutable variable (with var).
+
+<li>
+Use the increment operator (++) or decrement operator (--) to increase or decrease the value of an integer variable by 1, respectively.
+
+<li>
+Use the + symbol to concatenate strings together. You can also concatenate variables of other data types like Int and Boolean to Strings.
+
+</ul>
+<div id="Functions in Kotlin"><h1 id="Functions in Kotlin" class="header"><a href="#Functions in Kotlin">Functions in Kotlin</a></h1></div>
+
+<p>
+Basic information:
+</p>
+<ul>
+<li>
+Declaring a function uses the <code>fun</code> keyword and contains the body of what needs to happen
+
+</ul>
+<p>
+All the examples were written in the <code>main()</code> function, but it is like a <code>psvm</code> in Java, that executes automatically. Hence, you need to create other functions, and then you will be able to call other functions to actually be called from the main() 
+</p>
+
+<p>
+Like this: 
+</p>
+<pre kotlin>
+fun main() {
+    birthdayGreeting()
+}
+
+fun birthdayGreeting() {
+    println("Happy Birthday, Rover!")
+    println("You are now 5 years old!")
+}
+// Happy Birthday, Rover!
+// You are now 5 years old!
+</pre>
+
+<div id="Functions in Kotlin-Returning a value"><h2 id="Returning a value" class="header"><a href="#Functions in Kotlin-Returning a value">Returning a value</a></h2></div>
+
+<p>
+Functions in Kotlin can as well specify what type they return. There are of course multiple types.
+</p>
+
+<p>
+To specify a retunr type, you should do something similar to values:
+</p>
+<pre kotlin>
+fun main() {
+	birthdayGreeting()
+}
+
+fun birthdayGreeting(): Unit {
+	println("Happy birthday, Rover!")
+}
+
+</pre>
+
+<p>
+Most important it is just to remember to use the ":" and then the type you need.
+</p>
+
+<p>
+<span id="Functions in Kotlin-Returning a value-Unit"></span><strong id="Unit">Unit</strong> is a special type, used for when you return no values.
+</p>
+
+<p>
+But, if it would be anything else, then you need a return statement.
+</p>
+
+<pre kotlin>
+
+fun main() {
+	val greeting = birthdayGreeting()
+	println(greeting)
+}	
+
+fun birthdayGreeting(): String {
+    val nameGreeting = "Happy Birthday, Rover!"
+    val ageGreeting = "You are now 5 years old!"
+    return "$nameGreeting\n$ageGreeting"
+}
+
+</pre>
+
+<div id="Functions in Kotlin-Asking for a parameter"><h2 id="Asking for a parameter" class="header"><a href="#Functions in Kotlin-Asking for a parameter">Asking for a parameter</a></h2></div>
+
+<p>
+You can also pass arguments to the functions, just like this:
+</p>
+
+
+<pre kotlin>
+
+fun main() {
+	val greeting = birthdayGreeting("Rover")
+	println(greeting)
+}	
+
+fun birthdayGreeting(name: String): String {
+    val nameGreeting = "Happy Birthday, $name!"
+    val ageGreeting = "You are now 5 years old!"
+    return "$nameGreeting\n$ageGreeting"
+}
+
+</pre>
+
+<pre kotlin>
+
+fun main() {
+	val greeting = birthdayGreeting("Rover", 5)
+	println(greeting)
+}	
+
+fun birthdayGreeting(name: String, age: Int): String {
+    val nameGreeting = "Happy Birthday, $name!"
+    val ageGreeting = "You are now $age years old!"
+    return "$nameGreeting\n$ageGreeting"
+}
+
+</pre>
+
+<p>
+This way you can give your functions some input, and get some output.
+</p>
+
+<p>
+So how it looks:
+</p>
+
+<pre kotlin>
+fun nameOfFunction(parameter: Type): ReturnType {
+	//computation
+	return value
+}
+</pre>
+
+<p>
+You can also put the arguments in a way that you want, like this:
+</p>
+
+
+<pre kotlin>
+
+fun main() {
+	val greeting = birthdayGreeting(age = 5, name = "Rover")
+	println(greeting)
+}	
+
+fun birthdayGreeting(name: String, age: Int): String {
+    val nameGreeting = "Happy Birthday, $name!"
+    val ageGreeting = "You are now $age years old!"
+    return "$nameGreeting\n$ageGreeting"
+}
+
+</pre>
+
+<p>
+You can also have default values for the parameters, like this:
+</p>
+
+<pre kotlin>
+
+fun main() {
+	val greeting = birthdayGreeting(age = 5)
+	println(greeting)
+}	
+
+fun birthdayGreeting(name: String = "Rover", age: Int): String {
+    val nameGreeting = "Happy Birthday, $name!"
+    val ageGreeting = "You are now $age years old!"
+    return "$nameGreeting\n$ageGreeting"
+}
+</pre>
+
+<p>
+But also, do not forget to then change the value to a specific one, otherwise it will break (so you dont try to put a string into a Int. Maintain order!)
+</p>
+
+</body>
+</html>

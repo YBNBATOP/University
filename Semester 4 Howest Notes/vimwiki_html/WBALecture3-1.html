@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="Stylesheet" type="text/css" href="style.css">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="rss.xml">
+<title>WBALecture3-1</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<div id="Lets learn some tools for the base!"><h1 id="Lets learn some tools for the base!" class="header"><a href="#Lets learn some tools for the base!">Lets learn some tools for the base!</a></h1></div>
+
+<p>
+So, it such happens, that in order to work good - you need to know your tools.
+</p>
+
+<p>
+Such tools for us are like, the browser, and burp. For us - that is the holy grail!
+</p>
+
+<p>
+== Browser =
+</p>
+
+<p>
+Different browsers, have different behaviour! Hence, we have a bunch of different engines that exist:
+</p>
+<ul>
+<li>
+Gecko
+
+<li>
+Webkit
+
+<li>
+Blink
+
+</ul>
+<p>
+Important thing, is that, What You See, is not always What You Get. Like different resources can not get one line the same thing. Though, for example a good and stable thing would be the firefox inspector, which actually shows something in a better way. 
+</p>
+
+<p>
+<span id="Lets learn some tools for the base!-TIP"></span><strong id="TIP">TIP</strong>: A better way is select the needed text, and then right-click -&gt; view selection source, and you can get a more accurate view!
+</p>
+
+<p>
+<span id="Lets learn some tools for the base!-TIP"></span><strong id="TIP">TIP</strong>: Another tip, is - to represnt the javascript, there are really a lot of ways to do that. One of the, is doing "javascript:alert(1)". Another way I found in brutelogic exercises, is for the parameters of the functions, to use "-alert(1)-", the dashes play the important role, and sometimes it requires to be wrapped with apostrophees.
+</p>
+
+<div id="Lets learn some tools for the base!-Burp Suite"><h2 id="Burp Suite" class="header"><a href="#Lets learn some tools for the base!-Burp Suite">Burp Suite</a></h2></div>
+
+<div id="Lets learn some tools for the base!-Burp Suite-Burp Suite Dashboard"><h3 id="Burp Suite Dashboard" class="header"><a href="#Lets learn some tools for the base!-Burp Suite-Burp Suite Dashboard">Burp Suite Dashboard</a></h3></div>
+
+<p>
+There are multiple things you can do with it!
+</p>
+
+<ul>
+<li>
+Overview of scans
+
+<li>
+Overview of issues
+
+<li>
+Overview of events
+
+<li>
+Additional info for found issues
+
+</ul>
+<p>
+We did not use it that much, but it should be interesting to check it eventually.
+</p>
+
+<div id="Lets learn some tools for the base!-Burp Suite-Burp Suite Target"><h3 id="Burp Suite Target" class="header"><a href="#Lets learn some tools for the base!-Burp Suite-Burp Suite Target">Burp Suite Target</a></h3></div>
+
+<p>
+Here we can see:
+</p>
+<ul>
+<li>
+Site map
+
+<li>
+Request/Response details
+
+<li>
+Warning: Deduplication!
+
+</ul>
+<div id="Lets learn some tools for the base!-Burp Suite-Burp Suite Proxy"><h3 id="Burp Suite Proxy" class="header"><a href="#Lets learn some tools for the base!-Burp Suite-Burp Suite Proxy">Burp Suite Proxy</a></h3></div>
+
+<p>
+A very useful one, if you want things to be done manually.
+</p>
+
+<p>
+Here you can:
+</p>
+<ul>
+<li>
+Proxy intercept
+
+<li>
+Change requests/responses on-the-fly
+
+</ul>
+<p>
+Though, HTTP History muight be more useful as you can color the requests and send them directly to a repeater/intruder etc.
+</p>
+
+<div id="Lets learn some tools for the base!-Burp Suite-Burp Suite Intruder"><h3 id="Burp Suite Intruder" class="header"><a href="#Lets learn some tools for the base!-Burp Suite-Burp Suite Intruder">Burp Suite Intruder</a></h3></div>
+
+<p>
+Mighe be useful as a brute force attack generator for a small payload.
+</p>
+
+<ul>
+<li>
+Perform different attack types on request
+
+<li>
+Throttled in community, still useful
+
+<li>
+Ability to perform active scans on defined payload position (pro)
+
+</ul>
+<div id="Lets learn some tools for the base!-Burp Suite-Burp Suite Repeater"><h3 id="Burp Suite Repeater" class="header"><a href="#Lets learn some tools for the base!-Burp Suite-Burp Suite Repeater">Burp Suite Repeater</a></h3></div>
+
+<ul>
+<li>
+Manual investigation of single request
+
+<li>
+Exploitation phase
+
+</ul>
+<div id="Lets learn some tools for the base!-Burp Suite-Burp Suite Decoder"><h3 id="Burp Suite Decoder" class="header"><a href="#Lets learn some tools for the base!-Burp Suite-Burp Suite Decoder">Burp Suite Decoder</a></h3></div>
+
+<p>
+Self explanatory, and can do decoding, encoding, chaining, and etc.
+</p>
+
+<p>
+<span id="Lets learn some tools for the base!-Burp Suite-Burp Suite Decoder-TIP"></span><strong id="TIP">TIP</strong>: There can be a lot of settings specified in the burp suite, like Match&amp;Replace rules, or maybe your own hotkey rules, or maybe you want to install extenstions like paraminer? (which will be able to make your requests way smaller than the original ones, and space it only to the most essential ones)
+</p>
+
+<p>
+Also, make sure to use the tabs like in repeater in the according way, since it is really useful. Also, you can rename them.
+</p>
+
+</body>
+</html>

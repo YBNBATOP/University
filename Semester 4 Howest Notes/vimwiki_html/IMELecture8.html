@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="Stylesheet" type="text/css" href="style.css">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="rss.xml">
+<title>IMELecture8</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<div id="HTTP basics"><h1 id="HTTP basics" class="header"><a href="#HTTP basics">HTTP basics</a></h1></div>
+
+<div id="HTTP basics-Status codes"><h2 id="Status codes" class="header"><a href="#HTTP basics-Status codes">Status codes</a></h2></div>
+
+<p>
+Response statuses indicate whether the request was a success or not. 
+</p>
+
+<p>
+There are a couple of classes of them:
+</p>
+<ul>
+<li>
+100-199 - informational
+
+<li>
+200-299 - successful
+
+<li>
+300-399 - redirection
+
+<li>
+400-499 - client error
+
+<li>
+500-599 - server error
+
+</ul>
+<div id="HTTP basics-Verbs and reponses"><h2 id="Verbs and reponses" class="header"><a href="#HTTP basics-Verbs and reponses">Verbs and reponses</a></h2></div>
+
+<ul>
+<li>
+POST - create functionality
+
+<li>
+GET - read
+
+<li>
+PUT - update
+
+<li>
+PATCH - modify (partial)
+
+<li>
+DELETE - delete
+
+</ul>
+<div id="Semantics for our modelling"><h1 id="Semantics for our modelling" class="header"><a href="#Semantics for our modelling">Semantics for our modelling</a></h1></div>
+
+<p>
+In general we use the plural form of the noun in our endpoints.
+</p>
+
+<p>
+(/games, /books/, /books/{book-id}, /events, /history/{timestamp} and etc.)
+</p>
+
+<p>
+Also, we need to use proper parameters.
+</p>
+
+<p>
+There are some type of them:
+</p>
+<ul>
+<li>
+Query parameters (/comments?from=....)
+
+<li>
+Path parameters (/book/{book-id}/...)
+
+<li>
+Header parameters (like application/json parameters when fetching in JS)
+
+<li>
+Request body (obv the data sent inside)
+
+</ul>
+<div id="Async vs Sync"><h1 id="Async vs Sync" class="header"><a href="#Async vs Sync">Async vs Sync</a></h1></div>
+
+<p>
+Sync - communication in real time between 2 or more entities
+</p>
+
+<p>
+Async - communication where you do not need an immediate response from your peers
+</p>
+
+<div id="HTTP/HTTP2/WebSockets"><h1 id="HTTP/HTTP2/WebSockets" class="header"><a href="#HTTP/HTTP2/WebSockets">HTTP/HTTP2/WebSockets</a></h1></div>
+
+<p>
+<span id="HTTP/HTTP2/WebSockets-HTTP"></span><strong id="HTTP">HTTP</strong> - No concurrent requests over a single connection, multiple connections required sequentially
+</p>
+
+<p>
+<span id="HTTP/HTTP2/WebSockets-HTTP2"></span><strong id="HTTP2">HTTP2</strong> - Multiple requests at the same time, binary instead of plain text
+</p>
+
+<p>
+<span id="HTTP/HTTP2/WebSockets-WebSockets"></span><strong id="WebSockets">WebSockets</strong> - Full duplex communication over TCP/IP, real-time results
+</p>
+
+</body>
+</html>

@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="Stylesheet" type="text/css" href="style.css">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="rss.xml">
+<title>OSCLecture2</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<div id="Recap OS"><h1 id="Recap OS" class="header"><a href="#Recap OS">Recap OS</a></h1></div>
+
+<p>
+Define OS:
+</p>
+<ul>
+<li>
+Hard to define
+
+<li>
+It's a manager for a lot of stuff
+
+<li>
+The link between the software we create in programming languages and the processes sharing hardware.
+
+<li>
+Something about kernelspace and userspace
+
+<li>
+In charge of making sure the system operates correctly and efficiently in an easy-to-use manner
+
+<li>
+Layers-on-layers
+
+</ul>
+<div id="A bit of history"><h1 id="A bit of history" class="header"><a href="#A bit of history">A bit of history</a></h1></div>
+
+<p>
+Usually there was only one server that would fit all the needs (but that is about the dark ages)
+Then there was enlightment, and there were separate servers for every need.
+</p>
+
+<p>
+Then People thought of having a server, and virtualization
+</p>
+
+<p>
+Then, the great mind thought of having virtualization along with containers.
+</p>
+
+<p>
+That is why Cloud computing was invented.
+</p>
+
+<div id="Cloud: intro"><h1 id="Cloud: intro" class="header"><a href="#Cloud: intro">Cloud: intro</a></h1></div>
+
+<p>
+The Amazon was the first provider of cloud computing. It appeared because Amazon had a lot of power, which was idle, hence they decided to rent it for a price/sell it to the outer world.
+</p>
+
+<p>
+Features of cloud computing:
+</p>
+
+<ul>
+<li>
+Only pay for what you use
+
+<li>
+It is an automated system
+
+<li>
+Things are installed already for what you need
+
+<li>
+Self service
+
+<li>
+Self maintainable
+
+<li>
+Available
+
+<li>
+Security embedded
+
+</ul>
+<p>
+There is a major differemnce in what you need to do yourself, and what is provided. 
+</p>
+
+<p>
+On premise - you need to do everything yourself
+Infrastructure - harware comes from the vendor!
+Platform - everything except the application and the data
+Software - fully comes as a service (like office)
+</p>
+
+<div id="Cloud: intro-Egress vs Ingress"><h2 id="Egress vs Ingress" class="header"><a href="#Cloud: intro-Egress vs Ingress">Egress vs Ingress</a></h2></div>
+
+<p>
+Egress:
+</p>
+<ul>
+<li>
+Outbound data: from the inside to the outside world
+
+<li>
+Watch out: in a lot of cases impact on the bill!
+
+</ul>
+<p>
+Ingress:
+</p>
+<ul>
+<li>
+Inbound data: from outside to the inside instance
+
+</ul>
+<p>
+Taking something into the cloud is easy and cheap.
+But taking out of the cloud will cost you more!
+</p>
+
+<div id="Cloud: intro-Scalling"><h2 id="Scalling" class="header"><a href="#Cloud: intro-Scalling">Scalling</a></h2></div>
+
+<p>
+You can scale vertically:
+</p>
+<ul>
+<li>
+Making the thing bigger
+
+<ul>
+<li>
+Adding more memory, cpu, storage
+
+<li>
+Has a limit
+
+</ul>
+</ul>
+<p>
+You can scale horizontally
+</p>
+<ul>
+<li>
+Don't make 1 VM bigger -&gt; Create more VMs
+
+<ul>
+<li>
+Distrubute the workload
+
+<li>
+Load balancing
+
+</ul>
+</ul>
+<div id="Cloud: intro-Containerization"><h2 id="Containerization" class="header"><a href="#Cloud: intro-Containerization">Containerization</a></h2></div>
+
+<p>
+Docker comes in play!
+</p>
+
+<ul>
+<li>
+Smaller footprint
+
+<li>
+Less resources
+
+<li>
+Faster
+
+<li>
+Lot of cases it doesn't matter for the user 
+
+</ul>
+<p>
+Though, you need an orchestrator to maintain all of the containers (like Kubernetes)
+</p>
+
+<p>
+There already exist a bunch of stacks, which you can work with!
+LAMP, WAMP, PERN, MERN!
+</p>
+
+<div id="Cloud: intro-Caveats of Cloud computing"><h2 id="Caveats of Cloud computing" class="header"><a href="#Cloud: intro-Caveats of Cloud computing">Caveats of Cloud computing</a></h2></div>
+
+<ul>
+<li>
+Vendor lock-in = making sure it is hard for oyu to leave!
+
+<li>
+Management = not easy to manage all groups &amp; users
+
+<li>
+Abstraction = One-click-solutions are eays but do you know what they do?
+
+<li>
+The easier the automation, the easier it is to forget to secure the "stuff"
+
+<li>
+Overwhelming
+
+</ul>
+<div id="Docker"><h1 id="Docker" class="header"><a href="#Docker">Docker</a></h1></div>
+<p>
+The advantage between VM and container, is that you processes are running in a container process which uses certain libraries, and runs on a single kernel user space!
+</p>
+
+<table>
+<thead>
+<tr>
+<th>
+Traditional Software
+</th>
+<th>
+Docker Equivalent
+</th>
+<th>
+Docker command
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Find software
+</td>
+<td>
+Docekr Hub
+</td>
+<td>
+&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+Download software
+</td>
+<td>
+Pull an image
+</td>
+<td>
+docker pull
+</td>
+</tr>
+<tr>
+<td>
+Start software
+</td>
+<td>
+Run the container
+</td>
+<td>
+docker start
+</td>
+</tr>
+<tr>
+<td>
+Stop software
+</td>
+<td>
+Stop the container
+</td>
+<td>
+docker stop
+</td>
+</tr>
+<tr>
+<td>
+Uninstall software
+</td>
+<td>
+Remove the container
+</td>
+<td>
+docker rm
+</td>
+</tr>
+<tr>
+<td>
+Not possible
+</td>
+<td>
+Do all of this with one command!
+</td>
+<td>
+docker run
+</td>
+</tr>
+</tbody>
+</table>
+
+<div id="Docker-What are containers?"><h2 id="What are containers?" class="header"><a href="#Docker-What are containers?">What are containers?</a></h2></div>
+
+<p>
+Containers are just isolated processes!
+</p>
+
+<p>
+It is a operating system virtualization in other words.
+</p>
+
+<p>
+The CPU is isolated
+The memory is almost isolated
+Privelege are also almost isolated
+</p>
+
+<p>
+Docker is a tool set to manage containers
+</p>
+<ul>
+<li>
+It has pre-defined images from repositories
+
+<li>
+Deploys containers
+
+<li>
+Etc.
+
+</ul>
+<p>
+Docker commands
+<table>
+<thead>
+<tr>
+<th>
+Command
+</th>
+<th>
+Description
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+docker pull &lt;image&gt;
+</td>
+<td>
+Download image
+</td>
+</tr>
+<tr>
+<td>
+docker run &lt;image&gt;
+</td>
+<td>
+Start a container based on the image (and pull it automatically if necessary
+</td>
+</tr>
+<tr>
+<td>
+docker iamges
+</td>
+<td>
+List downloaded images
+</td>
+</tr>
+<tr>
+<td>
+docker ps
+</td>
+<td>
+List all runnning containers
+</td>
+</tr>
+<tr>
+<td>
+dokcer ps -a
+</td>
+<td>
+List all containers (also the ones not running)
+</td>
+</tr>
+<tr>
+<td>
+docker help
+</td>
+<td>
+To dinf out all other commands
+</td>
+</tr>
+</tbody>
+</table>
+</p>
+
+<p>
+Linux uses LXC and LXD for containerization
+</p>
+
+<p>
+Windows 10 uses Hyper-V in the background, but it is not really good for the virtualization because it gives an additional security layer, and since it is used by both the Host OS and Guest OS, it actually slows the VMs.
+</p>
+
+</body>
+</html>

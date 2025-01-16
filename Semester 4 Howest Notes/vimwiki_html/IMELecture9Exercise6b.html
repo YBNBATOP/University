@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="Stylesheet" type="text/css" href="style.css">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="rss.xml">
+<title>IMELecture9Exercise6b</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<p>
+Navigate to the site below and do the exercises according to the text.
+</p>
+
+<p>
+<a href="https://countries.trevorblades.com/">https://countries.trevorblades.com/</a>
+</p>
+
+<div id="Retrieve the names (in English) of all countries"><h1 id="Retrieve the names (in English) of all countries" class="header"><a href="#Retrieve the names (in English) of all countries">Retrieve the names (in English) of all countries</a></h1></div>
+
+<pre graphql>
+query {
+  countries {
+    name
+  }
+}
+</pre>
+
+<div id="Retrieve the names (in English and in the country's native language(s)) of all countries"><h1 id="Retrieve the names (in English and in the country's native language(s)) of all countries" class="header"><a href="#Retrieve the names (in English and in the country's native language(s)) of all countries">Retrieve the names (in English and in the country's native language(s)) of all countries</a></h1></div>
+
+<pre graphql>
+query {
+  countries {
+    name,
+    native
+  }
+}
+</pre>
+
+<div id="Retrieve the unique codes and names of all continents"><h1 id="Retrieve the unique codes and names of all continents" class="header"><a href="#Retrieve the unique codes and names of all continents">Retrieve the unique codes and names of all continents</a></h1></div>
+
+<pre graphql>
+query {
+  continents {
+    code,
+    name
+  }
+}
+</pre>
+
+<div id="Retrieve the names (in English and in the country's native language(s)) of all countries on the European continent"><h1 id="Retrieve the names (in English and in the country's native language(s)) of all countries on the European continent" class="header"><a href="#Retrieve the names (in English and in the country's native language(s)) of all countries on the European continent">Retrieve the names (in English and in the country's native language(s)) of all countries on the European continent</a></h1></div>
+
+<pre graphql>
+query {
+  continents(filter: {
+    code: {
+      eq: "EU"
+    }
+  }) {
+    countries {
+      name,
+      native
+    }
+  }
+}
+</pre>
+
+<div id="Retrieve the names of the official languages (both in English and in the language itself) of Belgium"><h1 id="Retrieve the names of the official languages (both in English and in the language itself) of Belgium" class="header"><a href="#Retrieve the names of the official languages (both in English and in the language itself) of Belgium">Retrieve the names of the official languages (both in English and in the language itself) of Belgium</a></h1></div>
+
+<pre graphql>
+query {
+  country(code: "BE") {
+  	languages {
+      name,
+      native
+    }
+  }
+}
+</pre>
+
+<div id="Retrieve the English names of the countries having the Euro as currency"><h1 id="Retrieve the English names of the countries having the Euro as currency" class="header"><a href="#Retrieve the English names of the countries having the Euro as currency">Retrieve the English names of the countries having the Euro as currency</a></h1></div>
+
+<pre graphql>
+query {
+  countries(filter: {
+    currency: {
+      in: "EUR"
+    }
+  }) {
+    name
+  }
+}
+</pre>
+
+<div id="Retrieve names of countries and their capital (both in English) of all countries having the Euro or British Pound as currency"><h1 id="Retrieve names of countries and their capital (both in English) of all countries having the Euro or British Pound as currency" class="header"><a href="#Retrieve names of countries and their capital (both in English) of all countries having the Euro or British Pound as currency">Retrieve names of countries and their capital (both in English) of all countries having the Euro or British Pound as currency</a></h1></div>
+
+<pre graphql>
+query {
+  countries(filter: {
+    currency: {
+      in: ["EUR", "GBP"]
+    }
+  }) {
+    name,
+    currency
+  }
+}
+</pre>
+
+<div id="Retrieve the names of the countries (in English) and their flag emoji, for all countries having the Euro as currency"><h1 id="Retrieve the names of the countries (in English) and their flag emoji, for all countries having the Euro as currency" class="header"><a href="#Retrieve the names of the countries (in English) and their flag emoji, for all countries having the Euro as currency">Retrieve the names of the countries (in English) and their flag emoji, for all countries having the Euro as currency</a></h1></div>
+
+<pre graphql>
+query {
+  countries(filter: {
+    currency: {
+      in: "EUR"
+    }
+  }) {
+    name,
+    emoji
+  }
+}
+</pre>
+
+<div id="Retrieve country name, phone prefix and per individual state in that country its code and name for all countries on the entire American continent. Group per &quot;sub&quot;continent (North America and South America)."><h1 id="Retrieve country name, phone prefix and per individual state in that country its code and name for all countries on the entire American continent. Group per &quot;sub&quot;continent (North America and South America)." class="header"><a href="#Retrieve country name, phone prefix and per individual state in that country its code and name for all countries on the entire American continent. Group per &quot;sub&quot;continent (North America and South America).">Retrieve country name, phone prefix and per individual state in that country its code and name for all countries on the entire American continent. Group per "sub"continent (North America and South America).</a></h1></div>
+
+<pre graphql>
+query {
+  continents(filter: {
+    code: {
+      in: ["NA", "SA"]
+    }
+  }) {
+    name,
+    countries {
+      name,
+      phone,
+      states {
+        code,
+        name
+      }
+    }
+  }
+}
+</pre>
+
+<div id="Retrieve the name (in English) of the languages with the following codes: nl , fr , de and en ."><h1 id="Retrieve the name (in English) of the languages with the following codes: nl , fr , de and en ." class="header"><a href="#Retrieve the name (in English) of the languages with the following codes: nl , fr , de and en .">Retrieve the name (in English) of the languages with the following codes: nl , fr , de and en .</a></h1></div>
+
+<pre graphql>
+query {
+  languages(filter: {
+    code: {
+      in: ["nl", "fr", "de", "en"]
+    }
+  }) {
+    name
+  }
+}
+</pre>
+
+</body>
+</html>

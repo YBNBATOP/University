@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="Stylesheet" type="text/css" href="style.css">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="rss.xml">
+<title>OSCLecture7</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<div id="Ownership"><h1 id="Ownership" class="header"><a href="#Ownership">Ownership</a></h1></div>
+
+<p>
+To view the ownership of a file you can run <code>ls -l</code>!
+</p>
+
+<p>
+You can get 2 levels of the ownership - owner of the file and the group that can do something with the file.
+</p>
+
+<p>
+To view the owenership of a directory file you can use <code>ls -ld</code>!
+</p>
+
+<p>
+<code>stat</code> can give even more information about the file/directory itself.
+</p>
+
+<p>
+It can show information as inode! Which represents the address on the storage of where it is situated.
+</p>
+
+<p>
+You can not make hardlinks to directories, but some of directories will have 2 links, which means that it does not have subdirectories! This can be an exam question!
+</p>
+
+<p>
+It can will also show you the information about the UID (user id) and GID (group id) that comes from /etc/passwd.
+</p>
+
+<p>
+Fun fact: if you delete a user, then the number will still be there, but the name will not. If you then try to create a new user not knowing much context, then the new user can get the number of the deleted user, and get access to the file.
+</p>
+
+<p>
+Stat command can as well show modifying time on the files.
+</p>
+
+<div id="FIle ownership"><h1 id="FIle ownership" class="header"><a href="#FIle ownership">FIle ownership</a></h1></div>
+
+<p>
+When you create the file, you are the owner of it! But you can only transfer ownership as root!
+</p>
+
+<div id="Group ownership"><h1 id="Group ownership" class="header"><a href="#Group ownership">Group ownership</a></h1></div>
+
+<p>
+You can transfer the ownership aswell, but without root, by running the <code>chgrp</code> command! Of course you need to be a member of the group you want to transfer owenrship to.
+</p>
+
+<p>
+You can get into a new group by running the <code>newgrp</code> and entering the group password.
+</p>
+
+<div id="Identity information"><h1 id="Identity information" class="header"><a href="#Identity information">Identity information</a></h1></div>
+
+<p>
+To find your identity you can run the <code>whoami</code> and <code>id</code> command to find out who dafuck are you!
+</p>
+
+<p>
+You can get the <code>groups</code> you are a part of by running the command. That information comes from the /etc/group! Also rememberm that if you are addded to a group while logged in, nothing will change until you do not log out first!
+</p>
+
+<div id="Changing ownership"><h1 id="Changing ownership" class="header"><a href="#Changing ownership">Changing ownership</a></h1></div>
+
+<p>
+The <code>chown</code> command can be used by root and then the ownership is transferred. <code>chgrp</code> is the same but for groups!
+</p>
+
+<p>
+By doing <code>newgrp</code> you can change your hat of the group, but it will be like a shell in nixos which you can change afterwards. You can aswell just get out of the shell by doing <code>exit</code>.
+</p>
+
+<div id="Permissions"><h1 id="Permissions" class="header"><a href="#Permissions">Permissions</a></h1></div>
+
+<p>
+<code>ls -l</code> command actually shows you the information about the file, like the type of file (or flavor) and then the rights for the owner, group, and others! 
+</p>
+
+<p>
+The standart <code>rwx</code> mean different thing for the file and directory
+</p>
+
+<p>
+r (read):
+</p>
+<ul>
+<li>
+You can read the content of the file
+
+<li>
+You can read the content of the directroy, but you cannot access the files in the directory
+
+</ul>
+<p>
+x (execute):
+</p>
+<ul>
+<li>
+You can run a file
+
+<li>
+You can access the files of a directory
+
+</ul>
+<p>
+w (write):
+</p>
+<ul>
+<li>
+You can write only if you have the read rights!
+
+</ul>
+<p>
+The permissions are handled left to right.
+</p>
+
+<p>
+It is very important to have correct directory access so that you can actually access the files you are allowed to manipulate. Like imagine that you have wrong permissions on the directory. but you have the rights for the file of the inside.
+</p>
+
+<p>
+<code>chmod</code> is the command used to change permissions on the file/directory.
+</p>
+
+<div id="Umask command"><h1 id="Umask command" class="header"><a href="#Umask command">Umask command</a></h1></div>
+
+<p>
+There are already predefined values of permissions set by the system when you create the file/directory, that is set up by the umask. Umask means - this are the maximum permissions you can get when creating a directory, and then you can deselect the ones you do not want. By default the maximum permissions for a file is 666 (because then every file would become and executable! And we do not want this), and for the directory is 777. For instance you can set up the umask to 002 and then every file you create/directory will have 664 amd 775 rights! So it will eventually just delete permissions!
+</p>
+
+<p>
+The umask is working only for a single session! To save it for the reboots, you need to put it into the .profile of your shell!
+</p>
+
+<div id="Access Control List (ACL)"><h1 id="Access Control List (ACL)" class="header"><a href="#Access Control List (ACL)">Access Control List (ACL)</a></h1></div>
+
+<p>
+The ACL is there because other users like the rest of the world sometimes need access to the files of your webserver as an example.
+To set up the ACL, the files would need to be mounted in a special way, and then you could set that ACL with <code>setfacl</code>. By doing this, you are somehow giving multiple users on the same level - different permissions.
+</p>
+
+<div id="Setuid"><h1 id="Setuid" class="header"><a href="#Setuid">Setuid</a></h1></div>
+
+<p>
+It is mostly like a mask you put on to make a robbery. So imagine, by using that, you can execute a script, that will be ran by the "seemingly" user. You just put up a mask and pretend to be another one to execute the user.
+</p>
+
+<p>
+To find out that there is a setuid set up, you can see it as a <code>s</code> in the permissions of the file. Of course, under that <code>s</code> there is still the permission from the initial file. Like if you set the <code>x</code> and then the <code>s</code>, then you will be able to execute the file. 
+</p>
+
+<div id="Setgid"><h1 id="Setgid" class="header"><a href="#Setgid">Setgid</a></h1></div>
+
+<p>
+Works mostly like the previous one, but for a group level, and will mimic the group level of the execution. Like for example the <code>/usr/bin/wall</code> command can be run for all the tty because it has the group set up to the tty.
+</p>
+
+<p>
+That is very useful for the directories, so that the members of the same group can freely have their files shared among themselves.
+</p>
+
+<div id="Sticky bit"><h1 id="Sticky bit" class="header"><a href="#Sticky bit">Sticky bit</a></h1></div>
+
+<p>
+It works the same way as the 2 previous ones, but it will be for the others!
+</p>
+
+<div id="Boot process"><h1 id="Boot process" class="header"><a href="#Boot process">Boot process</a></h1></div>
+
+<p>
+Boot process overview:
+</p>
+
+<p>
+Startup -&gt; Load firmware -&gt; Boot loader -&gt; Kernel -&gt; systemD
+</p>
+
+<div id="Firmware stage"><h1 id="Firmware stage" class="header"><a href="#Firmware stage">Firmware stage</a></h1></div>
+
+<p>
+This stage is meant to actually check what is there in terms of the hardware and what we are running on. Usually it is also referred to as BIOS. UEFI is just the modern option of BIOS.
+</p>
+
+<p>
+The two primary jobs are - make sure that the components have power to get! this is usually referred to as POST. Then it will go and check a special location to actually know what to do next. It is also called as checking the MBR, which is a very small part (446 bytes) that contain information about the filesystem structure and what can be found on the hard disc.
+</p>
+
+<div id="First stage Boot Loader"><h1 id="First stage Boot Loader" class="header"><a href="#First stage Boot Loader">First stage Boot Loader</a></h1></div>
+
+<p>
+BIOS looks for the MBR and loads information about the computer system that should be used.
+</p>
+
+<div id="Kernel phase"><h1 id="Kernel phase" class="header"><a href="#Kernel phase">Kernel phase</a></h1></div>
+
+<p>
+The bootloader loads the kernel in memory and passes control to it using the files that are in the /boot directory.
+</p>
+
+<div id="SystemD"><h1 id="SystemD" class="header"><a href="#SystemD">SystemD</a></h1></div>
+
+<p>
+Set kernel options! Starts daemon to detect all devices! Import network configuration (so the network starts existing here)! Decrypts filesystems if encrypted! Mount the filesystems according to /etc/fstab! Enable swap devices! The system boots in a specific target mode (like in win 7 you could have dirrefent mods like passive)! Can be managed by systemctl command.
+</p>
+
+<p>
+<code>dmesg</code> command can show information that is shown when you load the system.
+</p>
+
+<p>
+Tbe systemctl comamnd can give you acces to the services that are being started when the system boots up!
+</p>
+
+<p>
+Daemons allow the administrator to control the processes that come up on boot.
+</p>
+
+</body>
+</html>

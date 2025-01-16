@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="Stylesheet" type="text/css" href="style.css">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="rss.xml">
+<title>SSMWindowsLecture3</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<div id="AD User Management"><h1 id="AD User Management" class="header"><a href="#AD User Management">AD User Management</a></h1></div>
+
+<p>
+Starting point:
+</p>
+<ul>
+<li>
+One DC
+
+<li>
+One Core
+
+<li>
+One client
+
+</ul>
+<div id="AD User Management-Active Directory"><h2 id="Active Directory" class="header"><a href="#AD User Management-Active Directory">Active Directory</a></h2></div>
+
+<div id="AD User Management-Active Directory-Hierarchy"><h3 id="Hierarchy" class="header"><a href="#AD User Management-Active Directory-Hierarchy">Hierarchy</a></h3></div>
+
+<p>
+You have forests, then trees, domains, and organizational units.
+</p>
+
+<div id="AD User Management-Active Directory-ADDGC (Active Directory Domain Global Catalog)"><h3 id="ADDGC (Active Directory Domain Global Catalog)" class="header"><a href="#AD User Management-Active Directory-ADDGC (Active Directory Domain Global Catalog)">ADDGC (Active Directory Domain Global Catalog)</a></h3></div>
+
+<div id="AD User Management-Active Directory-ADDGC (Active Directory Domain Global Catalog)-User management"><h4 id="User management" class="header"><a href="#AD User Management-Active Directory-ADDGC (Active Directory Domain Global Catalog)-User management">User management</a></h4></div>
+
+<p>
+Our users and computer tools are represented as Organizational units.
+</p>
+
+<p>
+We can also use a plugin that allows to get all the users from AD.
+</p>
+
+<p>
+Today we are going to do user management.
+</p>
+
+<div id="Group policy management"><h1 id="Group policy management" class="header"><a href="#Group policy management">Group policy management</a></h1></div>
+
+<p>
+Without groups and users, there is no real point for group policies.
+</p>
+
+<p>
+This is genuiely some preferences, and etc, that are 
+</p>
+
+<div id="Group policy management-Hierarchy"><h2 id="Hierarchy" class="header"><a href="#Group policy management-Hierarchy">Hierarchy</a></h2></div>
+
+<p>
+Local Group Policy Object
+</p>
+
+<p>
+Site
+</p>
+
+<p>
+Domain
+</p>
+
+<p>
+Organisational units
+</p>
+
+<p>
+LWW (Last Writer wins!)
+</p>
+
+<p>
+This is how the policies are applied
+</p>
+
+<p>
+Group policy has a lot of possibilities.
+</p>
+
+<p>
+Do not edit default policies, unless it is a domain policy.
+</p>
+
+<p>
+There are 2 settings:
+</p>
+<ul>
+<li>
+Computer Configuration
+
+<li>
+User Configuration
+
+</ul>
+<p>
+Applied respectively:
+</p>
+<ul>
+<li>
+When computer is started (Computer Policy launched)
+
+<li>
+When user logs on (User policy launched)
+
+</ul>
+<p>
+Software Settings:
+</p>
+<ul>
+<li>
+Install software when starting computer
+
+</ul>
+<p>
+Administrative Templates:
+</p>
+<ul>
+<li>
+Predefined setting in templates.
+
+</ul>
+<p>
+You need to link a group policy, so that it gets activated.
+</p>
+
+</body>
+</html>

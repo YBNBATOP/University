@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="Stylesheet" type="text/css" href="style.css">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="rss.xml">
+<title>OSCLecture8CQ</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<div id="BOOT"><h1 id="BOOT" class="header"><a href="#BOOT">BOOT</a></h1></div>
+
+<div id="BOOT-Why would you replace your firmware with an open source version ?"><h2 id="Why would you replace your firmware with an open source version ?" class="header"><a href="#BOOT-Why would you replace your firmware with an open source version ?">Why would you replace your firmware with an open source version ?</a></h2></div>
+
+<p>
+Because sometimes the firmware has some useless functions you do not want to have! Hence, you can strip down it to what you want/need.
+</p>
+
+<div id="BOOT-What is a &quot;payload&quot; in the coreboot world ?"><h2 id="What is a &quot;payload&quot; in the coreboot world ?" class="header"><a href="#BOOT-What is a &quot;payload&quot; in the coreboot world ?">What is a "payload" in the coreboot world ?</a></h2></div>
+
+<p>
+The actual firmware is represented as payload, because then it is handed in to the OS.
+</p>
+
+<div id="BOOT-What is a toolchain ?"><h2 id="What is a toolchain ?" class="header"><a href="#BOOT-What is a toolchain ?">What is a toolchain ?</a></h2></div>
+
+<p>
+A toolchain is a set of programs that can run a multitude of software development tricks and for example compile your firmware as in coreboot and etc.
+</p>
+
+<div id="BOOT-When you ise Coreboot to build your own BIOS rom, are all black boxes gone then ?"><h2 id="When you ise Coreboot to build your own BIOS rom, are all black boxes gone then ?" class="header"><a href="#BOOT-When you ise Coreboot to build your own BIOS rom, are all black boxes gone then ?">When you ise Coreboot to build your own BIOS rom, are all black boxes gone then ?</a></h2></div>
+
+<p>
+I do not understand what it means by black box. If you make your own BIOS and put it on your laptop - then its done, unless you do not have a second chip.
+</p>
+
+<div id="BOOT-What is Qemu ?"><h2 id="What is Qemu ?" class="header"><a href="#BOOT-What is Qemu ?">What is Qemu ?</a></h2></div>
+
+<p>
+Type 2 Hypervisor used for emulation, and we ususally use it only on Linux. It can also be referred to as an emulator because it runs on the same OS but not on a very low level.
+</p>
+
+<div id="BOOT-What is Seasboot ?"><h2 id="What is Seasboot ?" class="header"><a href="#BOOT-What is Seasboot ?">What is Seasboot ?</a></h2></div>
+
+<p>
+I am not sure but maybe it is a kind of booting which will have some basic terminal functions?
+</p>
+
+<div id="BOOT-How can you build a custom firmware rom for other hardware ?"><h2 id="How can you build a custom firmware rom for other hardware ?" class="header"><a href="#BOOT-How can you build a custom firmware rom for other hardware ?">How can you build a custom firmware rom for other hardware ?</a></h2></div>
+
+<p>
+You can use it with some other setting or maybe use some common utilities that will allow the program to work in both cases.
+</p>
+
+<div id="SystemD"><h1 id="SystemD" class="header"><a href="#SystemD">SystemD</a></h1></div>
+
+<div id="SystemD-What does systemD &quot;dp&quot; when you get down to it ?"><h2 id="What does systemD &quot;dp&quot; when you get down to it ?" class="header"><a href="#SystemD-What does systemD &quot;dp&quot; when you get down to it ?">What does systemD "dp" when you get down to it ?</a></h2></div>
+
+<p>
+It is responsible for running the daemons to make your system work, also it starts up services and etc.
+</p>
+
+<div id="SystemD-Which command allows you to communicate with SystemD ?"><h2 id="Which command allows you to communicate with SystemD ?" class="header"><a href="#SystemD-Which command allows you to communicate with SystemD ?">Which command allows you to communicate with SystemD ?</a></h2></div>
+
+<p>
+<code>systemctl</code>!
+</p>
+
+<div id="SystemD-What are .service files (for) ?"><h2 id="What are .service files (for) ?" class="header"><a href="#SystemD-What are .service files (for) ?">What are .service files (for) ?</a></h2></div>
+
+<p>
+You can create your own services that will start up at the same time with your own system, like a server or anything like that.
+</p>
+
+<div id="SystemD-Explain the following keywords that are often found in SystemD configuration files : Description, Before, After, ExecStart, ExecReload, Restart, WantedBy, RequiredBy"><h2 id="Explain the following keywords that are often found in SystemD configuration files : Description, Before, After, ExecStart, ExecReload, Restart, WantedBy, RequiredBy" class="header"><a href="#SystemD-Explain the following keywords that are often found in SystemD configuration files : Description, Before, After, ExecStart, ExecReload, Restart, WantedBy, RequiredBy">Explain the following keywords that are often found in SystemD configuration files : Description, Before, After, ExecStart, ExecReload, Restart, WantedBy, RequiredBy</a></h2></div>
+
+<p>
+Description:
+</p>
+<ul>
+<li>
+Gives some information for the systemctl command to know what is this for
+
+</ul>
+<p>
+Before/After:
+</p>
+<ul>
+<li>
+Maybe puts some timings in between which this service would start
+
+</ul>
+<p>
+ExecStart:
+</p>
+<ul>
+<li>
+Maybe sets up some starting functions 
+
+</ul>
+<p>
+ExecReload:
+</p>
+<ul>
+<li>
+What it will reload?
+
+</ul>
+<p>
+Restart:
+</p>
+<ul>
+<li>
+No clue
+
+</ul>
+<p>
+WantedBy:
+</p>
+<ul>
+<li>
+If another thing runs, then this one is also wanted by it
+
+</ul>
+<p>
+RequiredBy:
+</p>
+<ul>
+<li>
+Without this - I will not freaking move
+
+</ul>
+<div id="SystemD-How can you make systemD aware of the presence of a new service ?"><h2 id="How can you make systemD aware of the presence of a new service ?" class="header"><a href="#SystemD-How can you make systemD aware of the presence of a new service ?">How can you make systemD aware of the presence of a new service ?</a></h2></div>
+
+<p>
+sudo systemctl daemon-reload
+</p>
+
+<p>
+systemctl --user daemon-reload
+</p>
+
+<div id="SystemD-What happens when you &quot;enable&quot; a service that is wanted by a Target ?"><h2 id="What happens when you &quot;enable&quot; a service that is wanted by a Target ?" class="header"><a href="#SystemD-What happens when you &quot;enable&quot; a service that is wanted by a Target ?">What happens when you "enable" a service that is wanted by a Target ?</a></h2></div>
+
+<p>
+I have no clue?
+</p>
+
+<div id="SystemD-What is the difference between a user level .service and a root level .service ?"><h2 id="What is the difference between a user level .service and a root level .service ?" class="header"><a href="#SystemD-What is the difference between a user level .service and a root level .service ?">What is the difference between a user level .service and a root level .service ?</a></h2></div>
+
+<p>
+Mayube in one case it will be able to run for the whole system, and not only a single user like in the second case
+</p>
+
+<div id="SystemD-How is the home directory specified differently in a script vs a .service file ?"><h2 id="How is the home directory specified differently in a script vs a .service file ?" class="header"><a href="#SystemD-How is the home directory specified differently in a script vs a .service file ?">How is the home directory specified differently in a script vs a .service file ?</a></h2></div>
+
+<p>
+I do not remember but honestly that would not matter much because you could just use another nbotation for the hone partition.
+</p>
+
+<div id="SystemD-What's the advantage of a SystemD service over a scheduled or a user-started process ?"><h2 id="What's the advantage of a SystemD service over a scheduled or a user-started process ?" class="header"><a href="#SystemD-What's the advantage of a SystemD service over a scheduled or a user-started process ?">What's the advantage of a SystemD service over a scheduled or a user-started process ?</a></h2></div>
+
+<p>
+It can be automatically restarted by the system, I do not honestly know, maybe it will just be alive for a longer time.
+</p>
+
+<div id="SystemD-WHat happens when you kill a process started via SystemD ?"><h2 id="WHat happens when you kill a process started via SystemD ?" class="header"><a href="#SystemD-WHat happens when you kill a process started via SystemD ?">WHat happens when you kill a process started via SystemD ?</a></h2></div>
+
+<p>
+You should get into some trouble I believe.
+</p>
+
+</body>
+</html>

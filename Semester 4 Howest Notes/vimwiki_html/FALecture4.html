@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="Stylesheet" type="text/css" href="style.css">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="rss.xml">
+<title>FALecture4</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<div id="ext - Extended File System"><h1 id="ext - Extended File System" class="header"><a href="#ext - Extended File System">ext - Extended File System</a></h1></div>
+
+<p>
+As we already know, there are entries, which point to inodes, which point to the file content itself.
+</p>
+
+<p>
+You have your data, your inode, and the inode also needs to be stored somewhere, and hence it also needs some space
+</p>
+
+<p>
+The typical block size for a partition of 512+ = 4096 B
+</p>
+
+<div id="Block group"><h1 id="Block group" class="header"><a href="#Block group">Block group</a></h1></div>
+
+<p>
+Block group:
+</p>
+<ul>
+<li>
+Multiple blocks = block group
+
+<li>
+A good place to store some data (Hint: Lab)
+
+<li>
+Block groups are stored sequentially
+
+<li>
+it reduces fragmentation:
+
+</ul>
+<p>
+You can view the information with <span id="Block group-fsstat"></span><strong id="fsstat">fsstat</strong> or <span id="Block group-dumpe2fs"></span><strong id="dumpe2fs">dumpe2fs</strong>
+</p>
+
+<p>
+The blocks within a block group, are used for metadata, inodes, data blocks
+</p>
+
+<div id="Block group-Block group metadata"><h2 id="Block group metadata" class="header"><a href="#Block group-Block group metadata">Block group metadata</a></h2></div>
+
+<p>
+Superblock:
+</p>
+<ul>
+<li>
+it has 1024 B
+
+<li>
+holds the metadata of all the blocks , block groups, and their sizes
+
+</ul>
+<p>
+Group descriptors:
+</p>
+<ul>
+<li>
+Contain the block number of the data block bitmap, inode bitmap, start block of the inode table (so overall the layout of the groups)
+
+</ul>
+<p>
+You can check information about a partition with: <span id="Block group-Block group metadata-sudo fstat /dev/sda3 | less"></span><strong id="sudo fstat /dev/sda3 | less">sudo fstat /dev/sda3 | less</strong>
+</p>
+
+<p>
+You can try and restore a backup using a superblock via: <span id="Block group-Block group metadata-e2fsck -b &lt;block&gt; /dev/sda3"></span><strong id="e2fsck -b &lt;block&gt; /dev/sda3">e2fsck -b &lt;block&gt; /dev/sda3</strong>
+</p>
+
+<p>
+(Data)block bitmap:
+</p>
+<ul>
+<li>
+identifies all blocks and tags them as used or free
+
+</ul>
+<p>
+You can even read the bits (number of inodes) used, if you do: <span id="Block group-Block group metadata-sudo blkcat /dev/sda &lt;inode&gt; | xxd -b | less"></span><strong id="sudo blkcat /dev/sda &lt;inode&gt; | xxd -b | less">sudo blkcat /dev/sda &lt;inode&gt; | xxd -b | less</strong>
+</p>
+
+<div id="ext journals"><h1 id="ext journals" class="header"><a href="#ext journals">ext journals</a></h1></div>
+
+<p>
+It allows us to view past information about pointers of the files.
+</p>
+
+<div id="Journals"><h1 id="Journals" class="header"><a href="#Journals">Journals</a></h1></div>
+
+<p>
+This were invented to fix much faster the corrupted files.
+</p>
+
+<p>
+A journal is a log that captures and holds all actions on a file system.
+</p>
+
+<p>
+It is rather reliable.
+</p>
+
+<p>
+The journal is there to have a better and consistend solution for file corruption
+</p>
+
+<div id="Journals-Journal structure"><h2 id="Journal structure" class="header"><a href="#Journals-Journal structure">Journal structure</a></h2></div>
+
+<p>
+It contains different types of data blocks:
+</p>
+<ul>
+<li>
+Journal superblock: contain head and tail of the journal, sequence number, the journal is a circular structure
+
+<li>
+Descriptor: describe other journal metadata blocks
+
+<li>
+Metadata: entire contents of a single block of file system metadata as updated by the transaction
+
+<li>
+Commit: confirms the updates have been written to disk
+
+</ul>
+
+</body>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="Stylesheet" type="text/css" href="style.css">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="rss.xml">
+<title>FALecture2</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<div id="Volumes and partitions"><h1 id="Volumes and partitions" class="header"><a href="#Volumes and partitions">Volumes and partitions</a></h1></div>
+
+<p>
+First thing that you should know is <code>disk management</code>.
+</p>
+
+<p>
+For example, you may see there the multiple partitions you have, for your windows
+</p>
+
+<p>
+In Linux, you can have the same thing, but there you would run <code>sudo run fdisk -l /dev/sda</code>, and see the information. They are usually marked as <code>sdx</code>, as it stands for <code>scusi disk</code>, and then the letters.
+</p>
+
+<p>
+Partition: a single hard disk, can be divided into several parts
+</p>
+
+<p>
+Volumes: You can span a volume, over different disks (like a part of a disk would be split over others), and it will be the same partition, but over other partition
+</p>
+
+<div id="MBR for partitions tables"><h1 id="MBR for partitions tables" class="header"><a href="#MBR for partitions tables">MBR for partitions tables</a></h1></div>
+
+<p>
+The MBR (Master Boot record) is most important structure on the disk, and is created when you partition the disk
+</p>
+
+<p>
+The booltloader is the base in your disk, where the information about your file system is stored.
+</p>
+
+<p>
+The MBR is created when you partition your disk. It conist of:
+</p>
+<ul>
+<li>
+a small amount of executable code
+
+<li>
+the partition table for disks (64 bytes, 16 bytes each and 4 possible partitions, 8 bytes for each one (1 bytes == 4 hex signs)
+
+<li>
+a 2-byte structure called a signature word or end of sector marker (55aa usually)
+
+</ul>
+<p>
+It is a total of 512 bytes
+</p>
+
+<p>
+MBR also has a boot code (446 bytes). It can have something inside (LILO for example), but can also pointer to a bootloader (like GRUB), so that some part of the bootloader is in the MBR, but some is on the partition like /efi fromm the Linux
+</p>
+
+<p>
+Every partition has its own information being written in its space
+</p>
+
+<div id="MBR for partitions tables-Disk signature"><h2 id="Disk signature" class="header"><a href="#MBR for partitions tables-Disk signature">Disk signature</a></h2></div>
+
+<p>
+For example, in Windows, any disk connected would get written into the registry
+</p>
+
+<div id="MBR for partitions tables-#Partitions"><h2 id="#Partitions" class="header"><a href="#MBR for partitions tables-#Partitions">#Partitions</a></h2></div>
+
+<p>
+One primary partitions is a "extended partition". That is the case when you use MBR and not GPT, and then you have a maximum of 4 partitions (but in reality it is 3 primary ones, and then 1 extended). This extended partitions have their own "logical partitions", and then are not bootable, they are just there as rounting measures for the main MBR code.
+</p>
+
+<p>
+Each of these extended paritions have its own <span id="MBR for partitions tables-#Partitions-EBR (Extended Boot Record)"></span><strong id="EBR (Extended Boot Record)">EBR (Extended Boot Record)</strong>. So for example the extended partitiosn would have the addresses of 2 logical partitions, and then the partitions themselves would also have the links to themselves.
+</p>
+
+<p>
+In order to have more partitions (than 4), the last partition, in itself, will contain another "MBR", for the extended partitions! So your 4th partition, becomes more partitions in one!
+</p>
+
+<p>
+This can be checked in the Linux, with fdisk. If you did the normal partition, then you will see /dev/sda1, 2, and 5. That is because the last one is extended. You can check that with the <code>xxd</code> by skipping a certain amount of bytes. That is usually called <code>ebr (extended boot record)</code>
+</p>
+
+<div id="MBR for partitions tables-Partition recovery"><h2 id="Partition recovery" class="header"><a href="#MBR for partitions tables-Partition recovery">Partition recovery</a></h2></div>
+
+<p>
+What you can do, is get rid of 16 bytes from the MBR, and if you can get them back, you can get back your partitions.
+</p>
+
+<p>
+MBR can be repaired and disk scanned for volumes. Primary volume 1 will not be recognized, and the data from it cnanot be respored.
+</p>
+
+<div id="GPT for partition tables"><h1 id="GPT for partition tables" class="header"><a href="#GPT for partition tables">GPT for partition tables</a></h1></div>
+
+<p>
+It is based on a GUID idea, having the ID's from different disks.
+</p>
+
+<p>
+GPT does not have MBR limits.
+</p>
+
+<p>
+It has 4 main entries, and then the other ones.
+</p>
+
+<p>
+You also, if install using UEFI, need a additional partition for UEFI! Usually it is called ESP (bootloader partition)
+</p>
+
+<p>
+GPT is newer, same as UEFI. There is a clear distinction and UEFI is way different from the MBR, as first of all it would be written to the system, or bootable partition, or maybe you could have larger possibilities.
+</p>
+
+<div id="HPA &amp; DCO"><h1 id="HPA &amp; DCO" class="header"><a href="#HPA &amp; DCO">HPA &amp; DCO</a></h1></div>
+
+<p>
+This are features that you need to know.
+</p>
+
+<p>
+HPA = Host protected area, it is more about making the disk appear smaller than it is! That is usually controlled by the firmware.
+</p>
+
+<p>
+DCO = Device Configuration Overlay, was used to provide the ability to control reported disk features and capacity
+</p>
+
+<p>
+SUch information can be read by <code>hdparam -N /dev/sda</code>
+</p>
+
+<p>
+You can see there the size it is shown to the system, and the real one.
+</p>
+
+<p>
+DCO was also used along with HPA.
+</p>
+
+<p>
+There is also another part, called DSA (Drive Service Area) which is like the part for the software of the disk for when you talk to it. This is usually taken into consideration as negative bytes (as they were never supposed to be used)
+</p>
+
+<p>
+There is also another portion, which is genuiely made for service area (Drive Service Area), and it is there to contain information about the firmware, software the disk itself has.
+</p>
+
+</body>
+</html>

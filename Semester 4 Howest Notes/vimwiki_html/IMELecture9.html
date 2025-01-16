@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="Stylesheet" type="text/css" href="style.css">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="rss.xml">
+<title>IMELecture9</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<div id="Rest API"><h1 id="Rest API" class="header"><a href="#Rest API">Rest API</a></h1></div>
+
+<p>
+When consuming an API, each endpoint represents some information.
+</p>
+
+<p>
+Hence, you need to do multiple round-trips before you actually get to what you need.
+</p>
+
+<p>
+This can result in over-fetching information
+</p>
+
+<div id="GraphQL"><h1 id="GraphQL" class="header"><a href="#GraphQL">GraphQL</a></h1></div>
+
+<p>
+It is a language to query the server, and it aims to help the life problems that exist with REST APIs
+</p>
+
+<p>
+Server is the single endpoint, and you specify all the data that you want in one siungle trip.
+</p>
+
+<p>
+There is no over-fetching as the client already knows what is needed
+</p>
+
+<p>
+GraphQL is set up on the back-end.
+</p>
+
+<p>
+You can use the postman (or insomnia) to write the queries to the server
+</p>
+
+<p>
+A query looks like this:
+</p>
+<pre graphql>
+query {
+	continents { // -- give me the continents 
+		code, // -- for all of them, give me the code
+		name // -- and the name
+}
+</pre>
+
+<p>
+If you would like to filter something, than make sure to use something from the class that you are looking for.
+</p>
+
+<pre graphql>
+query {
+	continents(code: "BE") { // -- give me the continents, whose code is BE 
+		code, // -- for all of them, give me the code
+		name // -- and the name
+}
+</pre>
+
+<p>
+You can aswell filter more extensively:
+</p>
+
+<pre graphql>
+query {
+	continents(filter: { // -- Make sure that the filter you want to use is actually specified.
+			name: {
+				eq: "Belgium"
+			}
+		}) {
+			code, // -- for all of them, give me the code
+			name // -- and the name
+		}
+</pre>
+
+</body>
+</html>

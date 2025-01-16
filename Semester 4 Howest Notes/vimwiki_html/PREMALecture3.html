@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="Stylesheet" type="text/css" href="style.css">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="rss.xml">
+<title>PREMALecture3</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<div id="Basic Dynamic Analysis"><h1 id="Basic Dynamic Analysis" class="header"><a href="#Basic Dynamic Analysis">Basic Dynamic Analysis</a></h1></div>
+
+<p>
+Outline:
+</p>
+<ul>
+<li>
+Sandboxes
+
+<li>
+Running malware
+
+<li>
+Monitoring the malware
+
+<li>
+Faking the network
+
+<li>
+Tools in practice
+
+</ul>
+<p>
+It is performed after the static analysis, so not favorable to skip it!
+</p>
+
+<p>
+You get most of the information from it.
+</p>
+
+<p>
+Dynamic one, actually allows you to see what it does on the system, and maybe understand how it all works. Though, be warned, malware running on your system is not the best idea. It might be very harmful overall for your system.
+</p>
+
+<div id="Basic Dynamic Analysis-Sandboxes"><h2 id="Sandboxes" class="header"><a href="#Basic Dynamic Analysis-Sandboxes">Sandboxes</a></h2></div>
+
+<p>
+Norman SandBox Analyzer, Windows Sandbox, and others (sandboxie we are going to use), allow you to run the malware in a version of a emulator or something.
+</p>
+
+<p>
+There is a problem with sandboxes, as malware can actually understand that it is inside one.
+</p>
+
+<p>
+Malware can sleep, but sandbox wont wait forever.
+</p>
+
+<p>
+Most sandboxes use VM technologies, and hence can be detected by the malware.
+</p>
+
+<p>
+Sandbox runs your malware in a protected environment, and hence sometimes your DLL's might be not loaded into it, and crash the malware.
+</p>
+
+<p>
+If a malware needs internet, then it will be useless in the sandbox.
+</p>
+
+<p>
+Sandboxes put every file and everything in a certain position on the disk, and does not spread it anywhere.
+</p>
+
+<p>
+So overall, how we do it, it is run a fake environment, in a fake environment, This is useful for easy malware, but not something harder.
+</p>
+
+<p>
+Sandboxie also knows what the malware does with the registry, and hence saves those values inside its place.
+</p>
+
+<div id="Basic Dynamic Analysis-Running malware"><h2 id="Running malware" class="header"><a href="#Basic Dynamic Analysis-Running malware">Running malware</a></h2></div>
+
+<p>
+We need to be careful
+</p>
+
+<p>
+Executable, easy to execute:
+</p>
+<ul>
+<li>
+Never double click!!
+
+<li>
+Better - use the command line to run the Malware.
+
+</ul>
+<p>
+What about DLL's?
+</p>
+<ul>
+<li>
+Normal DLL's have exports: You need specific addresses to export functions
+
+<li>
+We can run the: runddll32.exe
+
+<li>
+rundll32.exe PDLLname}, {Export} [arguments]
+
+<li>
+rundll32.exe rip.dll, Install C:\
+
+</ul>
+<p>
+Some DLL's need to be converted into an EXE in case there are no exports.
+</p>
+
+<div id="Basic Dynamic Analysis-Installing malware (services)"><h2 id="Installing malware (services)" class="header"><a href="#Basic Dynamic Analysis-Installing malware (services)">Installing malware (services)</a></h2></div>
+
+<p>
+Some malware tries to install itself as a service, and hence run everytime you start the system.
+</p>
+
+<div id="Basic Dynamic Analysis-Monitoring malware: running processes"><h2 id="Monitoring malware: running processes" class="header"><a href="#Basic Dynamic Analysis-Monitoring malware: running processes">Monitoring malware: running processes</a></h2></div>
+
+<p>
+Start your monitoring software before starting the malware
+</p>
+
+<p>
+We can make use of a very powerful tool: Process Hacker (Привет OverBafer!)
+</p>
+
+<p>
+It shows parent and child processes.
+</p>
+
+<p>
+It is also preferable to be run as a <code>Administrator</code>
+</p>
+
+<p>
+Remember: Malware tries to hide itself into windows services (like svchost)
+</p>
+
+<div id="Basic Dynamic Analysis-Process Monitor"><h2 id="Process Monitor" class="header"><a href="#Basic Dynamic Analysis-Process Monitor">Process Monitor</a></h2></div>
+
+<p>
+This is like a wireshark, but for processes.
+</p>
+
+<p>
+This does literally the same thing usually, and moreover.
+</p>
+
+<p>
+You better run it as <code>Administrator</code>.
+</p>
+
+<p>
+Make sure to also use filters, to take a look at something useful
+</p>
+
+<p>
+2 good options: operation <code>regsetvalue</code> and operation <code>writefile</code>
+</p>
+
+<div id="Basic Dynamic Analysis-Registry analysis"><h2 id="Registry analysis" class="header"><a href="#Basic Dynamic Analysis-Registry analysis">Registry analysis</a></h2></div>
+
+<p>
+Do you only want to know what has been altered in the registry?
+</p>
+
+<p>
+Use <code>RegShot</code>
+</p>
+
+<p>
+Run once before execution
+</p>
+
+<p>
+Run once after execution
+</p>
+
+<p>
+Compare it
+</p>
+
+<div id="Basic Dynamic Analysis-Faking the Network"><h2 id="Faking the Network" class="header"><a href="#Basic Dynamic Analysis-Faking the Network">Faking the Network</a></h2></div>
+
+<p>
+We can use a fake DNS. This will just make sure that all the requests exist
+</p>
+
+<p>
+One good option is <code>FakeNet</code>
+</p>
+
+<div id="Basic Dynamic Analysis-Faking the Network-FakeNet"><h3 id="FakeNet" class="header"><a href="#Basic Dynamic Analysis-Faking the Network-FakeNet">FakeNet</a></h3></div>
+
+<p>
+It responds to everything, meaning internet, mail, and etc etc.
+</p>
+
+<p>
+It is just having a response to everyone that asks for something.
+</p>
+
+</body>
+</html>

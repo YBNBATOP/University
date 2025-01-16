@@ -1,0 +1,78 @@
+1.How many have ASLR enabled?
+chain -
+PREMA_Exam +
+THeOasis +
+
+2
+
+
+2. How many are considered GUI?
+chain - 
+PREMA_EXAM -
+OASIS -
+
+0
+
+3. A file.txt gets dropped, which folder?
+
+exam-9856 (C:\EXAM-9856\file.txt)
+
+4. What is the key?
+
+124
+
+5. What is the original content?
+
+exam-8625
+
+6. What is the architecture?
+
+32 bit
+
+7. How many seconds it waits before showing the ffirst question?
+
+3566
+
+8. WHat is the exact memory location where the text Thanks for playing my game is pushed to?
+
+EFFB98 ???
+
+41B4D4 (we do not consider ASLR)
+
+9. first key
+
+35871
+
+10. second key
+
+83729
+
+11. third key
+
+57976
+
+12. What type of malware is this?
+
+idfk 
++Prank? Might be
+C2 - dont know it
+Downloader? does not look like it makes connections
+++Dropper? - might be, generates files.
+Spyware? - rather not, does not have anything related to Bitmap.
+Backdoor / RAT? - meh i would not think so as the only thing it does is with internet is really nslookup.
+
+13. Write to registry, but what is the path?
+
+Microsoft\Exam\EXAM
+
+14. First flag?
+
+EXAM{270860}
+
+15. Second flag?
+
+EXAM{097025}
+
+16. Third flag?
+
+EXAM{191624}

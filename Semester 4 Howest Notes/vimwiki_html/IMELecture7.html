@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="Stylesheet" type="text/css" href="style.css">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="rss.xml">
+<title>IMELecture7</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<div id="From conceptual to logical DB model"><h1 id="From conceptual to logical DB model" class="header"><a href="#From conceptual to logical DB model">From conceptual to logical DB model</a></h1></div>
+
+<ul>
+<li>
+Notation of entity type can be used for relations, but add an additional first column to indicate some constraints like PK, FK, UC
+
+<li>
+Relation name: same name as entity type
+
+<li>
+Include all the simple (optional, and non-optional) attributes
+
+<li>
+Put optional attributes in brackets
+
+</ul>
+<div id="Key attribute"><h1 id="Key attribute" class="header"><a href="#Key attribute">Key attribute</a></h1></div>
+
+<ul>
+<li>
+Strong entity type
+
+<ul>
+<li>
+Primary key (PK)
+
+<ul>
+<li>
+Choose an identifying attribute or combination of those attributes
+
+<li>
+Prefer a single attribute
+
+<li>
+Prefer an attribute without a meaning
+
+<li>
+In case of combination of attributes: no part of the key is redundant!
+
+</ul>
+<li>
+Cadidate keys: mark as uniqueness constraint (UC/UCx and x a number)
+
+</ul>
+</ul>
+<p>
+So a Key attribute becomes a PK and we write it in the left column that we spaced.
+</p>
+
+<p>
+A component key would become a UC.
+</p>
+
+<p>
+For the weak entity types, you would specify both primary keys that the entity is connected with, hence it would be clear that an entity is defined by a combination of multiple PK's
+</p>
+
+<div id="Key attribute-Derived attribute"><h2 id="Derived attribute" class="header"><a href="#Key attribute-Derived attribute">Derived attribute</a></h2></div>
+
+<p>
+Is there an added value in performance to store in table?
+</p>
+
+<p>
+No, hence you can calculate the value in code, query, or in a stored procedure or view.
+</p>
+
+<p>
+Yes, hence calculate in database trigger.
+</p>
+
+<div id="Key attribute-Composite attribute"><h2 id="Composite attribute" class="header"><a href="#Key attribute-Composite attribute">Composite attribute</a></h2></div>
+
+<ul>
+<li>
+Split it in simple attributes.
+
+<li>
+Create an extra relation if it can be a concept, split in simple attributes and treat it as an extra entity type, with a one to many relationship with the former.
+
+<li>
+Keep it composite if the parts are not that important.
+
+</ul>
+<div id="Key attribute-Multi-valued attribute"><h2 id="Multi-valued attribute" class="header"><a href="#Key attribute-Multi-valued attribute">Multi-valued attribute</a></h2></div>
+
+<ul>
+<li>
+Create a new relation
+
+<li>
+Add that attribute as an attribute of the new relation
+
+<li>
+If that attriute is not suited to be part of the key, add an extra meaningless attribute
+
+<li>
+Take the primary key of the relation where the multi-valued attribute belonged to and add it as attribute and make it part of the key of the new relation. Together with the other key attribute it will be the primary key
+
+</ul>
+<div id="Binary relationship"><h1 id="Binary relationship" class="header"><a href="#Binary relationship">Binary relationship</a></h1></div>
+
+<div id="Binary relationship-One-to-many"><h2 id="One-to-many" class="header"><a href="#Binary relationship-One-to-many">One-to-many</a></h2></div>
+
+<ul>
+<li>
+The entity type of the one side is the parent entity type
+
+<li>
+The entity type of the many side is the child entity type
+
+<li>
+Add the primary key of the parent relation as attribute of the child and create a FK (foreign key) and connect it to the parent (from the child).
+
+<li>
+Draw an arrow from the foreign key to the primary key to the primary key
+
+</ul>
+<div id="Binary relationship-One-to-one both mandatory"><h2 id="One-to-one both mandatory" class="header"><a href="#Binary relationship-One-to-one both mandatory">One-to-one both mandatory</a></h2></div>
+
+<p>
+Mandatory participation on both side of the relationship
+</p>
+
+<ul>
+<li>
+Keep separate relations and choose the primary key of one of the relations as primary key in the other relation where the original will be changed as alternate key
+
+<li>
+Keep separate relations and their primary keys but add in one of the relations the primary key as attribute and make it an alternate key.
+
+<li>
+Database trigger should guard the mandatory on the other side in those cases
+
+<li>
+Combine the attributes in one relation and choose one of the keys as primary key and the the other as alternate key
+
+</ul>
+<p>
+So for example a person might have a personpreference and hence the preference will be combined of the preferenceID, and a FK (also a UC) from the parent.
+</p>
+
+<div id="Binary relationship-One-to-one mandatory/optional"><h2 id="One-to-one mandatory/optional" class="header"><a href="#Binary relationship-One-to-one mandatory/optional">One-to-one mandatory/optional</a></h2></div>
+
+<p>
+Mandatory participation on one side of the relationship
+</p>
+<ul>
+<li>
+The entity type on the mandatory side is the parent entity type
+
+<li>
+The entity type on the optional side os the child entity type
+
+<li>
+Keep separate relations and choose the primary key of the parent relation as primary key in the child relation where the original will be changed as alternate key (or drop it if not important)
+
+<li>
+Keep separate relations and their primary keys but addd in the child relation the primary key as attribute and make it an alternate key
+
+<li>
+Combine the attributes in one relation and choose the key of the parent as primary key and the other as alternate key (or drop it if not important). Make the attribute of the client relation optional.
+
+</ul>
+<div id="Binary relationship-Many-to-many"><h2 id="Many-to-many" class="header"><a href="#Binary relationship-Many-to-many">Many-to-many</a></h2></div>
+
+<ul>
+<li>
+Create a new relation
+
+<li>
+Add eventual attributes to the relation
+
+<li>
+Add the primary key of both related relations as attribute and make the combination the primary key of the relation.
+
+</ul>
+<p>
+So overall, you will have a entity between 2 other entities and then connect them. The middle entity will have (most likely) have the FK's as the PK's as the middle class is dependant on both of them.
+</p>
+
+<div id="Binary relationship-Supertype/Subtype"><h2 id="Supertype/Subtype" class="header"><a href="#Binary relationship-Supertype/Subtype">Supertype/Subtype</a></h2></div>
+
+<ul>
+<li>
+Create one relation for the supertype and one relation per subtype
+
+<li>
+Create one relation for the supertype with all attributes of the subtypes + flag for indicating each subtype (SP)
+
+<li>
+Create one relation for the supertype and one relation for all the attributes for all subtypes + flag for indicating each subtype (SP+SB)
+
+<li>
+Create one relation per subtype and add the attributes of the supertype in each relation
+
+</ul>
+<p>
+So you would either have subtypes that are connected to the supertype and have a PK, FK as the PK from the parent (supertype), or have only supertypes but with more values inside. Hence you would have to specify for example a category for each of the entity type, instead of having it as a reference in separate classes.
+</p>
+
+<div id="Modelling issues"><h1 id="Modelling issues" class="header"><a href="#Modelling issues">Modelling issues</a></h1></div>
+
+<div id="Modelling issues-Relations with only identityfing attributes (PK)"><h2 id="Relations with only identityfing attributes (PK)" class="header"><a href="#Modelling issues-Relations with only identityfing attributes (PK)">Relations with only identityfing attributes (PK)</a></h2></div>
+
+<p>
+The relation must be kept if only you really want the data to be kept (like where you really want it)
+</p>
+
+<p>
+Though, sometimes it might be possible to get the data from a another table (or entity lets say), hence then you would be able to drop the relation.
+</p>
+
+<p>
+In the first case, make sure that your identifiyng attributes are properly set/present so that the data is stored properly.
+</p>
+
+<div id="Modelling issues-Standart value and exceptional value"><h2 id="Standart value and exceptional value" class="header"><a href="#Modelling issues-Standart value and exceptional value">Standart value and exceptional value</a></h2></div>
+
+<p>
+If the data is staying the same (like a delivery is always made on Wednesdays in terms of date), then there is no need for additional attributes for the keep of information.
+</p>
+
+<p>
+Though, if your data might as well be null, or the date would change, then there is a need for an additional attribute to be in charge.
+</p>
+
+<p>
+Also make sure that the attribute is given to the corresponding entity, that is responsible for the data.
+</p>
+
+<div id="Modelling issues-Time dependant attribute"><h2 id="Time dependant attribute" class="header"><a href="#Modelling issues-Time dependant attribute">Time dependant attribute</a></h2></div>
+
+<p>
+Instead of having attributes dependant of the date and time (like age), use an derived attribute that will allow the value to get calculated.
+</p>
+
+<div id="Modelling issues-Fixed number of attributes"><h2 id="Fixed number of attributes" class="header"><a href="#Modelling issues-Fixed number of attributes">Fixed number of attributes</a></h2></div>
+
+<p>
+Instead of having several similar attributes inside an entity, better have another entity that will handle the information, and then connect it to other entities depending on the needs.
+</p>
+
+<div id="Normalisation"><h1 id="Normalisation" class="header"><a href="#Normalisation">Normalisation</a></h1></div>
+
+<div id="Normalisation-1NF"><h2 id="1NF" class="header"><a href="#Normalisation-1NF">1NF</a></h2></div>
+
+<p>
+1NF: all attributes are atomic, and depend on the PK.
+</p>
+
+<p>
+No composite/multivalued attributes:
+</p>
+<ul>
+<li>
+split composite ones into original relation
+
+<li>
+split the multivalued attributes into new relations
+
+</ul>
+<div id="Normalisation-2NF"><h2 id="2NF" class="header"><a href="#Normalisation-2NF">2NF</a></h2></div>
+
+<p>
+Same as 1NF but also all other attributes that do not depend on the PK, should be given out to a separate entity, and hence having no partial dependency
+</p>
+
+<p>
+For example a GameCopy is dependant on the copyNr and gameID, but the gamePublisher would not be, as it is related to the Game entity.
+</p>
+
+<div id="Normalisation-3NF"><h2 id="3NF" class="header"><a href="#Normalisation-3NF">3NF</a></h2></div>
+
+<p>
+Same as 1NF but also all attributes should be dependant on the keys (PK). Looks pretty simialr to the 2NF but you do not have the father PK also included in the child entity.
+</p>
+
+<div id="Normalisation-BCNF"><h2 id="BCNF" class="header"><a href="#Normalisation-BCNF">BCNF</a></h2></div>
+
+<p>
+Same as 1NF but every key should be dependant of itself, and not of another part (makes no sense)
+</p>
+
+<p>
+So overall the is no partial dependencies between keys.
+</p>
+
+<p>
+Overall just make sure that you do not have a dependency having another dependency
+</p>
+
+<div id="Normalisation-4NF"><h2 id="4NF" class="header"><a href="#Normalisation-4NF">4NF</a></h2></div>
+
+<p>
+Same as 1NF but no multi-valued attributes between key parts
+</p>
+
+<p>
+So imagine you have a PK that is present, as PK, in 2 entities. Hence, what you would do is get attributes from all the entities that contain it, and put them in a joined big entity having all the over attributes in one place.
+</p>
+
+<div id="Normalisation-5NF"><h2 id="5NF" class="header"><a href="#Normalisation-5NF">5NF</a></h2></div>
+
+<p>
+Same as 1NF but all join-dependencies contain a key. 
+</p>
+
+<p>
+This is like the opposite of 4NF, because then you will be actually splitting up the classes (neitites) and adding the PK from the initial class.
+</p>
+
+</body>
+</html>

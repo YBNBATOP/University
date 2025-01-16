@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="Stylesheet" type="text/css" href="style.css">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="rss.xml">
+<title>MSLecture5</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<p>
+Today we are going to talk about some tool for pentesting, called Frida
+</p>
+
+<div id="Frida"><h1 id="Frida" class="header"><a href="#Frida">Frida</a></h1></div>
+
+<p>
+It is a tool for more Dynamic Analysis, and hence investigate the application while it is runnning. It is more like a kind of debugger. It is capable of inspecting the memory, modify the memory.
+</p>
+
+<p>
+It is useful for bypassing SSL pinning, root detection, brute forcing application, adapting the application.
+</p>
+
+<p>
+Imagine that it also allows you to transform functions, so that it works for your wants.
+</p>
+
+<p>
+Frida works with a Client (tools to check the device itself) and Server (needs to be injected in the device). It can be injected manually, or make into the application itself.  
+</p>
+
+<div id="Frida-Lets get some shit working"><h2 id="Lets get some shit working" class="header"><a href="#Frida-Lets get some shit working">Lets get some shit working</a></h2></div>
+
+<p>
+Make usre that you are able to install a tool from pip (to do that, you will need to make sure to create an env first, and then you will be able to install pip packages)
+</p>
+
+<p>
+You can then make enough interesting things with it.
+</p>
+
+<p>
+You can make:
+</p>
+<ul>
+<li>
+<span id="Frida-Lets get some shit working-frida-ps -Uai"></span><strong id="frida-ps -Uai">frida-ps -Uai</strong> - will list the processes on the emulator
+
+<li>
+*frida-trace -U -j '<span id="Frida-Lets get some shit working-Mobile"></span><strong id="Mobile">Mobile</strong>!<span id="Frida-Lets get some shit working-'"></span><strong id="'">'</strong> - this will trace functions, which are inside a kind of namespace, like Mobile in this case, but do not have a function
+
+<li>
+<span id="Frida-Lets get some shit working-frida -U -p 4825"></span><strong id="frida -U -p 4825">frida -U -p 4825</strong> - will pull a frida shell in the emulator
+
+</ul>
+
+</body>
+</html>

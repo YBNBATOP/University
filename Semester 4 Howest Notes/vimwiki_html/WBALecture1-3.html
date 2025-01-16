@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="Stylesheet" type="text/css" href="style.css">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="rss.xml">
+<title>WBALecture1-3</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<div id="Fundamentals: Recap"><h1 id="Fundamentals: Recap" class="header"><a href="#Fundamentals: Recap">Fundamentals: Recap</a></h1></div>
+
+<p>
+Here are some basic stuff that we know:
+</p>
+<ul>
+<li>
+IDOR/BOLA (Insecure Direct Object Reference/Broken Object Level Access)
+
+<li>
+CSRF (Cross-Site Request Forgery)
+
+<li>
+XSS (Cross-Site Scripting)
+
+<li>
+SQLi (SQL Injection)
+
+</ul>
+<div id="Fundamentals: Recap-Fundamentals: IDOR"><h2 id="Fundamentals: IDOR" class="header"><a href="#Fundamentals: Recap-Fundamentals: IDOR">Fundamentals: IDOR</a></h2></div>
+
+<p>
+It means that user input poins to an identifier without Access Control
+</p>
+
+<p>
+Like just changing a parameter to another one and not how it is supposed to be like, and hence get access to another session/account and etc.
+</p>
+
+<p>
+Always be suspicious when an application sends your userid to the server!
+Securing designs do not need you to tell the server who you are! Hence, it means that your session is not being checked if it is you or not.
+</p>
+
+<p>
+Broken authentication &amp; Microservice architecture
+</p>
+
+<div id="Fundamentals: Recap-Fundamentals: CSRF"><h2 id="Fundamentals: CSRF" class="header"><a href="#Fundamentals: Recap-Fundamentals: CSRF">Fundamentals: CSRF</a></h2></div>
+
+<p>
+You can understand that you can find it by looking at this things:
+</p>
+<ul>
+<li>
+No CSRF Token
+
+<li>
+CSRF Token not user specific
+
+<li>
+CSRF Token leaked with XSS
+
+<li>
+Referer header validation
+
+</ul>
+<p>
+So for example, you could easily do such a trick: change a username of a user that goes to your website and is still logged in the website that is vulnerable!
+</p>
+
+<div id="Fundamentals: Recap-Fundamentals: XSS"><h2 id="Fundamentals: XSS" class="header"><a href="#Fundamentals: Recap-Fundamentals: XSS">Fundamentals: XSS</a></h2></div>
+
+<p>
+The goal here is to expose something using javascript
+</p>
+
+<ul>
+<li>
+Run javascript in victims browser
+
+<li>
+Control the origin
+
+<li>
+Usr input not sanitized
+
+<li>
+Postmessage wildcard domain
+
+</ul>
+<div id="Fundamentals: Recap-Fundamentals: SQLi"><h2 id="Fundamentals: SQLi" class="header"><a href="#Fundamentals: Recap-Fundamentals: SQLi">Fundamentals: SQLi</a></h2></div>
+
+<p>
+This is the wholy grail of those who do not have prepared statements in their coding and hence are vulnerable to our own string concatination and etc.
+</p>
+
+<ul>
+<li>
+Inject user supplied data in DB querries
+
+<li>
+User input not sanitized
+
+<li>
+No prepared queries
+
+<li>
+Unathorized access to data
+
+<li>
+Control the outcome of a query
+
+</ul>
+<div id="Fundamentals: Recap-Tip"><h2 id="Tip" class="header"><a href="#Fundamentals: Recap-Tip">Tip</a></h2></div>
+
+<p>
+A useful resource here would be brutelogic website, burp suite, swisskyrepo payloads
+</p>
+
+<p>
+[Brutelogic XSS Gym](<a href="https://brutelogic.com.br/gym.php)">https://brutelogic.com.br/gym.php)</a>
+</p>
+
+<p>
+[Brutelogic website train XSS muscles](<a href="https://brutelogic.com.br/blog/training-xss-muscles/)">https://brutelogic.com.br/blog/training-xss-muscles/)</a>
+</p>
+
+<p>
+[Payloads for all kind of functions](<a href="https://github.com/swisskyrepo/PayloadsAllTheThings)">https://github.com/swisskyrepo/PayloadsAllTheThings)</a>
+</p>
+
+</body>
+</html>

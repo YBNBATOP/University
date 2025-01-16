@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="Stylesheet" type="text/css" href="style.css">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="rss.xml">
+<title>OSCLecture9CQ</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<div id="Why would a company choose for Windows Servers?"><h1 id="Why would a company choose for Windows Servers?" class="header"><a href="#Why would a company choose for Windows Servers?">Why would a company choose for Windows Servers?</a></h1></div>
+
+<p>
+They are imbecilies.
+</p>
+
+<p>
+It has more features that are available by default, more suitability with some specific components also from MS. Overall it really does not help that much.
+</p>
+
+<div id="Give a difference between a Windows client OS and a Server OS."><h1 id="Give a difference between a Windows client OS and a Server OS." class="header"><a href="#Give a difference between a Windows client OS and a Server OS.">Give a difference between a Windows client OS and a Server OS.</a></h1></div>
+
+<p>
+More support for higher-end hardware
+Allows more concurrent remote connections
+Can be installed without a GUI
+Is more expensive
+Gives priority more to the background services and tasks
+</p>
+
+<div id="What is the difference between LTSC and SAC?"><h1 id="What is the difference between LTSC and SAC?" class="header"><a href="#What is the difference between LTSC and SAC?">What is the difference between LTSC and SAC?</a></h1></div>
+
+<p>
+LTSC gets less releases, but a longer support term!
+</p>
+
+<p>
+SAC gets more realeases, but a less longer support term!
+</p>
+
+<div id="What different editions and installation options can you install when it comes to a Windows server?"><h1 id="What different editions and installation options can you install when it comes to a Windows server?" class="header"><a href="#What different editions and installation options can you install when it comes to a Windows server?">What different editions and installation options can you install when it comes to a Windows server?</a></h1></div>
+
+<p>
+Standart Edition, Datacenter Edition, Hyper-V
+</p>
+
+<p>
+Server Core, Server with Desktop Experience, Nano Server
+</p>
+
+<div id="What is the difference between a retail, an OEM and a volume licensing?"><h1 id="What is the difference between a retail, an OEM and a volume licensing?" class="header"><a href="#What is the difference between a retail, an OEM and a volume licensing?">What is the difference between a retail, an OEM and a volume licensing?</a></h1></div>
+
+<p>
+Retail - keys that you can buy in a shop
+</p>
+
+<p>
+OEM - built-in in your PC
+</p>
+
+<p>
+Volume - one key that has multiple activations
+</p>
+
+<div id="What is the Win32 API?"><h1 id="What is the Win32 API?" class="header"><a href="#What is the Win32 API?">What is the Win32 API?</a></h1></div>
+
+<p>
+This is like an interface that is responsible for managing talks between applications and the libraries.
+</p>
+
+<div id="What is the WinRM?"><h1 id="What is the WinRM?" class="header"><a href="#What is the WinRM?">What is the WinRM?</a></h1></div>
+
+<p>
+The teacher just skipped it!
+</p>
+
+<p>
+It is Windows Remote Management, it is a management protocol used in Microsoft Windows operating systems to enable remote management of computers. It allows administrators to perform various management tasks on remote Windows machines, such as running scripts, accessing system information, configuring settings, and executing commands.
+</p>
+
+<div id="Give 5 examples what a company typically uses a Windows server for."><h1 id="Give 5 examples what a company typically uses a Windows server for." class="header"><a href="#Give 5 examples what a company typically uses a Windows server for.">Give 5 examples what a company typically uses a Windows server for.</a></h1></div>
+
+<p>
+Active Directory, DHCP Server, DNS Server, File Server, Web Server.
+</p>
+
+<p>
+Use cases: application server, database server, back-up, etc.
+</p>
+
+<div id="What is AD?"><h1 id="What is AD?" class="header"><a href="#What is AD?">What is AD?</a></h1></div>
+
+<p>
+Anno Domini.
+</p>
+
+<p>
+It is Active Directory, which is some kind of very sophisticated bullshti that is meant to contain all information about groups and users I believe.
+</p>
+
+<p>
+Active Directory is a hierarchical arrangement of objects.
+</p>
+
+
+
+<div id="What is an OU?"><h1 id="What is an OU?" class="header"><a href="#What is an OU?">What is an OU?</a></h1></div>
+
+<p>
+An organizational unit (abbreviated as OU) is a container that can
+be used to group objects (users, user groups, computers, printers,
+other organizational units,…) within a domain.
+</p>
+
+<div id="What is a DC?"><h1 id="What is a DC?" class="header"><a href="#What is a DC?">What is a DC?</a></h1></div>
+
+<p>
+DC is a domain controller which means it will gather other PC's around itself.
+</p>
+
+<p>
+On a domain controller, you can only sign in using a domain user
+account (except if you start the DC in the “Directory Services
+Recovery Mode”). On other domain computers (clients or
+member servers), you can always sign in with a domain user
+account (highly recommended) or a local user account (not
+recommended).
+</p>
+
+<div id="What is a RODC"><h1 id="What is a RODC" class="header"><a href="#What is a RODC">What is a RODC</a></h1></div>
+
+<p>
+It is a read only Domain Controller
+</p>
+
+<p>
+contains an AD in which only read operations are possible
+</p>
+
+<p>
+can only replicate data from writable DCs, and never
+replicate data to other DCs → only inbound replication
+</p>
+
+<p>
+is often installed in less secure environments (e.g. branch
+offices) 
+</p>
+
+<div id="What are the different options to logon to a Windows machine (authenticate) when domain-joined?"><h1 id="What are the different options to logon to a Windows machine (authenticate) when domain-joined?" class="header"><a href="#What are the different options to logon to a Windows machine (authenticate) when domain-joined?">What are the different options to logon to a Windows machine (authenticate) when domain-joined?</a></h1></div>
+
+<p>
+IDFK
+</p>
+
+<p>
+NTLM? (relies on password authentication)
+Kerberos? (relies on password authentication)
+</p>
+
+<div id="What is typically stored in an X.509 certificate (the most important things)?"><h1 id="What is typically stored in an X.509 certificate (the most important things)?" class="header"><a href="#What is typically stored in an X.509 certificate (the most important things)?">What is typically stored in an X.509 certificate (the most important things)?</a></h1></div>
+
+<p>
+Everything?
+</p>
+
+<p>
+Validity period, Public Key, Certificate Authority information, Signature algorithm, Serial Number, Validity period
+</p>
+
+<div id="What is a SID, a GUID and NTLM?"><h1 id="What is a SID, a GUID and NTLM?" class="header"><a href="#What is a SID, a GUID and NTLM?">What is a SID, a GUID and NTLM?</a></h1></div>
+
+<p>
+SID are assigned to Users, are Security Identifiers used for authentication to do manipulations by windows for user management.
+</p>
+
+<p>
+GUID - same but for groups and some management, used for the AD.
+</p>
+
+<p>
+NTLM - an authentication mechanism, a very fucked up one because it uses challenge/response principle
+</p>
+
+<div id="What is more secure, a LM hash of an NT(LM) hash?"><h1 id="What is more secure, a LM hash of an NT(LM) hash?" class="header"><a href="#What is more secure, a LM hash of an NT(LM) hash?">What is more secure, a LM hash of an NT(LM) hash?</a></h1></div>
+
+<p>
+Windows can use 2 kind of hash functions:
+• LM hash: not very secure (uses DES); only available for
+backward compatibility; is not stored by default
+• NT(LM) hash: more secure than LM hash; doesn’t use salting
+</p>
+
+<p>
+NTLM &gt; LM
+</p>
+
+<div id="What is LDAP and why is this interesting for developers?"><h1 id="What is LDAP and why is this interesting for developers?" class="header"><a href="#What is LDAP and why is this interesting for developers?">What is LDAP and why is this interesting for developers?</a></h1></div>
+
+<p>
+LDAP stands for Lightweight Directory Access Protocol. It is a protocol used to access and manage directory information services, which can include a variety of items such as user profiles, organizational structures, and network devices.
+</p>
+
+<p>
+DO NOT USE THIS SHIT.
+</p>
+
+<div id="What different domain groups exist?"><h1 id="What different domain groups exist?" class="header"><a href="#What different domain groups exist?">What different domain groups exist?</a></h1></div>
+
+<p>
+Security gorups:
+</p>
+<ul>
+<li>
+used for securing the acces sto files, folders, printers etc.
+
+<li>
+used as mailing distribution lists
+
+</ul>
+<p>
+Distibution groups:
+</p>
+<ul>
+<li>
+can only be used as mailing distribution lists
+
+</ul>
+<div id="How do NTFS and Share permissions interact with each other?"><h1 id="How do NTFS and Share permissions interact with each other?" class="header"><a href="#How do NTFS and Share permissions interact with each other?">How do NTFS and Share permissions interact with each other?</a></h1></div>
+
+<ul>
+<li>
+Explicit Deny
+
+<li>
+Explicit Allow
+
+<li>
+Inherited Deny
+
+<li>
+Inherited Allow
+
+</ul>
+<p>
+When you set NTFS permissions on a folder, by default those
+permissions apply to this folder, subfolders and files of that
+folder → inherited permissions
+</p>
+
+</body>
+</html>

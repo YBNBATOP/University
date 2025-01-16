@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="Stylesheet" type="text/css" href="style.css">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="rss.xml">
+<title>PREMALab4</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<div id="PREMA Lab 4"><h1 id="PREMA Lab 4" class="header"><a href="#PREMA Lab 4">PREMA Lab 4</a></h1></div>
+
+<p>
+We have one sample, that seems to have 6 flags. That information can be gathered from the <code>BinText</code> of the executable itself.
+</p>
+
+<p>
+Important notes: Fisrt thing that I notice, is that the flags are being generated and given when the answer is correct. Apart from that, I see some files that might be used for the Registry writer:
+</p>
+
+<ul>
+<li>
+000000006680   000000407280      0   SOFTWARE\HOWEST\PREMA\THE\GRID
+
+<li>
+0000000068B0   0000004074B0      0   \PREMA.txt
+
+<li>
+To find the first flag, what you need to start with, is of course the strings and resources from the <code>BinText</code> and <code>ResourceHacker</code>. If you check resource hacker, you can go there, and then you will be able to see a bitmap image, and then you can see the FLAG (FLAG-959298)
+
+<li>
+To find another FLAG (FLAG-980549), what you can do is go ahead and try to launch the executable inside the sandbox, with <code>Process Monitor</code> and <code>Process Explorer</code> opened. Then you launch the capture of events in Process Monitor, and open the executable inside the PowerShell. After that, you can stop the capture, and analyze the PID of the executable. What I did, is filter by Operation, and put it to <code>regsetvalue</code>, and then you should be able to see a event. Then, you can open it, and see that it tries to write something to this address specifically - HKU\Sandbox_ybnbatop_DefaultBox\user\current\software\HOWEST\PREMA\THE\GRID\FLAG. Lower in the data, you can find the FLAG (FLAG-980549) itself.
+
+<li>
+To find another flag, also according to the same event, you can go outside the sandbox, and try and navigate to something similar from lab 3 (C:\Sandbox\ybnbatop\DefaultBox\user\current\AppData\Local), and there is the AppData, you will be able to see the FLAG (FLAG-249156) inside a file called PREMA.txt
+
+<li>
+To find another flag, what you can do, is try and solve the question 1 from the launched application. The answer can be found online, and then, you divide 1000/50 (because on the wiki you can understand that it should be physical years, as 1000 and 1050 does not work.), you get 20, you enter 20, and then you get the answer FLAG (FLAG-464654)
+
+</ul>
+
+</body>
+</html>

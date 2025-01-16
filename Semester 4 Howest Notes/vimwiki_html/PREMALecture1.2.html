@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="Stylesheet" type="text/css" href="style.css">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="rss.xml">
+<title>PREMALecture1.2</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<div id="Recap and terminology"><h1 id="Recap and terminology" class="header"><a href="#Recap and terminology">Recap and terminology</a></h1></div>
+
+<p>
+What is a file:
+</p>
+<ul>
+<li>
+It is a representation of how everything should be stored on a system
+
+<li>
+Is it the same as a process? Not really
+
+<li>
+Is a file running? No, until you run it
+
+<li>
+What is the hash of a file? 
+
+<li>
+Will the hash of a file change, if we modify the name of the file? No, it will not, as the content is the same!
+
+</ul>
+<div id="Magic Bytes"><h1 id="Magic Bytes" class="header"><a href="#Magic Bytes">Magic Bytes</a></h1></div>
+
+<p>
+Magic Bytes show what kind of file (or type) will it be!
+</p>
+
+<p>
+The file utility in Linux uses these magic bytes to know what software should be used to open the file
+</p>
+
+<p>
+Windows uses extensions (.exe, .pdf, .docx) to decide what software to use (like associating it)
+</p>
+
+<p>
+Such associations used to be in the registry itself, but for now it is more like a pointer to a configuration file
+</p>
+
+<p>
+If you change the file type, the magic bytes do not change automatically, and you would need to change them manually
+</p>
+
+<p>
+Windows looks for the extension (but it will also check the files inside), and Linux watches the magic bytes.
+</p>
+
+<p>
+Magic bytes make the file type, not the extension which is written after the dot!
+</p>
+
+</body>
+</html>
